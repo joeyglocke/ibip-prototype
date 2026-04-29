@@ -95,6 +95,15 @@ export function Edit({ size = 16 }) {
   )
 }
 
+export function ChatMultiple({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 4h7.5A2.5 2.5 0 0 1 17 6.5V11"/>
+      <path d="M5 7h7A2.5 2.5 0 0 1 14.5 9.5v3A2.5 2.5 0 0 1 12 15h-2L7 17.5V15H5a2.5 2.5 0 0 1-2.5-2.5v-3A2.5 2.5 0 0 1 5 7z"/>
+    </svg>
+  )
+}
+
 export function Lock({ size = 12 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">

@@ -116,6 +116,7 @@ export default function ChatView({
   const [jiraThreadAnchorId, setJiraThreadAnchorId] = useState(null)
   const [mainTypingAgentId, setMainTypingAgentId] = useState(null)
   const [channelThreadPostId, setChannelThreadPostId] = useState(null)
+  const [threadRailOpen, setThreadRailOpen] = useState(false)
   const [highlightMessageId, setHighlightMessageId] = useState(null)
   const messagesEndRef = useRef(null)
 
@@ -136,6 +137,7 @@ export default function ChatView({
     setRailTypingAgentId(null)
     setJiraThreadAnchorId(null)
     setChannelThreadPostId(null)
+    setThreadRailOpen(false)
     setHighlightMessageId(null)
     const intentMatches = navIntent && navIntent.chatId === activeChatId
     const intentHasSession = intentMatches && 'sessionId' in navIntent
@@ -149,6 +151,7 @@ export default function ChatView({
     }
     if (intentMatches && navIntent.channelThreadPostId) {
       setChannelThreadPostId(navIntent.channelThreadPostId)
+      setThreadRailOpen(true)
     }
     if (intentMatches && navIntent.highlightMessageId) {
       setHighlightMessageId(navIntent.highlightMessageId)
@@ -162,6 +165,7 @@ export default function ChatView({
     }
     if (navIntent.channelThreadPostId) {
       setChannelThreadPostId(navIntent.channelThreadPostId)
+      setThreadRailOpen(true)
     }
     if (navIntent.highlightMessageId) {
       setHighlightMessageId(navIntent.highlightMessageId)
@@ -532,6 +536,15 @@ export default function ChatView({
           hasSessions={hasSessions}
           showSessions={showSessions}
           onToggleSessions={() => setShowSessions((prev) => !prev)}
+          showThreads={threadRailOpen && channelThreadPostId === null}
+          onToggleThreads={() => {
+            if (threadRailOpen && channelThreadPostId === null) {
+              setThreadRailOpen(false)
+            } else {
+              setChannelThreadPostId(null)
+              setThreadRailOpen(true)
+            }
+          }}
         />
 
         <div className="chat-messages">
@@ -543,7 +556,13 @@ export default function ChatView({
                   message={postToMessage(post)}
                   activeContact={activeContact}
                   onOpenThread={() => {
-                    setChannelThreadPostId((prev) => (prev === post.id ? null : post.id))
+                    if (threadRailOpen && channelThreadPostId === post.id) {
+                      setThreadRailOpen(false)
+                      setChannelThreadPostId(null)
+                    } else {
+                      setChannelThreadPostId(post.id)
+                      setThreadRailOpen(true)
+                    }
                   }}
                 />
               ))}
@@ -622,17 +641,17 @@ export default function ChatView({
           onClose={() => setShowAgents(false)}
         />
       )}
-      {isChannel && channelThreadPostId && (() => {
-        const post = channelPosts.find((p) => p.id === channelThreadPostId)
-        if (!post) return null
-        return (
-          <ChannelThreadRail
-            post={post}
-            activeContact={activeContact}
-            onClose={() => setChannelThreadPostId(null)}
-          />
-        )
-      })()}
+      {threadRailOpen && (
+        <ChannelThreadRail
+          posts={channelPosts || []}
+          initialPostId={channelThreadPostId}
+          activeContact={activeContact}
+          onClose={() => {
+            setThreadRailOpen(false)
+            setChannelThreadPostId(null)
+          }}
+        />
+      )}
     </div>
   )
 }
