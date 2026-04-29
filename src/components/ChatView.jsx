@@ -98,6 +98,7 @@ export default function ChatView({
 
   const isAgent = activeContact.isAgent && !activeContact.isGroup
   const isChannel = !!activeContact.isChannel
+  const isGroup = !!activeContact.isGroup
   const channelPosts = isChannel ? channelPostsByContact[activeChatId] || [] : null
   const hasSessions = isAgent && sessions[activeChatId]
 
@@ -218,6 +219,9 @@ export default function ChatView({
   // session's messages. Non-session chats fall back to the chat id.
   const canvasKey = activeSessionId || activeChatId
   const messages = [...displayBaseMessages, ...(extraMessages[canvasKey] || [])]
+  // Messages with `replies` arrays power the threads list/detail view in
+  // group chats. Channels use channelPosts for the same purpose.
+  const groupThreadablePosts = isGroup ? messages.filter((m) => m.replies?.length > 0) : []
 
   const activeSession = hasSessions && sessions[activeChatId]?.find((s) => s.id === activeSessionId)
   const sourceChat = activeSession?.sourceChatId ? contacts.find((c) => c.id === activeSession.sourceChatId) : null
@@ -532,6 +536,7 @@ export default function ChatView({
         <ChatHeader
           activeContact={activeContact}
           isChannel={isChannel}
+          isGroup={isGroup}
           participantCount={participantCount}
           hasSessions={hasSessions}
           showSessions={showSessions}
@@ -588,14 +593,25 @@ export default function ChatView({
                   Recent context from the conversation has been shared with this session.
                 </div>
               )}
-              {messages.map((msg) => (
-                <MessageRow
-                  key={msg.id}
-                  message={msg}
-                  activeContact={activeContact}
-                  onOpenThread={openJiraThread}
-                />
-              ))}
+              {messages.map((msg) => {
+                const isThreaded = isGroup && msg.replies?.length > 0
+                return (
+                  <MessageRow
+                    key={msg.id}
+                    message={isThreaded ? postToMessage(msg) : msg}
+                    activeContact={activeContact}
+                    onOpenThread={isThreaded ? () => {
+                      if (threadRailOpen && channelThreadPostId === msg.id) {
+                        setThreadRailOpen(false)
+                        setChannelThreadPostId(null)
+                      } else {
+                        setChannelThreadPostId(msg.id)
+                        setThreadRailOpen(true)
+                      }
+                    } : openJiraThread}
+                  />
+                )
+              })}
               <div ref={messagesEndRef} />
             </div>
           )}
@@ -643,7 +659,7 @@ export default function ChatView({
       )}
       {threadRailOpen && (
         <ChannelThreadRail
-          posts={channelPosts || []}
+          posts={isChannel ? channelPosts : groupThreadablePosts}
           initialPostId={channelThreadPostId}
           activeContact={activeContact}
           onClose={() => {

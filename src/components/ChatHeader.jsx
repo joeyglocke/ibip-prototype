@@ -7,6 +7,7 @@ import './ChatHeader.css'
 export default function ChatHeader({
   activeContact,
   isChannel,
+  isGroup,
   participantCount,
   hasSessions,
   showSessions,
@@ -58,7 +59,7 @@ export default function ChatHeader({
             <span className="participants-count">{participantCount}</span>
           </button>
           <div className="header-divider" />
-          {!isChannel && (
+          {isGroup && (
             <IconButton
               label="Threads"
               active={showThreads}

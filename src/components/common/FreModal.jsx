@@ -33,6 +33,7 @@ export default function FreModal({
         aria-labelledby="fre-modal-title"
       >
         <div className="fre-modal-header">
+          <div className="fre-modal-title-accent" aria-hidden="true" />
           <h2 id="fre-modal-title" className="fre-modal-title">{title}</h2>
           {subtitle && <p className="fre-modal-subtitle">{subtitle}</p>}
         </div>
