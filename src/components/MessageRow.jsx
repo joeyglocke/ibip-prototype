@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { agentLogos } from '../shared/agentLogos'
 import { contacts, currentUser } from '../data/contacts'
-import { Avatar, LinkCard, PrivateDisclaimer, Check } from './common'
+import { Avatar, LinkCard, PrivateDisclaimer, Check, ChainOfThought } from './common'
 import MessageActions from './MessageActions'
 
 // Office-app icon tiles for adaptive cards that represent generated artifacts.
@@ -282,6 +282,9 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
                 </div>
               ))}
             </div>
+          )}
+          {message.chainOfThought && (
+            <ChainOfThought steps={message.chainOfThought} />
           )}
         </div>
         {reactions.length > 0 && (

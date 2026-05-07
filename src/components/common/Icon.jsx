@@ -113,6 +113,15 @@ export function Check({ size = 14 }) {
   )
 }
 
+export function CheckCircle({ size = 16, stroke = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="10" cy="10" r="7.5"/>
+      <path d="M6.75 10.5l2.25 2.25 4.5-4.5"/>
+    </svg>
+  )
+}
+
 export function ChatMultiple({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
