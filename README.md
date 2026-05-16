@@ -1,70 +1,54 @@
-# Teams Shell
+# IBIP — Install Base Intelligence Platform
 
-A high-fidelity static shell of the Microsoft Teams Chat UI, meant as a starting point for prototyping new Teams features. Fork this repo, drop in your idea, and you'll have a realistic-looking Teams surface from day one — so the prototyping work goes into the feature, not the chrome.
+A clickable prototype of IBIP — a Teams-resident agent built to preserve institutional knowledge before veteran reps walk out the door, surface at-risk accounts before they become lost accounts, and tailor every intervention to the buyer's Korn Ferry decision style.
 
-## What's inside
+Built on the [microsoft-teams-shell](https://github.com/ginobuzz/microsoft-teams-shell) UI framework so the prototype reads as a real Teams surface — the IBIP feature is what's new, not the chrome.
 
-- **Teams chat UI** — title bar, nav rail, chat list, chat view, compose, sessions rail, agents rail, channel-post threads
-- **Realistic mock data** — contacts, conversations, agents, sessions, channels and channel posts — populated so the shell looks lived-in out of the box
-- **Reactions, @mentions, reply threads, Adaptive Cards** — the message-level patterns partners expect from Teams, ready to wire up
-- **Persona-anchored copy** — seeded content reads like a real person's Teams. See [`PERSONA.md`](PERSONA.md) for the character sheet driving message content
-- **Component-scoped styling** — each `.jsx` has a sibling `.css`, no Tailwind or CSS-in-JS
-- **Design guide** — color tokens, spacing, typography, card patterns, and layout decisions in [`DESIGN_GUIDE.md`](DESIGN_GUIDE.md)
-- **Reference assets** — [`images/avatars/`](images/avatars/) holds agent logo/avatar sources used to build the UI (Copilot, Designer, Jira, Claude)
+## What's in this demo
 
-Nothing is wired to a backend. The shell is static on purpose — prototypes stay small, fast, and easy to hand off.
+Open the prototype and the IBIP chat is the first thing selected. Three beats:
 
-## Quick start
+1. **Proactive risk alert.** IBIP opens with a flagged account — Brea General Hospital, Tier 1, must-keep in geo. Risk card surfaces the firing signals (win probability < 60%, no L1 relationship on file, CTS volume trending up) with a recommended intervention.
+2. **Queryable predecessor.** Asking IBIP for the full account history pulls 11 years of relationship state, surfaces the 2019 near-loss narrative the retired rep saved verbatim, and lists what every prior rep emphasized about the lab director.
+3. **Korn Ferry-tailored playbook.** The intervention brief for Dr. Patricia Voss is tuned to her Analytical decision style — written evidence first, no rapport openers, no verbal commitments outside the deck.
+4. **Day-one territory hand-off.** The Pacific Northwest sub-region briefing turns 14 years of a retiring rep's logged notes into a 7-day plan for the inheriting RSM.
 
-Requires Node 20.19+ (Vite 8 requirement).
+## Stack
+
+React 19, Vite 5, deployed as a static bundle to GitHub Pages. No backend — every adaptive card and risk signal is mock data shaped to match the IBIP design spec.
+
+## Running locally
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:5173
+npm run build    # static bundle in dist/
 ```
 
-Opens at http://localhost:5173.
+## Deployed demo
 
-### Commands
-
-| Command | What it does |
-|---|---|
-| `npm run dev` | Dev server with hot reload |
-| `npm run build` | Production build to `dist/` |
-| `npm run preview` | Serve the production build locally |
-| `npm run lint` | ESLint |
+`https://joeyglocke.github.io/ibip-prototype/` once the Pages workflow finishes building on `main`.
 
 ## Project layout
 
 ```
-teams-shell/
-├── CLAUDE.md             Guidance for AI coding assistants working in this repo
-├── DESIGN_GUIDE.md       Color tokens, spacing, icons, typography, card patterns
-├── PERSONA.md            The fictional user persona driving all seeded copy
+ibip-prototype/
 ├── README.md
-├── images/               Reference assets
-│   └── avatars/          Agent logo/avatar sources (Copilot, Designer, Jira, Claude)
-├── public/avatars/       Static avatar images
+├── CLAUDE.md           Guidance for AI coding assistants
+├── DESIGN_GUIDE.md     Color tokens, typography, card patterns
+├── PERSONA.md          Jordan Locke — the RSM driving the demo voice
+├── public/             Static assets (avatars, file icons)
 └── src/
-    ├── App.jsx           Four-panel layout root
-    ├── data.js           Barrel re-export of everything in data/
-    ├── components/       TitleBar, NavRail, ChatList, ChatView (ChatHeader, Compose),
-    │   │                  MessageRow, MessageActions, PromptSuggestions,
-    │   │                  SessionsRail, AgentsRail, ChannelThreadRail
-    │   └── common/       Shared primitives (Avatar, LinkCard, Icon, IconButton, ...)
-    └── data/             Mock contacts, messages, agents, sessions, channel posts,
-                          prompt suggestions
+    ├── App.jsx         Layout root + FRE pitch modal
+    ├── data/           Mock contacts, messages, prompt suggestions
+    └── components/     Teams chrome + Adaptive Card renderer
 ```
 
-## Prototyping a feature
+## Design references
 
-1. **Set up the scenario** — edit the mock data in `src/data/` to add a chat, channel post, agent, message thread, or session that fits your feature. All files are re-exported from `src/data.js` — import from there.
-2. **Make the current user yours** — update `currentUser` in `src/data/contacts.js` (name, initials, avatar). The default avatar is a generic placeholder at `public/avatars/user.jpg`.
-3. **Match the voice** — when adding messages, read [`PERSONA.md`](PERSONA.md) and reuse the listed collaborators, projects, and communication style instead of inventing new ones.
-4. **Build or extend a component** in `src/components/` — every component has a scoped `.css` sibling. Reach for primitives in `components/common/` (Avatar, IconButton, Icon library, LinkCard, PrivateDisclaimer) before rolling your own.
-5. **Match the visual language** — reference [`DESIGN_GUIDE.md`](DESIGN_GUIDE.md) for colors, spacing, typography, and the Adaptive Cards pattern for agent-sent rich content.
-6. **Ship it** — `npm run build` produces a static bundle you can host anywhere.
+- [`PERSONA.md`](PERSONA.md) — Jordan Locke (Regional Sales Manager, West) and the Beckman Coulter cast referenced in the seeded conversation
+- [`DESIGN_GUIDE.md`](DESIGN_GUIDE.md) — Teams color tokens and Adaptive Card schema used by IBIP's response cards
 
-## Stack
+## Acknowledgments
 
-React 19, Vite 8. No routing, no state management library, no backend — deliberately small so the code stays easy to read and modify.
+Built on the [`ginobuzz/microsoft-teams-shell`](https://github.com/ginobuzz/microsoft-teams-shell) prototype starter kit.

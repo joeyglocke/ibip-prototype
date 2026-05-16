@@ -11,4 +11,24 @@ export const agentLogos = {
       <path d="M10.5363 3.5409L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456z"/>
     </svg>
   ),
+  // IBIP — Install Base Intelligence Platform. Mark glyph reads as a stylized
+  // "i" sitting inside a shielded badge: vertical preservation + protective
+  // surround, the two promises of the platform.
+  ibip: (size = 12) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path
+        d="M12 1.5 3 5v6.2c0 5.1 3.6 9.4 9 11.3 5.4-1.9 9-6.2 9-11.3V5l-9-3.5z"
+        fill="#fff"
+        opacity="0.18"
+      />
+      <path
+        d="M12 1.5 3 5v6.2c0 5.1 3.6 9.4 9 11.3 5.4-1.9 9-6.2 9-11.3V5l-9-3.5z"
+        stroke="#fff"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="7.6" r="1.25" fill="#fff" />
+      <rect x="10.85" y="10.2" width="2.3" height="7.1" rx="0.6" fill="#fff" />
+    </svg>
+  ),
 }

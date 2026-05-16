@@ -1,47 +1,57 @@
-# Persona: Alex Morgan
+# Persona: Jordan Locke
 
 Reference this file whenever generating new content for the prototype (messages, session titles, chat names, canned agent responses, seeded data). The goal is for every piece of text to read like it came from a real person's Teams — not generic placeholder copy.
 
-This persona is fictional. Don't tie messages to any real person, employer, or internal codename.
+This persona is fictional and used for an internal pitch prototype. Do not tie messages to specific real people; the demo audience is Beckman Coulter Sales Leadership but the persona itself is invented.
 
 ## Role
 
-- Principal product consultant, operating independently under **Morgan Collective** (a boutique consultancy).
-- Works with 2–3 B2B / enterprise clients at a time. Roughly a 60/40 split between hands-on product work (PRDs, specs, launch readiness) and strategic advisory (roadmap reviews, org coaching, due-diligence support).
-- Specialty: product strategy for AI-native and agent-based platforms. Partners closely with client engineering, design, and content teams.
-- Based in the US Pacific time zone. Mostly remote; occasional on-site visits with clients.
+- **Regional Sales Manager**, West Region — Beckman Coulter diagnostics.
+- Owns ~150 active accounts across the West, $42M book on the inherited Pacific Northwest sub-region alone.
+- 11 years at Beckman, 6 as an RSM. Was an HSE before that, so he reads the field reps' world fluently.
+- Currently presenting the IBIP (Install Base Intelligence Platform) capstone for the Sales Leadership Academy. The prototype IS the demo.
+- Based in the US Pacific time zone; mix of in-region travel and remote work.
 
-## Current engagements
+## Current situation
 
-- **Northwind Traders** — lead engagement, multi-quarter. Helping Northwind stand up an internal agent platform (their codename: "Agents Platform v2") so their ops and partner teams can delegate work to AI agents. Currently in launch-planning for an April 25 milestone.
-- **Conversational AI working group** — smaller recurring advisory engagement with a separate client, focused on how their agents should handle handoffs, context preservation, and slash-command invocations.
-- Secondary advisory work comes and goes; keep it vague in messages unless specifically seeded.
+- **This week (May 11–15, 2026):** preparing for a renewal cycle on Brea General Hospital (must-keep in geo, flagged at risk) and inheriting the Pacific Northwest sub-region from a retiring tenured rep (Carla Renteria, 14 yrs).
+- **Pitch context:** capstone slot at the Sales Leadership Academy. The audience is regional leadership — every person in the room has personally lost an account after a rep transition. The pitch lands by reframing AI from threatening to protective.
 
 ## Close collaborators
 
 Reuse these names rather than invent new ones when seeding messages or @mentions:
 
-- **Northwind engineering:** Kevin Park (auth / token refresh), James Kim (analytics + agent handoff), Olivia Martinez (webhook delivery), David Nguyen (docs + migration guides)
-- **Northwind design & QA:** Sarah Chen (handoff UX + settings), Emma Larsen (QA, staging smoke tests)
-- **Northwind PM & stakeholders:** Rachel Thompson (tech-lead PM on the agent platform — also Alex's primary working peer), Emily Watson (PM on a parallel workstream), Natalie Brooks (newer PM, recently onboarded)
-- **Frequent agents Alex delegates work to:** Jira (ticketing, sprint status, blocker lookups), Claude (architecture rubber-ducking, drafting, code review)
+- **HSE (Health Systems Executive):** Maria Santos — West region, primary field rep on Brea General and other top accounts
+- **RSM peer:** Tom Hayes — Pacific sub-region, same level as Jordan
+- **Area Director:** Linda Park — Jordan's manager, the "must-keep in geo" decisions ultimately ladder to her
+- **KAM:** Greg Tanaka — handles the largest strategic accounts
+- **Retiring tenured rep:** Carla Renteria — 14 years on the Pacific Northwest, source of the institutional memory IBIP is preserving
+- **Predecessor on Brea General (retired Q1-2024):** David Halpern — saved the account in 2019, his qualitative notes are the highest-value data IBIP recovered
+
+## Sample accounts referenced in the demo
+
+- **Brea General Hospital** — Tier 1, must-keep in geo, $2.1M ARR, renewing in 84 days. Flagged at risk; CMO Dr. Patricia Voss (Analytical buyer) is the L1 contact with no relationship on file.
+- **Tacoma Regional Medical Center** — $3.4M, renewing 9/15. Dr. Singh (Driver) is the decision-maker.
+- **Bellevue Health** — $2.8M, healthy. CFO Karen Wu (Expressive) is the personal relationship anchor.
+- **Spokane County** — $1.9M, recent SE turnover; Frank Russo (Lab Director) was unhappy with the transition.
 
 ## Communication style
 
-- Direct and concise. Short messages, bullet lists over paragraphs. Rarely writes more than 3–4 sentences in chat.
-- Casual lowercase in 1:1s and small groups; slightly more formal in cross-team channels and to client leadership.
-- Comfortable with shorthand: `PR`, `LGTM`, `WIP`, `ICYMI`, `FYI`, `EOD`, `ETA`, `PRD`, `ADR`, `P1`, `p99`.
-- Technical vocabulary welcome: retries, jitter, backoff, circuit breakers, idempotency, webhooks, feature flags, dogfood, WAL, CDC, outbox, eventual consistency.
-- Asks clarifying questions before committing; pushes back on vague scope. Offers options with trade-offs rather than a single confident answer.
+- Direct, lowercase in 1:1 chats. Pushes back when a recommendation is generic. Asks IBIP for specifics, not summaries.
+- Comfortable with shorthand: `HSE`, `RSM`, `KAM`, `VOC`, `L1`, `CTS`, `SE`, `ARR`, `book`, `geo`, `must-keep`.
+- Domain vocabulary welcome: win probability, churn risk, renewal proximity, install base, reagent consistency, turnaround time, downtime, peer benchmarks.
+- Trusts data but verifies. Will ask "who is the source" or "when was this logged."
 
 ## Influences on generated content
 
-- **Time zone:** US Pacific. "Today" / "Yesterday" / business-hours timestamps should resolve to PT.
-- **Tools referenced naturally:** Teams, Jira, Figma, GitHub, Notion, Azure / AWS, Grafana, Snowflake, feature-flag systems. Stay tool-agnostic where possible — don't bind Alex to a specific vendor ecosystem.
-- **Project artifacts:** realistic ticket prefixes (`JIRA-45xx`), realistic repo names (`northwind/agent-handoff`), release tags (`v2.3`, `v2.4`).
-- **Do not reference:** the repo author, any specific real company, or Microsoft-internal codenames. Clients and coworkers are all fictional. "Northwind Traders" is a well-known generic fictional enterprise and is safe to use.
-- **Avoid placeholder writing:** no `Lorem ipsum`, `Hello world`, `Test user`, `John Smith`, or generic email addresses. If a realistic detail isn't obvious, reuse an existing one from the data rather than invent something new.
-- **Agent voice:**
-  - **Jira** replies are terse and structured — quotes ticket ids, statuses, assignees, dates. No fluff.
-  - **Claude** replies are thoughtful, push back when scope is unclear, offer 2–3 options with trade-offs, avoid over-confident single answers.
-- **Tone safety:** messages should never be edgy, snarky, or vent about colleagues. This is a public prototype — every message should be demo-safe.
+- **Time zone:** US Pacific. "Today" / "Yesterday" / business-hours timestamps resolve to PT.
+- **Tools referenced naturally:** Teams, Salesforce, SharePoint, Power BI, Outlook, Copilot. Beckman uses Microsoft 365 and Salesforce as the canonical stack.
+- **Korn Ferry vocabulary:** Analytical, Driver, Expressive, Amiable. Buyer profiles populate Salesforce custom fields and travel with the account forever in IBIP.
+- **Risk signals (Beckman's own framework):** win probability < 60% without VOC trigger, no L1 relationship on file, CTS call volume above baseline, unplanned field service visits, service team turnover, sales team turnover, coverage gaps, limited clinical relationships.
+- **Avoid:** generic placeholder writing, edgy/snarky tone, hypothetical large numbers without grounding, mention of real Beckman competitors in any way that reads as disparaging. Sysmex appears once in the 2019 narrative — treat it as factual context, not a swipe.
+- **Agent voice for IBIP:**
+  - Confident and specific. Quotes signal counts, dates, dollar amounts.
+  - Surfaces tradeoffs and asks for direction rather than declaring outcomes.
+  - Tailors language to the buyer profile in scope when generating a brief.
+  - Footers cite the source ("Compiled from 247 logged interactions" / "Korn Ferry profile populated by David Halpern, 2019").
+- **Tone safety:** every message demo-safe. The prototype is published publicly for the pitch readout.

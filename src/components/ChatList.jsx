@@ -149,9 +149,9 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
       <div className="chat-list-items">
         {!isCollapsed('favorites') && favorites.map(renderItem)}
 
-        {/* Project Northwind section */}
+        {/* West Region pinned cluster */}
         <SectionHeader
-          label="Project Northwind"
+          label="West Region"
           collapsed={isCollapsed('northwind')}
           onToggle={() => toggleSection('northwind')}
         />

@@ -3,6 +3,54 @@
 // clicked; `response` is the canned agent reply that follows after a brief
 // typing indicator.
 export const promptSuggestions = {
+  // IBIP — Install Base Intelligence Platform.
+  // Six cards across the three components: institutional memory, risk
+  // flagging, and Korn Ferry-tailored briefings. Plus a transition prompt
+  // because the demo audience has all lived a territory hand-off.
+  100: [
+    {
+      title: 'Show today\'s flagged accounts',
+      description: 'At-risk accounts surfaced overnight, ranked by severity.',
+      text: 'Show me every account flagged at risk in my region right now, ranked by severity.',
+      response:
+        '6 accounts flagged in your region as of this morning — 1 High, 3 Medium-High, 2 Medium. Top of the list is Brea General Hospital (Tier 1, must-keep in geo) — win probability dropped below 60%, no L1 relationship on file, CTS volume trending up. I have the full risk card and a recommended intervention playbook ready when you want them.',
+    },
+    {
+      title: 'Pull an account history',
+      description: 'A queryable summary of every interaction we have on file.',
+      text: 'Give me the full account history for Brea General Hospital — including the 2019 near-loss.',
+      response:
+        '11 years of relationship on file across 4 prior reps, 247 logged interactions, 12 CTS tickets, 3 field-service notes, and 2 documented near-loss events. The 2019 save by David Halpern is the one most worth reading — Sysmex pitched a full system replacement and Halpern won the room by meeting their CMO over coffee instead of in a boardroom. Want me to open the full account dossier or jump to a specific event?',
+    },
+    {
+      title: 'Tailor a briefing to a buyer',
+      description: 'Intervention playbook tuned to the contact\'s Korn Ferry profile.',
+      text: 'Tailor an intervention brief for Dr. Patricia Voss at Brea General — she is the L1 decision-maker on the renewal.',
+      response:
+        'Dr. Voss is on file as Analytical — deliberate, evidence-first, dislikes relationship-driven openers. I have a playbook tuned to her profile: a written 2-page utilization summary in advance, lead the call with peer benchmarks (not capability slides), stay quiet after each data point, no verbal commitments that are not in writing. Want me to send it to Maria with a draft opening email?',
+    },
+    {
+      title: 'Prepare a territory hand-off',
+      description: 'Day-one briefing for a rep inheriting accounts.',
+      text: 'I am taking over the Pacific Northwest sub-region from Carla on Friday. Brief me on day one.',
+      response:
+        'Carla has 14 years on that book — 38 active accounts, 4 must-keep in geo, $42M. I rolled her logged notes, calls, and field-visit observations into a 7-day plan: read the must-keep dossiers Day 1, sequence relationship continuity calls Days 2–3, align with HSE Maria Santos Day 4. I also pulled three quotes from Carla on accounts she wanted you to know about personally. Open the briefing?',
+    },
+    {
+      title: 'Check renewal exposure',
+      description: 'Renewing contracts cross-referenced with risk signals.',
+      text: 'Which of my renewing contracts in the next 90 days are also flagged at risk?',
+      response:
+        '4 contracts renewing within 90 days across your region. 2 of them are currently flagged at risk: Brea General (renewing in 84 days, High severity) and Spokane County (renewing in 67 days, Medium-High — recent SE turnover, Frank Russo unhappy with the transition). The other 2 are clean and on track. Want the renewal-readiness card for each?',
+    },
+    {
+      title: 'Start a VOC trigger',
+      description: 'Capture structured customer feedback before it is too late.',
+      text: 'Initiate a Voice of Customer trigger on Brea General before the renewal conversation.',
+      response:
+        'Plan ready: I will route a structured VOC capture to HSE Maria Santos with three prompts tuned to Dr. Voss\'s profile (utilization, downtime sensitivity, peer comparison). Results land in the risk model and improve flag accuracy. Approve to send, or edit the prompts before they go out.',
+    },
+  ],
   2: [
     {
       title: 'Explain a codebase',

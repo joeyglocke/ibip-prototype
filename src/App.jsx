@@ -10,8 +10,8 @@ import './App.css'
 
 export default function App() {
   const [activeView, setActiveView] = useState('chat') // 'chat' | 'activity'
-  const [activeChatId, setActiveChatId] = useState(1)
-  const [readChatIds, setReadChatIds] = useState(() => new Set([1]))
+  const [activeChatId, setActiveChatId] = useState(100) // IBIP — primary surface for the demo
+  const [readChatIds, setReadChatIds] = useState(() => new Set([100]))
   const [sessions, setSessions] = useState(initialSessions)
   const [dynamicSessionMessages, setDynamicSessionMessages] = useState({})
   // Activity feed: persist which events the user has opened so unread decorations clear.
@@ -115,56 +115,61 @@ export default function App() {
       </div>
       {showFre && (
         <FreModal
-          title="Feature name"
-          subtitle="One-sentence pitch for what this feature is and why it matters to the audience watching the demo."
+          title="IBIP — Install Base Intelligence Platform"
+          subtitle="Never lose another account because we lost the knowledge."
           onDismiss={dismissFre}
+          dismissLabel="See it in action"
         >
           <h3 className="fre-section-title">Today</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Describe
-            the current experience the demo audience is familiar with — the
-            workflow, the surfaces, the people involved. Sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua, ut enim ad minim
-            veniam, quis nostrud exercitation.
+            Every year, a veteran rep retires, an HSE moves on, or an RSM
+            transitions out — and fifteen years of institutional knowledge
+            walks out the door with them. Which lab director needs a personal
+            call before a price increase hits. Why a flagship account almost
+            left in 2019 and what it took to save them. How to read the room
+            at Regional Medical Center before a renewal. None of that is in
+            Salesforce. None of it ever was.
           </p>
 
           <h3 className="fre-section-title">Problem</h3>
           <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore. Name the friction sharply: what breaks down today,
-            who feels it, and how often. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum, consectetur adipiscing elit sed do eiusmod.
+            Three failures compound. Institutional knowledge walks out the
+            door with every rep transition. At-risk accounts are sending
+            signals — falling win probability, missing L1 relationships,
+            rising CTS volume — that nobody is reading in time. And our Korn
+            Ferry investment lives in a binder, not in the live selling
+            moment.
           </p>
 
           <h3 className="fre-section-title">Solution</h3>
           <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Walk through the new
-            feature you're showing — the surface, the interaction, the moment
-            of delight. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur.
+            IBIP is one platform with three components. An institutional
+            memory engine that preserves what every rep knows before they
+            leave. A risk flagging engine that surfaces at-risk accounts
+            automatically using Beckman Coulter's own risk parameters. And a
+            Korn Ferry layer that tailors every intervention to the buyer's
+            decision style — so the right message reaches the right person
+            in the right way.
           </p>
           <p>
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum. If the feature is
-            best understood through a sequence, list the key beats here so the
-            audience knows what to look for as the demo plays.
+            Watch this demo in three beats: a proactive risk alert on Brea
+            General Hospital, a queryable predecessor pulling 11 years of
+            account history on demand, and a Korn Ferry-tailored intervention
+            playbook ready for the HSE to take into the room. All on
+            infrastructure Beckman Coulter already owns.
           </p>
 
-          <h3 className="fre-section-title">What this Unlocks</h3>
+          <h3 className="fre-section-title">What this unlocks</h3>
           <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium. Spell out the downstream wins —
-            what gets faster, easier, or newly possible because of this
-            feature. Totam rem aperiam, eaque ipsa quae ab illo inventore
-            veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            $2M in transition-risk protection. $2.25M in early-intervention
+            retention. $2.4M in leadership and rep productivity. $6.7M in
+            Year 1, $20.1M cumulative over three years. Payback in under two
+            weeks of protected revenue.
           </p>
           <p>
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-            aut fugit, sed quia consequuntur magni dolores eos qui ratione
-            voluptatem sequi nesciunt. Close with the audience-specific
-            takeaway — what the viewer should remember after the demo ends.
+            We cannot afford to keep losing institutional knowledge every
+            time we lose a person. This platform makes sure we never have to
+            again.
           </p>
         </FreModal>
       )}
