@@ -48,6 +48,169 @@ export const messagesByContact = {
     },
   ],
 
+  // ── West Region Leadership group (id 204) ─────────────────────────────
+  //    IBIP pushes the Monday morning leadership digest into the group;
+  //    AD, peer RSM, HSE coordinate the week's response. Demonstrates how
+  //    risk is elevated from the agent surface into the leadership thread.
+  204: [
+    {
+      id: 1,
+      senderId: 100,
+      text: 'West Region · Monday digest. 1 Tier 1 account flagged High overnight (Brea General — Jordan owns), 3 accounts on the Medium-High watchlist, 2 transitions kicking off this week. Full picture below.',
+      time: 'Mon 7:00 AM',
+      cards: [
+        {
+          accentColor: '#0B5394',
+          iconType: 'teams',
+          title: 'West Region — Leadership digest',
+          subtitle: 'Week of May 11 · 152 active accounts · $48M renewing in Q3',
+          badge: { text: 'New this week', tone: 'purple' },
+          metrics: [
+            { value: '6', label: 'Accounts flagged', delta: '+2 vs last week', deltaTone: 'amber' },
+            { value: '1', label: 'Tier 1 High severity', delta: 'Brea General', deltaTone: 'amber' },
+            { value: '4', label: 'Renewals < 90d at risk', delta: '$8.2M exposure', deltaTone: 'amber' },
+          ],
+          sections: [
+            {
+              heading: 'This week\'s asks',
+              bullets: [
+                'Brea General Hospital — Jordan + Maria reach Dr. Voss with the tailored brief by Wed',
+                'Spokane County — Tom to close the loop with Frank Russo on the SE transition before Friday',
+                'Tacoma Regional — schedule the Q3 renewal pre-read with Dr. Singh',
+              ],
+            },
+            {
+              heading: 'Transitions in motion',
+              bullets: [
+                'Pacific Northwest: Carla Renteria retires Friday — Jordan inherits 38 accounts, $42M',
+                'New SE assigned at Spokane County — Frank Russo flagged dissatisfied (Medium-High)',
+              ],
+            },
+          ],
+          footer: 'Next digest Wed 7:00 AM · Includes any new flags raised mid-week',
+          actions: ['Open the watchlist', 'Send to West Region leads', 'Schedule weekly review'],
+        },
+      ],
+    },
+    {
+      id: 2,
+      senderId: 202,
+      text: 'thanks. on brea — what\'s our read on voss? we had no relationship on file last week, has that changed?',
+      time: 'Mon 7:14 AM',
+    },
+    {
+      id: 3,
+      senderId: 'me',
+      text: 'no — still no L1 relationship on file. maria is reaching out this week with the tailored brief IBIP pulled. she\'s an analytical buyer, written evidence first. should be in voss\'s inbox by tomorrow.',
+      time: 'Mon 7:18 AM',
+      reactions: [{ emoji: '👍', count: 2 }],
+    },
+    {
+      id: 4,
+      senderId: 201,
+      text: 'on spokane — i had time blocked with frank russo today but he pushed to thursday. i\'ll bring the SE transition recovery card IBIP generated.',
+      time: 'Mon 7:22 AM',
+    },
+    {
+      id: 5,
+      senderId: 200,
+      text: 'voss outreach goes today by 3pm pt. i\'ll loop back here once she responds. brief is genuinely tailored to her — first time i haven\'t had to rewrite an IBIP draft.',
+      time: 'Mon 7:26 AM',
+      reactions: [{ emoji: '🎯', count: 3 }],
+    },
+    {
+      id: 6,
+      senderId: 100,
+      text: 'Acknowledged. I will surface any movement on these three the moment a signal changes — VOC response, CTS volume shift, or a contact note logged. Quiet otherwise unless something escalates.',
+      time: 'Mon 7:28 AM',
+    },
+  ],
+
+  // ── Transitions Watch group (id 205) ──────────────────────────────────
+  //    Coordination thread for the Pacific Northwest transition. IBIP
+  //    surfaces the retirement, leadership distributes the work.
+  205: [
+    {
+      id: 1,
+      senderId: 100,
+      text: 'Transition alert. Carla Renteria retires Friday May 15. Pacific Northwest sub-region needs continuity coverage on 4 must-keep accounts. I have a full inheritance plan ready.',
+      time: 'Tue 8:00 AM',
+      cards: [
+        {
+          accentColor: '#C4571A',
+          iconType: 'teams',
+          title: 'Pacific Northwest — Transition watch',
+          subtitle: 'Carla Renteria · 14 yrs tenure · Retiring Fri May 15',
+          badge: { text: 'Action this week', tone: 'amber' },
+          metrics: [
+            { value: '4', label: 'Must-keep accounts', delta: '$10.2M ARR', deltaTone: 'neutral' },
+            { value: '11 wks', label: 'Avg post-transition risk window', delta: 'historical', deltaTone: 'neutral' },
+            { value: '1,840', label: 'Carla\'s logged interactions', delta: 'preserved', deltaTone: 'neutral' },
+          ],
+          sections: [
+            {
+              heading: 'Coverage decisions needed',
+              bullets: [
+                'Tacoma Regional ($3.4M, renewing 9/15) — needs a relationship intro before Friday',
+                'Bellevue Health ($2.8M) — CFO Karen Wu was personally close to Carla; warm handoff matters',
+                'Spokane County ($1.9M) — recent SE turnover stacks on the rep transition; high stack-risk',
+                'Brea General ($2.1M) — already flagged High, do not let the transition compound it',
+              ],
+            },
+          ],
+          footer: 'Carla has primed all 4 contacts to expect a hand-off — do not let that window close',
+          actions: ['Assign coverage', 'Schedule intro calls', 'Open Carla\'s briefing'],
+        },
+      ],
+    },
+    {
+      id: 2,
+      senderId: 202,
+      text: 'jordan picks up the full pacific NW sub-region monday. confirmed last week. let\'s use this thread for any signal IBIP raises during the 90-day window.',
+      time: 'Tue 8:09 AM',
+    },
+    {
+      id: 3,
+      senderId: 200,
+      text: 'i can bridge the intro calls for tacoma + bellevue this week — carla and i will do them together so jordan walks into a warm room next week. spokane i think jordan should do solo, frank prefers one new face at a time.',
+      time: 'Tue 8:13 AM',
+      reactions: [{ emoji: '🙏', count: 2 }],
+    },
+    {
+      id: 4,
+      senderId: 'me',
+      text: 'works. carla\'s briefing already has the per-contact notes — i\'ll have read all 4 dossiers by EOD wednesday. maria, send me the tacoma/bellevue call times and i\'ll be on them.',
+      time: 'Tue 8:17 AM',
+    },
+    {
+      id: 5,
+      senderId: 100,
+      text: 'I will track the 90-day post-transition risk window automatically for these 4 accounts. Tier 1 alerting is on. If any signal fires you all get notified here within minutes.',
+      time: 'Tue 8:20 AM',
+      cards: [
+        {
+          accentColor: '#0B5394',
+          iconType: 'teams',
+          title: '90-day continuity watch — armed',
+          subtitle: '4 accounts · Active May 16 → Aug 14 · Real-time alerts',
+          badge: { text: 'Monitoring', tone: 'green' },
+          sections: [
+            {
+              heading: 'What I am watching',
+              bullets: [
+                'CTS call volume vs trailing 90d baseline (per account)',
+                'Unplanned field service visits and unresolved tickets',
+                'Win probability deltas > 10 points',
+                'Any contact note logged that hints at competitor activity',
+              ],
+            },
+          ],
+          footer: 'First check-in: Mon May 18, 7:00 AM PT digest in this thread',
+        },
+      ],
+    },
+  ],
+
   // ── Sarah Chen — design lead ──────────────────────────────────────────
   1: [
     { id: 1, senderId: 1, text: 'Hey! Have you had a chance to look at the new mockups for the dashboard?', time: 'Mon 10:12 AM' },
