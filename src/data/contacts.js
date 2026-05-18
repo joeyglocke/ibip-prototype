@@ -1,3 +1,5 @@
+import { ibipInitialDraft } from './ibipFlow'
+
 const base = import.meta.env.BASE_URL
 
 // Placeholder persona for the prototype. See PERSONA.md for the full
@@ -100,7 +102,9 @@ export const teams = [
 ]
 
 export const favorites = [
-  { contactId: 100, bold: true },
+  // IBIP carries the first user query as a pre-filled draft so the demo
+  // driver just clicks send to advance the scripted flow.
+  { contactId: 100, bold: true, draft: ibipInitialDraft },
   { contactId: 202 },
   { contactId: 201 },
   { contactId: 200 },

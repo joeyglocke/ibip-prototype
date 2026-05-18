@@ -12,6 +12,7 @@ import {
   designerAgent,
   pollyAgent,
   breakthuAgent,
+  ibipFlow,
 } from '../data'
 import { TypingIndicator } from './common'
 import MessageRow from './MessageRow'
@@ -116,6 +117,10 @@ export default function ChatView({
   const [activeSessionId, setActiveSessionId] = useState(null)
   const [jiraThreadAnchorId, setJiraThreadAnchorId] = useState(null)
   const [mainTypingAgentId, setMainTypingAgentId] = useState(null)
+  // IBIP demo-flow cursor — index into ibipFlow. Each send in the IBIP chat
+  // advances one step, appending the scripted response after a typing delay
+  // and pre-filling compose with the next user query.
+  const [ibipStep, setIbipStep] = useState(0)
   const [channelThreadPostId, setChannelThreadPostId] = useState(null)
   const [threadRailOpen, setThreadRailOpen] = useState(false)
   const [highlightMessageId, setHighlightMessageId] = useState(null)
@@ -491,6 +496,27 @@ export default function ChatView({
           }],
         }))
       }, 2000)
+    }
+
+    // IBIP scripted flow — each send in the IBIP chat reveals the next
+    // pre-authored response, then chains the next user query into compose.
+    if (chatId === 100 && ibipStep < ibipFlow.length) {
+      const step = ibipFlow[ibipStep]
+      setMainTypingAgentId(chatId)
+      setTimeout(() => {
+        setMainTypingAgentId((prev) => (prev === chatId ? null : prev))
+        const response = step.response
+        setExtraMessages((prev) => ({
+          ...prev,
+          [bucket]: [...(prev[bucket] || []), {
+            ...response,
+            id: `ibip-${ibipStep}-${Date.now()}`,
+            time: nowTimeStr(),
+          }],
+        }))
+        setIbipStep((s) => s + 1)
+        if (step.nextDraft) setInputValue(step.nextDraft)
+      }, 2800)
     }
   }
 
