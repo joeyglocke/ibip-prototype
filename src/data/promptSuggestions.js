@@ -13,14 +13,14 @@ export const promptSuggestions = {
       description: 'At-risk accounts surfaced overnight, ranked by severity.',
       text: 'Show me every account flagged at risk in my region right now, ranked by severity.',
       response:
-        '6 accounts flagged in your region as of this morning — 1 High, 3 Medium-High, 2 Medium. Top of the list is Brea General Hospital (Tier 1, must-keep in geo) — win probability dropped below 60%, no L1 relationship on file, CTS volume trending up. I have the full risk card and a recommended intervention playbook ready when you want them.',
+        '6 accounts flagged in your region as of this morning — 1 High, 3 Medium-High, 2 Medium. Top of the list is Brea General Hospital (Tier 1, must-keep in geo) — win probability dropped below 60%, no L1 relationship on file, CTSO volume trending up. I have the full risk card and a recommended intervention playbook ready when you want them.',
     },
     {
       title: 'Pull an account history',
       description: 'A queryable summary of every interaction we have on file.',
       text: 'Give me the full account history for Brea General Hospital — including the 2019 near-loss.',
       response:
-        '11 years of relationship on file across 4 prior reps, 247 logged interactions, 12 CTS tickets, 3 field-service notes, and 2 documented near-loss events. The 2019 save by David Halpern is the one most worth reading — Sysmex pitched a full system replacement and Halpern won the room by meeting their CMO over coffee instead of in a boardroom. Want me to open the full account dossier or jump to a specific event?',
+        '11 years of relationship on file across 4 prior reps, 247 logged interactions, 12 CTSO tickets, 3 field-service notes, and 2 documented near-loss events. The 2019 save by David Halpern is the one most worth reading — Sysmex pitched a full system replacement and Halpern won the room by meeting their CMO over coffee instead of in a boardroom. Want me to open the full account brief or jump to a specific event?',
     },
     {
       title: 'Tailor a briefing to a buyer',
@@ -34,7 +34,7 @@ export const promptSuggestions = {
       description: 'Day-one briefing for a rep inheriting accounts.',
       text: 'I am taking over the Pacific Northwest sub-region from Carla on Friday. Brief me on day one.',
       response:
-        'Carla has 14 years on that book — 38 active accounts, 4 must-keep in geo, $42M. I rolled her logged notes, calls, and field-visit observations into a 7-day plan: read the must-keep dossiers Day 1, sequence relationship continuity calls Days 2–3, align with HSE Maria Santos Day 4. I also pulled three quotes from Carla on accounts she wanted you to know about personally. Open the briefing?',
+        'Carla has 14 years on that book — 38 active accounts, 4 must-keep in geo, $42M. I rolled her logged notes, calls, and field-visit observations into a 7-day plan: read the must-keep briefings Day 1, sequence relationship continuity calls Days 2–3, align with HSE Maria Santos Day 4. I also pulled three quotes from Carla on accounts she wanted you to know about personally. Open the briefing?',
     },
     {
       title: 'Check renewal exposure',

@@ -1,4 +1,4 @@
-import { ibipInitialDraft } from './ibipFlow'
+import { chatScripts, ibipInitialDraft } from './chatScripts'
 
 const base = import.meta.env.BASE_URL
 
@@ -102,14 +102,15 @@ export const teams = [
 ]
 
 export const favorites = [
-  // IBIP carries the first user query as a pre-filled draft so the demo
-  // driver just clicks send to advance the scripted flow.
+  // IBIP + the two group scenarios each carry the first user query as a
+  // pre-filled compose draft, so the demo driver only has to click Send
+  // to advance the scripted flow. Drafts come straight from chatScripts.
   { contactId: 100, bold: true, draft: ibipInitialDraft },
   { contactId: 202 },
   { contactId: 201 },
   { contactId: 200 },
-  { contactId: 204, bold: true },
-  { contactId: 205, bold: true },
+  { contactId: 204, bold: true, draft: chatScripts[204].initialDraft },
+  { contactId: 205, bold: true, draft: chatScripts[205].initialDraft },
 ]
 
 // Re-purposed as the "West Region" pinned cluster for the IBIP demo, keeping

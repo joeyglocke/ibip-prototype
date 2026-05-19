@@ -12,7 +12,7 @@ import {
   designerAgent,
   pollyAgent,
   breakthuAgent,
-  ibipFlow,
+  chatScripts,
 } from '../data'
 import { TypingIndicator } from './common'
 import MessageRow from './MessageRow'
@@ -117,10 +117,11 @@ export default function ChatView({
   const [activeSessionId, setActiveSessionId] = useState(null)
   const [jiraThreadAnchorId, setJiraThreadAnchorId] = useState(null)
   const [mainTypingAgentId, setMainTypingAgentId] = useState(null)
-  // IBIP demo-flow cursor — index into ibipFlow. Each send in the IBIP chat
-  // advances one step, appending the scripted response after a typing delay
-  // and pre-filling compose with the next user query.
-  const [ibipStep, setIbipStep] = useState(0)
+  // Per-chat scripted-demo cursors. Maps chat id → step index into
+  // chatScripts[chatId].steps. Each send in a scripted chat advances that
+  // chat's cursor, plays the chained responses with typing-indicator
+  // delays, and (optionally) chains the next user draft into compose.
+  const [scriptStepByChat, setScriptStepByChat] = useState({})
   const [channelThreadPostId, setChannelThreadPostId] = useState(null)
   const [threadRailOpen, setThreadRailOpen] = useState(false)
   const [highlightMessageId, setHighlightMessageId] = useState(null)
@@ -498,25 +499,56 @@ export default function ChatView({
       }, 2000)
     }
 
-    // IBIP scripted flow — each send in the IBIP chat reveals the next
-    // pre-authored response, then chains the next user query into compose.
-    if (chatId === 100 && ibipStep < ibipFlow.length) {
-      const step = ibipFlow[ibipStep]
-      setMainTypingAgentId(chatId)
-      setTimeout(() => {
-        setMainTypingAgentId((prev) => (prev === chatId ? null : prev))
-        const response = step.response
-        setExtraMessages((prev) => ({
-          ...prev,
-          [bucket]: [...(prev[bucket] || []), {
-            ...response,
-            id: `ibip-${ibipStep}-${Date.now()}`,
-            time: nowTimeStr(),
-          }],
-        }))
-        setIbipStep((s) => s + 1)
-        if (step.nextDraft) setInputValue(step.nextDraft)
-      }, 2800)
+    // Generic scripted-flow driver — used by the IBIP 1:1 and the two
+    // group chats (Leadership, Transitions Watch). Each send advances the
+    // chat's step cursor and plays the chained responses one-by-one, with
+    // a typing indicator before each. After the final response, the next
+    // user query (if any) is loaded into compose.
+    const script = chatScripts[chatId]
+    const currentStep = scriptStepByChat[chatId] || 0
+    if (script && currentStep < script.steps.length) {
+      const step = script.steps[currentStep]
+      // Schedule responses sequentially. Between each response we surface
+      // a typing indicator for the next responder (their avatar + dots).
+      let elapsed = 0
+      step.responses.forEach((response, idx) => {
+        const typingMs = response.typingMs ?? 1800
+        // Start typing indicator at `elapsed`, append message at `elapsed + typingMs`.
+        const typingStartAt = elapsed
+        const messageAppearAt = elapsed + typingMs
+        setTimeout(() => {
+          setMainTypingAgentId(response.senderId)
+        }, typingStartAt)
+        setTimeout(() => {
+          setExtraMessages((prev) => ({
+            ...prev,
+            [bucket]: [...(prev[bucket] || []), {
+              senderId: response.senderId,
+              text: response.text,
+              cards: response.cards,
+              chainOfThought: response.chainOfThought,
+              id: `script-${chatId}-${currentStep}-${idx}-${Date.now()}`,
+              time: nowTimeStr(),
+            }],
+          }))
+          // Clear the typing indicator only if no further responder is
+          // queued in the next frame — the next iteration will overwrite
+          // it anyway, but clearing on the last response keeps the
+          // typing-indicator from lingering after the chain finishes.
+          const isLast = idx === step.responses.length - 1
+          if (isLast) {
+            setMainTypingAgentId((prev) =>
+              prev === response.senderId ? null : prev
+            )
+            if (step.nextDraft) setInputValue(step.nextDraft)
+          }
+        }, messageAppearAt)
+        elapsed = messageAppearAt + (response.gapMs ?? 400)
+      })
+      setScriptStepByChat((prev) => ({
+        ...prev,
+        [chatId]: currentStep + 1,
+      }))
     }
   }
 

@@ -69,7 +69,7 @@ export const channelPostsByContact = {
         "Weekly health snapshot for the West Region must-keep portfolio. " +
         "32 must-keep accounts in geo · $34.8M ARR · 0 flagged High, 2 flagged Medium-High, 1 Medium. " +
         "Tightening on Tacoma Regional after the SE transition — early signs the new SE rebuilt the relationship. " +
-        "Watching Brea General's CTS volume trend, no flag yet.",
+        "Watching Brea General's CTSO volume trend, no flag yet.",
       reactions: [{ emoji: '📈', count: 4 }],
       replies: [
         {
@@ -101,7 +101,7 @@ export const channelPostsByContact = {
       time: 'Mon May 11 7:00 AM',
       subject: 'Must-keep health — week of May 11',
       text:
-        "New flag this week — Brea General Hospital crossed into High overnight (win prob 58%, no L1 relationship on file, CTS +42%). " +
+        "New flag this week — Brea General Hospital crossed into High overnight (win prob 58%, no L1 relationship on file, CTSO +42%). " +
         "Maria is reaching Dr. Voss with a tailored brief this week. Renewal in 84 days so the timing is tight but workable. " +
         "Tacoma, Bellevue, Spokane stable. Full per-account table in the linked card. As requested last week: renewal proximity column added.",
       reactions: [{ emoji: '⚠️', count: 5 }, { emoji: '👀', count: 6 }],
@@ -125,14 +125,14 @@ export const channelPostsByContact = {
           id: 'p26-2-r3',
           senderId: 201,
           text:
-            'unrelated to brea — spokane SE settled in well. frank russo asked about the next firmware release on the AU680. is that an account question or a CTS question?',
+            'unrelated to brea — spokane SE settled in well. frank russo asked about the next firmware release on the AU680. is that an account question or a CTSO question?',
           time: 'Mon May 11 8:02 AM',
         },
         {
           id: 'p26-2-r4',
           senderId: 100,
           text:
-            'Both. I logged Frank\'s question against Spokane\'s contact record and routed a copy to CTS for the firmware roadmap response. Tom, you will see a draft reply in your queue by 10am.',
+            'Both. I logged Frank\'s question against Spokane\'s contact record and routed a copy to CTSO for the firmware roadmap response. Tom, you will see a draft reply in your queue by 10am.',
           time: 'Mon May 11 8:03 AM',
           reactions: [{ emoji: '🤖', count: 2 }],
         },
@@ -207,7 +207,7 @@ export const channelPostsByContact = {
       subject: 'Real-world test: brea general flag was on the money',
       text:
         "Posting because i was skeptical at the start of the pilot. " +
-        "IBIP flagged brea general at high severity tuesday morning. The flag had three signals firing simultaneously — i would have caught the CTS trend on my own eventually, but not the missing L1 relationship piece, and definitely not in time. " +
+        "IBIP flagged brea general at high severity tuesday morning. The flag had three signals firing simultaneously — i would have caught the CTSO trend on my own eventually, but not the missing L1 relationship piece, and definitely not in time. " +
         "The intervention brief it generated for voss was usable as-is. First time i haven't had to rewrite a recommended outreach. Will report back after the call lands.",
       reactions: [{ emoji: '🎯', count: 6 }, { emoji: '❤️', count: 2 }],
       replies: [

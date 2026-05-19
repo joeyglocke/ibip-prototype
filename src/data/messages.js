@@ -5,58 +5,79 @@
 // from the Pacific Northwest sub-region. IBIP is the platform handling
 // institutional memory, risk flagging, and Korn Ferry-tailored briefings.
 export const messagesByContact = {
-  // ── IBIP — primary surface for the demo. Only the proactive risk alert is
-  //    seeded statically; the rest of the conversation plays out on click via
-  //    the scripted flow in `data/ibipFlow.js` (see ChatView.jsx).
+  // ── IBIP 1:1 (id 100) ─────────────────────────────────────────────────
+  //    Seeded statically: only IBIP's proactive welcome / day-one
+  //    territory briefing. The rest of the demo (account history pull,
+  //    overnight risk flag, Korn Ferry intervention) plays out send-by-send
+  //    via the scripted flow in `data/chatScripts.js`.
   100: [
     {
       id: 1,
       senderId: 100,
-      text: 'Good morning. I flagged 1 must-keep account overnight and prepped a transition briefing for the Pacific Northwest territory you inherit Friday. Risk first — Brea General Hospital crossed two thresholds simultaneously.',
+      text:
+        'Welcome to the Pacific Northwest territory. Carla Renteria has 14 years on this book and retires Friday. I rolled her institutional knowledge into a day-one briefing — open it before Monday and you walk in three weeks ahead of where you would otherwise.',
       time: 'Wed 7:42 AM',
       cards: [
         {
-          accentColor: '#C4571A',
+          accentColor: '#0B5394',
           iconType: 'teams',
-          title: 'Brea General Hospital — Risk flag raised',
-          subtitle: 'Tier 1 · Must-keep in geo · $2.1M ARR · Renewal in 84 days',
-          badge: { text: 'High severity', tone: 'amber' },
+          title: 'Pacific Northwest — Day-one territory briefing',
+          subtitle:
+            'Inherited from Carla Renteria · 14 yrs tenure · 38 active accounts · $42M book',
+          badge: { text: 'Ready', tone: 'green' },
           metrics: [
-            { value: '58%', label: 'Win probability', delta: '↓ 19 pts (90d)', deltaTone: 'amber' },
-            { value: '2', label: 'Risk signals firing', delta: 'L1 + CTS', deltaTone: 'amber' },
-            { value: '0', label: 'L1 relationships on file', delta: 'gap', deltaTone: 'amber' },
+            { value: '38', label: 'Active accounts', delta: '4 must-keep in geo', deltaTone: 'neutral' },
+            { value: '6', label: 'Flagged at risk', delta: '2 need 30-day action', deltaTone: 'amber' },
+            { value: '$42M', label: 'Book value', delta: 'incl. renewals Q3', deltaTone: 'neutral' },
           ],
           sections: [
             {
-              heading: 'Signals firing now',
+              heading: 'First 7 days — what I would do',
               bullets: [
-                'Win probability dropped below 60% threshold — no VOC trigger initiated yet',
-                'No documented relationship with Dr. Patricia Voss (CMO, L1 decision-maker)',
-                'CTS call volume +42% vs trailing 90-day baseline — sample-handling issue trending',
-                'Unplanned field service visit logged 4/29 on the DxH 900 line',
+                'Day 1: Read the 4 must-keep account briefings (linked below). Each has Carla\'s relationship notes preserved verbatim.',
+                'Day 2–3: Call Ana Reyes (Brea), Dr. Singh (Tacoma Regional), Karen Wu (Bellevue), and Frank Russo (Spokane). All four expect a hand-off from Carla; she has primed them.',
+                'Day 4: Sit with HSE Maria Santos to align on the 2 accounts already flagged red',
+                'Day 5: Review the Q3 renewal pipeline — 4 contracts within 90 days of expiry',
               ],
             },
             {
-              heading: 'What I would do',
-              text: 'HSE Maria Santos reaches Dr. Voss this week with a written executive brief in advance — Voss is an Analytical buyer (see her Korn Ferry profile). I have a tailored playbook ready when you want it.',
+              heading: 'Top 3 accounts you need to know by name',
+              bullets: [
+                'Tacoma Regional Medical Center — $3.4M, renewing 9/15. Carla saved this account in 2021. Dr. Singh is a Driver — be direct, have the ask ready.',
+                'Bellevue Health — $2.8M, healthy but Carla was personally close to the CFO Karen Wu. Wu is Expressive — open with acknowledgment, not data.',
+                'Spokane County — $1.9M, recent SE turnover. Frank Russo (Lab Director) was unhappy with the transition. Carla smoothed it. Stay close.',
+              ],
+            },
+            {
+              heading: 'What Carla wanted you to know',
+              text:
+                '"The Pacific Northwest is a relationship region. Don\'t over-engineer the first 90 days. Show up in person at Tacoma and Spokane in your first month — they will notice. Karen at Bellevue will test you with a small ask early. Say yes, even if it is inconvenient."',
             },
           ],
-          footer: 'Generated by IBIP · Wed 7:42 AM',
-          actions: ['Open intervention playbook', 'Initiate VOC trigger', 'Mute for 24h'],
+          footer: 'Compiled from 14 years of Carla\'s logged notes, calls, and field visits · 1,840 interactions',
+          actions: ['Open all 4 must-keep briefings', 'Add Carla\'s contacts to my calendar', 'Set up Day-1 with Maria'],
         },
+      ],
+      chainOfThought: [
+        'Pulled Carla Renteria\'s full interaction history across all 38 accounts',
+        'Identified 4 "must-keep in geo" accounts requiring immediate continuity',
+        'Surfaced 6 accounts currently flagged at risk; prioritized 2 for 30-day action',
+        'Extracted relationship notes and decision-style observations from logged calls',
+        'Drafted a 7-day plan sequenced to maximize relationship continuity',
       ],
     },
   ],
 
   // ── West Region Leadership group (id 204) ─────────────────────────────
-  //    IBIP pushes the Monday morning leadership digest into the group;
-  //    AD, peer RSM, HSE coordinate the week's response. Demonstrates how
-  //    risk is elevated from the agent surface into the leadership thread.
+  //    Seeded statically: only the IBIP Monday digest. The team huddle
+  //    that follows (Maria → Linda → Tom → IBIP, then a VOC trigger
+  //    action card) plays out interactively via chatScripts[204].
   204: [
     {
       id: 1,
       senderId: 100,
-      text: 'West Region · Monday digest. 1 Tier 1 account flagged High overnight (Brea General — Jordan owns), 3 accounts on the Medium-High watchlist, 2 transitions kicking off this week. Full picture below.',
+      text:
+        'West Region · Monday digest. 1 Tier 1 account flagged High overnight (Brea General — Jordan owns), 3 accounts on the Medium-High watchlist, 2 transitions kicking off this week. Full picture below.',
       time: 'Mon 7:00 AM',
       cards: [
         {
@@ -92,48 +113,17 @@ export const messagesByContact = {
         },
       ],
     },
-    {
-      id: 2,
-      senderId: 202,
-      text: 'thanks. on brea — what\'s our read on voss? we had no relationship on file last week, has that changed?',
-      time: 'Mon 7:14 AM',
-    },
-    {
-      id: 3,
-      senderId: 'me',
-      text: 'no — still no L1 relationship on file. maria is reaching out this week with the tailored brief IBIP pulled. she\'s an analytical buyer, written evidence first. should be in voss\'s inbox by tomorrow.',
-      time: 'Mon 7:18 AM',
-      reactions: [{ emoji: '👍', count: 2 }],
-    },
-    {
-      id: 4,
-      senderId: 201,
-      text: 'on spokane — i had time blocked with frank russo today but he pushed to thursday. i\'ll bring the SE transition recovery card IBIP generated.',
-      time: 'Mon 7:22 AM',
-    },
-    {
-      id: 5,
-      senderId: 200,
-      text: 'voss outreach goes today by 3pm pt. i\'ll loop back here once she responds. brief is genuinely tailored to her — first time i haven\'t had to rewrite an IBIP draft.',
-      time: 'Mon 7:26 AM',
-      reactions: [{ emoji: '🎯', count: 3 }],
-    },
-    {
-      id: 6,
-      senderId: 100,
-      text: 'Acknowledged. I will surface any movement on these three the moment a signal changes — VOC response, CTS volume shift, or a contact note logged. Quiet otherwise unless something escalates.',
-      time: 'Mon 7:28 AM',
-    },
   ],
 
   // ── Transitions Watch group (id 205) ──────────────────────────────────
-  //    Coordination thread for the Pacific Northwest transition. IBIP
-  //    surfaces the retirement, leadership distributes the work.
+  //    Seeded statically: only IBIP's retirement alert. Linda/Maria/IBIP
+  //    coordination plays interactively via chatScripts[205].
   205: [
     {
       id: 1,
       senderId: 100,
-      text: 'Transition alert. Carla Renteria retires Friday May 15. Pacific Northwest sub-region needs continuity coverage on 4 must-keep accounts. I have a full inheritance plan ready.',
+      text:
+        'Transition alert. Carla Renteria retires Friday May 15. Pacific Northwest sub-region needs continuity coverage on 4 must-keep accounts. I have a full inheritance plan ready.',
       time: 'Tue 8:00 AM',
       cards: [
         {
@@ -160,52 +150,6 @@ export const messagesByContact = {
           ],
           footer: 'Carla has primed all 4 contacts to expect a hand-off — do not let that window close',
           actions: ['Assign coverage', 'Schedule intro calls', 'Open Carla\'s briefing'],
-        },
-      ],
-    },
-    {
-      id: 2,
-      senderId: 202,
-      text: 'jordan picks up the full pacific NW sub-region monday. confirmed last week. let\'s use this thread for any signal IBIP raises during the 90-day window.',
-      time: 'Tue 8:09 AM',
-    },
-    {
-      id: 3,
-      senderId: 200,
-      text: 'i can bridge the intro calls for tacoma + bellevue this week — carla and i will do them together so jordan walks into a warm room next week. spokane i think jordan should do solo, frank prefers one new face at a time.',
-      time: 'Tue 8:13 AM',
-      reactions: [{ emoji: '🙏', count: 2 }],
-    },
-    {
-      id: 4,
-      senderId: 'me',
-      text: 'works. carla\'s briefing already has the per-contact notes — i\'ll have read all 4 dossiers by EOD wednesday. maria, send me the tacoma/bellevue call times and i\'ll be on them.',
-      time: 'Tue 8:17 AM',
-    },
-    {
-      id: 5,
-      senderId: 100,
-      text: 'I will track the 90-day post-transition risk window automatically for these 4 accounts. Tier 1 alerting is on. If any signal fires you all get notified here within minutes.',
-      time: 'Tue 8:20 AM',
-      cards: [
-        {
-          accentColor: '#0B5394',
-          iconType: 'teams',
-          title: '90-day continuity watch — armed',
-          subtitle: '4 accounts · Active May 16 → Aug 14 · Real-time alerts',
-          badge: { text: 'Monitoring', tone: 'green' },
-          sections: [
-            {
-              heading: 'What I am watching',
-              bullets: [
-                'CTS call volume vs trailing 90d baseline (per account)',
-                'Unplanned field service visits and unresolved tickets',
-                'Win probability deltas > 10 points',
-                'Any contact note logged that hints at competitor activity',
-              ],
-            },
-          ],
-          footer: 'First check-in: Mon May 18, 7:00 AM PT digest in this thread',
         },
       ],
     },

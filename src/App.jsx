@@ -122,42 +122,63 @@ export default function App() {
         >
           <h3 className="fre-section-title">Today</h3>
           <p>
-            Every year, a veteran rep retires, an HSE moves on, or an RSM
-            transitions out — and fifteen years of institutional knowledge
-            walks out the door with them. Which lab director needs a personal
-            call before a price increase hits. Why a flagship account almost
-            left in 2019 and what it took to save them. How to read the room
-            at Regional Medical Center before a renewal. None of that is in
-            Salesforce. None of it ever was.
+            People are moving all across our organization — tenured reps are
+            retiring, HSEs are leaving for outside opportunities, and
+            internal promotions are creating open territories faster than we
+            can fill them. Every time someone moves, fifteen years of
+            institutional knowledge moves with them. Which lab director needs
+            a personal call before a price increase hits. Why a flagship
+            account almost left in 2019 and what it took to save them. How
+            to read the room at Regional Medical Center before a renewal.
+            None of that is in Salesforce. None of it ever was.
           </p>
 
           <h3 className="fre-section-title">Problem</h3>
           <p>
-            Three failures compound. Institutional knowledge walks out the
-            door with every rep transition. At-risk accounts are sending
-            signals — falling win probability, missing L1 relationships,
-            rising CTS volume — that nobody is reading in time. And our Korn
-            Ferry investment lives in a binder, not in the live selling
-            moment.
+            Three failures compound. Institutional tribal knowledge walks
+            out the door with every rep transition. At-risk accounts are
+            sending signals — falling win probability, missing L1
+            relationships, rising CTSO volume — that nobody is reading in
+            time. And our Korn Ferry investment lives in a binder, not in
+            the live selling moment.
           </p>
 
           <h3 className="fre-section-title">Solution</h3>
-          <p>
-            IBIP is one platform with three components. An institutional
-            memory engine that preserves what every rep knows before they
-            leave. A risk flagging engine that surfaces at-risk accounts
-            automatically using Beckman Coulter's own risk parameters. And a
-            Korn Ferry layer that tailors every intervention to the buyer's
-            decision style — so the right message reaches the right person
-            in the right way.
-          </p>
-          <p>
-            Watch this demo in three beats: a proactive risk alert on Brea
-            General Hospital, a queryable predecessor pulling 11 years of
-            account history on demand, and a Korn Ferry-tailored intervention
-            playbook ready for the HSE to take into the room. All on
-            infrastructure Beckman Coulter already owns.
-          </p>
+          <p>IBIP is one platform built on three components:</p>
+          <ol className="fre-list">
+            <li>
+              <strong>Institutional memory engine</strong> — preserves what
+              every rep knows before they leave, and makes it searchable on
+              demand.
+            </li>
+            <li>
+              <strong>Account risk flagging engine</strong> — surfaces
+              at-risk accounts automatically using Beckman Coulter's own
+              risk parameters.
+            </li>
+            <li>
+              <strong>Korn Ferry integration layer</strong> — tailors every
+              intervention to the buyer's decision style, so the right
+              message reaches the right person in the right way.
+            </li>
+          </ol>
+          <p>This demo walks through it in three beats:</p>
+          <ol className="fre-list">
+            <li>
+              You are a new rep who just inherited the Pacific Northwest
+              sub-region — IBIP hands you the day-one territory briefing.
+            </li>
+            <li>
+              You pull the full 11-year account history on Brea General
+              Hospital so you walk in already knowing the room.
+            </li>
+            <li>
+              Days later you log in and IBIP has flagged Brea General
+              overnight — High severity. You get a Korn Ferry-tailored
+              intervention playbook ready for the HSE to take into the
+              call.
+            </li>
+          </ol>
 
           <h3 className="fre-section-title">What this unlocks</h3>
           <p>
