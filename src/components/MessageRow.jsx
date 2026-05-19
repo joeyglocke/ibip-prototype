@@ -216,7 +216,7 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
           {message.subject && <div className="message-subject">{message.subject}</div>}
           {Array.isArray(message.text)
             ? message.text.map((part, i) =>
-                typeof part === 'string' ? part : <span key={i} className="mention">{part.name}</span>
+                typeof part === 'string' ? part : <span key={i} className="mention">@{part.name}</span>
               )
             : message.text}
           {message.link && <LinkCard link={message.link} />}

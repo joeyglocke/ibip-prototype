@@ -47,6 +47,34 @@ function parseDraft(d) {
   return m ? { mention: 'Jira', text: d.slice(m[0].length) } : { mention: null, text: d }
 }
 
+// Contacts/agents that get styled as inline @-mention pills when their name
+// follows an `@` in a message body. Keep this conservative — every name in
+// this list applies a purple-bold pill anywhere it appears after `@`. Add
+// new names here when a new bot or persona starts getting @-invoked.
+const MENTIONABLE_NAMES = ['IBIP']
+const MENTION_PATTERN = new RegExp(`@(${MENTIONABLE_NAMES.join('|')})\\b`, 'g')
+
+// Split a plain string into a message-text array where each `@Name` becomes
+// a `{ type: 'mention', name }` part. MessageRow already renders mention
+// parts as inline purple-bold pills with an `@` prefix, so the pill matches
+// real Teams visually. Returns the input string unchanged if no mentions
+// were found — keeps the existing string-text rendering path hot.
+function parseMentions(text) {
+  if (typeof text !== 'string') return text
+  const parts = []
+  let lastIndex = 0
+  let m
+  MENTION_PATTERN.lastIndex = 0
+  while ((m = MENTION_PATTERN.exec(text)) !== null) {
+    if (m.index > lastIndex) parts.push(text.slice(lastIndex, m.index))
+    parts.push({ type: 'mention', name: m[1] })
+    lastIndex = m.index + m[0].length
+  }
+  if (parts.length === 0) return text
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex))
+  return parts
+}
+
 // ── Scripted Jira demo flow (disabled) ─────────────────────────────────────
 // Kept as a reference pattern for scripted agent flows. Flip JIRA_FLOW_ENABLED
 // and restore the `draft: '/Jira …'` entry in chatList to re-enable. See
@@ -472,7 +500,7 @@ export default function ChatView({
     const myMessage = {
       id: `extra-${Date.now()}`,
       senderId: 'me',
-      text: sentText,
+      text: parseMentions(sentText),
       time: nowTimeStr(),
     }
     setExtraMessages((prev) => ({
@@ -524,7 +552,7 @@ export default function ChatView({
             ...prev,
             [bucket]: [...(prev[bucket] || []), {
               senderId: response.senderId,
-              text: response.text,
+              text: parseMentions(response.text),
               cards: response.cards,
               chainOfThought: response.chainOfThought,
               id: `script-${chatId}-${currentStep}-${idx}-${Date.now()}`,

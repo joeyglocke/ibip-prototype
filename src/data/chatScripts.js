@@ -205,11 +205,11 @@ const ibip1on1 = {
 // the team huddle and four responses chain — Maria, Linda, Tom, IBIP.
 const leadershipGroup = {
   initialDraft:
-    'team — brea is the priority this week. maria, are we still on track for the voss outreach today?',
+    'team — brea is the priority this week. maria, status on voss outreach? @IBIP anything new since the digest?',
   steps: [
     {
       userText:
-        'team — brea is the priority this week. maria, are we still on track for the voss outreach today?',
+        'team — brea is the priority this week. maria, status on voss outreach? @IBIP anything new since the digest?',
       responses: [
         {
           senderId: 200, // Maria Santos
@@ -237,11 +237,11 @@ const leadershipGroup = {
         },
       ],
       nextDraft:
-        'ibip — push the brea voc trigger now. i want it in motion before maria\'s call lands today.',
+        '@IBIP push the brea voc trigger now. i want it in motion before maria\'s call lands today.',
     },
     {
       userText:
-        'ibip — push the brea voc trigger now. i want it in motion before maria\'s call lands today.',
+        '@IBIP push the brea voc trigger now. i want it in motion before maria\'s call lands today.',
       responses: [
         {
           senderId: 100,
@@ -284,16 +284,16 @@ const leadershipGroup = {
 // inheritance, leadership distributes the work, IBIP arms the watch.
 const transitionsGroup = {
   initialDraft:
-    'confirmed — i pick up the full pacific NW sub-region monday. let us use this thread for any signal ibip raises during the 90-day window.',
+    'confirmed — i pick up the full pacific NW sub-region monday. @IBIP use this thread for any signal you raise during the 90-day window.',
   steps: [
     {
       userText:
-        'confirmed — i pick up the full pacific NW sub-region monday. let us use this thread for any signal ibip raises during the 90-day window.',
+        'confirmed — i pick up the full pacific NW sub-region monday. @IBIP use this thread for any signal you raise during the 90-day window.',
       responses: [
         {
           senderId: 202, // Linda Park
           text:
-            'agree. ibip — set up an automatic continuity watch on the 4 must-keep accounts. tier 1 alerting on each, surfaced here the moment anything moves.',
+            'agree. @IBIP set up an automatic continuity watch on the 4 must-keep accounts. tier 1 alerting on each, surfaced here the moment anything moves.',
           typingMs: 1500,
         },
         {
@@ -331,11 +331,11 @@ const transitionsGroup = {
         },
       ],
       nextDraft:
-        'works. one ask — if brea moves before next monday\'s digest, ping me here directly. do not wait for the scheduled check-in.',
+        '@IBIP one ask — if brea moves before next monday\'s digest, ping me here directly. do not wait for the scheduled check-in.',
     },
     {
       userText:
-        'works. one ask — if brea moves before next monday\'s digest, ping me here directly. do not wait for the scheduled check-in.',
+        '@IBIP one ask — if brea moves before next monday\'s digest, ping me here directly. do not wait for the scheduled check-in.',
       responses: [
         {
           senderId: 100,
