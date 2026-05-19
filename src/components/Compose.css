@@ -13,12 +13,16 @@
   width: 100%;
 }
 
+/* Single-line compose collapses to ~36px tall; once the textarea grows the
+   pill stretches vertically while the action row stays pinned to the
+   bottom-right (matches real Teams). align-items: flex-end is what does
+   that work — buttons hug the bottom regardless of textarea height. */
 .compose-box {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   border: 1px solid #d1d1d1;
-  border-radius: 20px;
+  border-radius: 18px;
   background: #fff;
   padding: 6px 8px 6px 16px;
   gap: 4px;
@@ -30,10 +34,14 @@
   font-size: 14px;
   margin-right: 4px;
   white-space: nowrap;
+  /* Stay aligned with the first line of the textarea when it grows. */
+  align-self: flex-start;
+  padding-top: 5px;
 }
 
 .compose-input {
   font-size: 14px;
+  line-height: 1.5;
   color: #242424;
   flex: 1;
   min-width: 0;
@@ -41,6 +49,16 @@
   outline: none;
   background: transparent;
   font-family: inherit;
+  /* Textarea-specific resets so it reads as a chat input, not a form field. */
+  resize: none;
+  overflow-y: auto;
+  max-height: 200px;
+  padding: 4px 0;
+  /* Plays with the JS auto-grow in Compose.jsx — start collapsed, grow with
+     content, scroll past max-height. */
+  display: block;
+  /* Subtle scrollbar so it doesn't intrude when the message stays short. */
+  scrollbar-width: thin;
 }
 
 .compose-input::placeholder {
@@ -52,6 +70,10 @@
   align-items: center;
   gap: 0;
   flex-shrink: 0;
+  /* Keep the action row anchored to the bottom of the pill so it doesn't
+     drift up when the textarea grows. */
+  align-self: flex-end;
+  padding-bottom: 2px;
 }
 
 .compose-divider {

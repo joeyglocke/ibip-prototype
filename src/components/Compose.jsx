@@ -1,15 +1,22 @@
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { IconButton, Send } from './common'
 import { copilotLogo } from '../shared/assets'
 import './Compose.css'
 
 // Main-canvas compose input. Sits below the chat messages. Handles a few
-// specifics on top of a plain input:
+// specifics on top of a plain textarea:
+//   • Auto-grows vertically with the typed content up to a max height, then
+//     scrolls — matches the real Teams compose behavior so long messages
+//     wrap instead of being clipped behind the inline action buttons.
+//   • Enter sends; Shift+Enter inserts a newline (Teams convention).
 //   • When a `/mention` is present (e.g. "/Jira …"), it's rendered as a
 //     purple pill in front of the input; Backspace on an empty input clears it.
 //   • Channels use "Start a new post" placeholder instead of "Type a message".
 //
 // All action buttons except Send are placeholder styling — wire them up
 // when you need them for a prototype.
+const COMPOSE_MAX_HEIGHT = 200 // px — about 9 lines at 14/1.5
+
 export default function Compose({
   value,
   mention,
@@ -18,16 +25,40 @@ export default function Compose({
   onSend,
   isChannel,
 }) {
+  const textareaRef = useRef(null)
+
+  // Resize the textarea to fit its content. Capped at COMPOSE_MAX_HEIGHT so
+  // very long drafts scroll inside the box instead of pushing the compose
+  // bar up off the screen. useLayoutEffect runs before paint so the height
+  // updates synchronously with the value change — no visual flicker when
+  // the script chains in a long pre-filled draft.
+  useLayoutEffect(() => {
+    const el = textareaRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    const next = Math.min(el.scrollHeight, COMPOSE_MAX_HEIGHT)
+    el.style.height = `${next}px`
+  }, [value])
+
+  // When the value clears (after a send), make sure the textarea collapses
+  // back to one line even if the layout effect missed an edge case.
+  useEffect(() => {
+    if (value === '' && textareaRef.current) {
+      textareaRef.current.style.height = 'auto'
+    }
+  }, [value])
+
   const handleKeyDown = (e) => {
     if (e.key === 'Backspace' && value === '' && mention) {
       e.preventDefault()
       onClearMention()
       return
     }
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       onSend()
     }
+    // Shift+Enter falls through and inserts a newline naturally.
   }
 
   const placeholder = mention
@@ -41,8 +72,9 @@ export default function Compose({
           {mention && (
             <span className="mention compose-mention">/{mention}</span>
           )}
-          <input
-            type="text"
+          <textarea
+            ref={textareaRef}
+            rows={1}
             className="compose-input"
             placeholder={placeholder}
             value={value}
