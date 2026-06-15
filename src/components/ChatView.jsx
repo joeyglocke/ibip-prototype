@@ -51,7 +51,7 @@ function parseDraft(d) {
 // follows an `@` in a message body. Keep this conservative — every name in
 // this list applies a purple-bold pill anywhere it appears after `@`. Add
 // new names here when a new bot or persona starts getting @-invoked.
-const MENTIONABLE_NAMES = ['IBIP']
+const MENTIONABLE_NAMES = ['TIP']
 const MENTION_PATTERN = new RegExp(`@(${MENTIONABLE_NAMES.join('|')})\\b`, 'g')
 
 // Split a plain string into a message-text array where each `@Name` becomes
@@ -527,7 +527,7 @@ export default function ChatView({
       }, 2000)
     }
 
-    // Generic scripted-flow driver — used by the IBIP 1:1 and the two
+    // Generic scripted-flow driver — used by the TIP 1:1 and the two
     // group chats (Leadership, Transitions Watch). Each send advances the
     // chat's step cursor and plays the chained responses one-by-one, with
     // a typing indicator before each. After the final response, the next

@@ -5,24 +5,24 @@ const base = import.meta.env.BASE_URL
 // Placeholder persona for the prototype. See PERSONA.md for the full
 // character sheet. Keep this fictional — the repo is published publicly.
 export const currentUser = {
-  name: 'Jordan Locke',
-  initials: 'JL',
-  email: 'jordan.locke@beckman.example',
+  name: 'Alex Chen',
+  initials: 'AC',
+  email: 'alex.chen@beckman.example',
   color: '#0B5394',
   status: 'available',
 }
 
 export const contacts = [
-  // ── IBIP — primary feature, default selected chat ──────────────────────
+  // ── TIP — primary feature, default selected chat ──────────────────────
   {
     id: 100,
-    name: 'IBIP',
+    name: 'TIP',
     initials: null,
     color: '#0B5394',
     status: null,
     isAgent: true,
-    logo: 'ibip',
-    description: 'Install Base Intelligence Platform · account history, risk signals, and Korn Ferry briefings',
+    logo: 'tip',
+    description: 'Topline Intelligence Platform · account history, risk signals, and Korn Ferry briefings',
   },
   { id: 1, name: 'Sarah Chen', initials: 'SC', color: '#6264A7', status: 'available', avatar: `${base}avatars/sarah-chen.jpg` },
   { id: 2, name: 'Claude', initials: null, color: '#D97757', status: null, isAgent: true, logo: 'claude', avatar: `${base}avatars/claude.png`, description: 'AI assistant by Anthropic' },
@@ -49,19 +49,19 @@ export const contacts = [
   { id: 23, name: 'Northwind launch', initials: 'NL', color: '#CA5010', status: null, isGroup: true, memberCount: 7 },
   { id: 24, name: 'Dogfood feedback', initials: 'DF', color: '#498205', status: null, isGroup: true, memberCount: 11 },
   // ── Channels (rounded-square avatars; threaded/posts layouts) ──
-  // West Region Sales — leadership coordination for the IBIP demo.
+  // West Region Sales — leadership coordination for the TIP demo.
   { id: 25, name: 'General', initials: 'WS', color: '#0B5394', status: null, isChannel: true, memberCount: 42 },
   { id: 26, name: 'Must-keep accounts', initials: 'WS', color: '#0B5394', status: null, isChannel: true, memberCount: 18 },
   { id: 27, name: 'Renewals — Q3', initials: 'WS', color: '#0B5394', status: null, isChannel: true, memberCount: 14 },
-  // IBIP Program — internal rollout coordination.
-  { id: 28, name: 'General', initials: 'IB', color: '#0B5394', status: null, isChannel: true, memberCount: 9 },
-  { id: 29, name: 'Pilot feedback', initials: 'IB', color: '#0B5394', status: null, isChannel: true, memberCount: 6 },
+  // TIP Program — internal rollout coordination.
+  { id: 28, name: 'General', initials: 'TP', color: '#0B5394', status: null, isChannel: true, memberCount: 9 },
+  { id: 29, name: 'Pilot feedback', initials: 'TP', color: '#0B5394', status: null, isChannel: true, memberCount: 6 },
   // Channel collaborator (used in channel replies).
   { id: 30, name: 'Taylor Reed', initials: 'TR', color: '#038387', status: 'available' },
   { id: 31, name: 'Figma', initials: null, color: '#FFFFFF', status: null, isAgent: true, logo: 'figma', avatar: `${base}avatars/figma.png`, logoInset: true, description: 'Design files and component libraries' },
   { id: 32, name: 'Cowork', initials: null, color: '#FFFFFF', status: null, isAgent: true, logo: 'cowork', avatar: `${base}avatars/cowork.png`, logoInset: true, description: 'Async collaboration and document workflows' },
   { id: 33, name: 'AC Test', initials: 'AC', color: '#5B5FC7', status: null, isGroup: true, memberCount: 5 },
-  // ── Beckman Coulter sales org — adjacent context for the IBIP demo ──
+  // ── Beckman Coulter sales org — adjacent context for the TIP demo ──
   { id: 200, name: 'Maria Santos', initials: 'MS', color: '#0B5394', status: 'available', description: 'HSE · West region' },
   { id: 201, name: 'Tom Hayes', initials: 'TH', color: '#1A6B3E', status: 'busy', description: 'Regional Sales Manager · Pacific' },
   { id: 202, name: 'Linda Park', initials: 'LP', color: '#7E3FAF', status: 'available', description: 'Area Director · West' },
@@ -73,10 +73,6 @@ export const contacts = [
 // Teams the user belongs to. Each team has a list of channels (by contact id,
 // with optional `bold: true` to indicate unread content). Team icons use the
 // same rounded-square treatment as channels.
-//
-// Per PERSONA.md:
-//  • Northwind Traders is Alex's lead client engagement (guest access).
-//  • Morgan Collective is Alex's own boutique consultancy.
 export const teams = [
   {
     id: 't-west-sales',
@@ -90,9 +86,9 @@ export const teams = [
     ],
   },
   {
-    id: 't-ibip-program',
-    name: 'IBIP Program',
-    initials: 'IB',
+    id: 't-tip-program',
+    name: 'TIP Program',
+    initials: 'TP',
     color: '#0B5394',
     channels: [
       { id: 28, bold: true },
@@ -102,7 +98,7 @@ export const teams = [
 ]
 
 export const favorites = [
-  // IBIP + the two group scenarios each carry the first user query as a
+  // TIP + the two group scenarios each carry the first user query as a
   // pre-filled compose draft, so the demo driver only has to click Send
   // to advance the scripted flow. Drafts come straight from chatScripts.
   { contactId: 100, bold: true, draft: ibipInitialDraft },
@@ -113,7 +109,7 @@ export const favorites = [
   { contactId: 205, bold: true, draft: chatScripts[205].initialDraft },
 ]
 
-// Re-purposed as the "West Region" pinned cluster for the IBIP demo, keeping
+// Re-purposed as the "West Region" pinned cluster for the TIP demo, keeping
 // the export name so the ChatList consumer stays a one-liner update.
 export const projectNorthwind = [
   { contactId: 200, bold: true },

@@ -10,7 +10,7 @@ import './App.css'
 
 export default function App() {
   const [activeView, setActiveView] = useState('chat') // 'chat' | 'activity'
-  const [activeChatId, setActiveChatId] = useState(100) // IBIP — primary surface for the demo
+  const [activeChatId, setActiveChatId] = useState(100) // TIP — primary surface for the demo
   const [readChatIds, setReadChatIds] = useState(() => new Set([100]))
   const [sessions, setSessions] = useState(initialSessions)
   const [dynamicSessionMessages, setDynamicSessionMessages] = useState({})
@@ -115,36 +115,34 @@ export default function App() {
       </div>
       {showFre && (
         <FreModal
-          title="IBIP — Install Base Intelligence Platform"
-          subtitle="Never lose another account because we lost the knowledge."
+          title="TIP — Topline Intelligence Platform"
+          subtitle="The alert opens the door. The story explains why it matters."
           onDismiss={dismissFre}
           dismissLabel="See it in action"
         >
-          <h3 className="fre-section-title">Today</h3>
+          <h3 className="fre-section-title">The setup</h3>
           <p>
-            People are moving all across our organization — tenured reps are
-            retiring, HSEs are leaving for outside opportunities, and
-            internal promotions are creating open territories faster than we
-            can fill them. Every time someone moves, fifteen years of
-            institutional knowledge moves with them. Which lab director needs
-            a personal call before a price increase hits. Why a flagship
-            account almost left in 2019 and what it took to save them. How
-            to read the room at Regional Medical Center before a renewal.
-            None of that is in Salesforce. None of it ever was.
+            One protagonist. One account. One platform. Four moments. Alex
+            Chen is a new rep — day one in the Pacific Northwest sub-region.
+            Brea General Hospital is an 11-year, must-keep account with a
+            renewal four months out. Before Alex has typed a single word, a
+            Teams notification fires: TIP has already been working overnight.
           </p>
 
-          <h3 className="fre-section-title">Problem</h3>
+          <h3 className="fre-section-title">Why it matters</h3>
           <p>
-            Three failures compound. Institutional tribal knowledge walks
-            out the door with every rep transition. At-risk accounts are
-            sending signals — falling win probability, missing L1
-            relationships, rising CTSO volume — that nobody is reading in
-            time. And our Korn Ferry investment lives in a binder, not in
+            Every time a rep moves, years of institutional knowledge move
+            with them — which lab director needs a personal call, why an
+            account almost left in 2019 and what saved it, who the real
+            decision-makers are and how each of them decides. At-risk
+            accounts are sending signals — falling win probability, rising
+            CTSO volume, an unplanned service visit — that nobody is reading
+            in time. And the Korn Ferry investment lives in a binder, not in
             the live selling moment.
           </p>
 
-          <h3 className="fre-section-title">Solution</h3>
-          <p>IBIP is one platform built on three components:</p>
+          <h3 className="fre-section-title">The platform</h3>
+          <p>TIP is one platform built on three components:</p>
           <ol className="fre-list">
             <li>
               <strong>Institutional memory engine</strong> — preserves what
@@ -162,35 +160,38 @@ export default function App() {
               message reaches the right person in the right way.
             </li>
           </ol>
-          <p>This demo walks through it in three beats:</p>
+
+          <h3 className="fre-section-title">The demo — four moments</h3>
           <ol className="fre-list">
             <li>
-              You are a new rep who just inherited the Pacific Northwest
-              sub-region — IBIP hands you the day-one territory briefing.
+              <strong>Open.</strong> An overnight risk alert on Brea General
+              is already waiting. Alex sees it — but needs context first.
             </li>
             <li>
-              You pull the full 11-year account history on Brea General
-              Hospital so you walk in already knowing the room.
+              <strong>Day-one briefing.</strong> The territory briefing
+              surfaces the predecessor's note: "Call her personally. Do not
+              send an email first."
             </li>
             <li>
-              Days later you log in and IBIP has flagged Brea General
-              overnight — High severity. You get a Korn Ferry-tailored
-              intervention playbook ready for the HSE to take into the
-              call.
+              <strong>Account history + influence map.</strong> The 2019
+              near-loss CFO and the 2024 CFO share a buyer profile. The
+              platform connected those two dots. Alex didn't have to.
+            </li>
+            <li>
+              <strong>Back to the alert.</strong> A Korn Ferry-tailored
+              playbook, sequenced to the people in the building: Lee → Walsh
+              → Okafor. In that order. Not simultaneously.
             </li>
           </ol>
 
-          <h3 className="fre-section-title">What this unlocks</h3>
+          <h3 className="fre-section-title">What this delivers</h3>
           <p>
-            $2M in transition-risk protection. $2.25M in early-intervention
-            retention. $2.4M in leadership and rep productivity. $6.7M in
-            Year 1, $20.1M cumulative over three years. Payback in under two
-            weeks of protected revenue.
-          </p>
-          <p>
-            We cannot afford to keep losing institutional knowledge every
-            time we lose a person. This platform makes sure we never have to
-            again.
+            That is one new rep, one account, one morning. The platform
+            preserved the knowledge the previous rep left behind, built the
+            context Alex needed to walk in already knowing the room, and
+            flagged the risk — with a playbook tailored to the specific
+            people in that account — before Alex made a single call. Built
+            on tools you already own. Running in Teams. Starting on day one.
           </p>
         </FreModal>
       )}

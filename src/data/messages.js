@@ -1,110 +1,79 @@
-// Narrative anchor: it's Wednesday May 13, 2026. Jordan is the West Region
-// Sales Manager at Beckman Coulter and is preparing for two events this week:
-// (1) a renewal cycle on a top "must-keep in geo" account at Brea General
-// Hospital, and (2) a territory transition where a tenured rep just moved on
-// from the Pacific Northwest sub-region. IBIP is the platform handling
-// institutional memory, risk flagging, and Korn Ferry-tailored briefings.
+// Narrative anchor: Alex Chen's first morning as the new rep on the Pacific
+// Northwest sub-region. Before Alex types a word, TIP (Topline Intelligence
+// Platform) has already flagged the top must-keep account — Brea General
+// Hospital — overnight. The demo follows the v2 demo script: an opening alert,
+// then three beats (territory briefing → full history + buying influence map
+// → return to the alert with a KF-tailored intervention playbook).
 export const messagesByContact = {
-  // ── IBIP 1:1 (id 100) ─────────────────────────────────────────────────
-  //    Seeded statically: only IBIP's proactive welcome / day-one
-  //    territory briefing. The rest of the demo (account history pull,
-  //    overnight risk flag, Korn Ferry intervention) plays out send-by-send
-  //    via the scripted flow in `data/chatScripts.js`.
+  // ── TIP 1:1 (id 100) ──────────────────────────────────────────────────
+  //    Seeded statically: ONLY the opening overnight alert (a compact
+  //    teaser). The three beats play out send-by-send via the scripted
+  //    flow in `data/chatScripts.js`. The full alert + intervention
+  //    playbook is revealed in Beat 3 ("return to the alert").
   100: [
     {
       id: 1,
       senderId: 100,
       text:
-        'Welcome to the Pacific Northwest territory. Carla Renteria has 14 years on this book and retires Friday. I rolled her institutional knowledge into a day-one briefing — open it before Monday and you walk in three weeks ahead of where you would otherwise.',
-      time: 'Wed 7:42 AM',
+        'Good morning, Alex — welcome to the Pacific Northwest. Before you\'ve typed a word, I\'ve been working overnight. One must-keep account in your new territory crossed three risk thresholds. The alert is below. You\'re brand new here, so you may want some context before you act on it.',
+      time: 'Mon 6:14 AM',
       cards: [
         {
-          accentColor: '#0B5394',
+          accentColor: '#C4571A',
           iconType: 'teams',
-          title: 'Pacific Northwest — Day-one territory briefing',
-          subtitle:
-            'Inherited from Carla Renteria · 14 yrs tenure · 38 active accounts · $42M book',
-          badge: { text: 'Ready', tone: 'green' },
-          metrics: [
-            { value: '38', label: 'Active accounts', delta: '4 must-keep in geo', deltaTone: 'neutral' },
-            { value: '6', label: 'Flagged at risk', delta: '2 need 30-day action', deltaTone: 'amber' },
-            { value: '$42M', label: 'Book value', delta: 'incl. renewals Q3', deltaTone: 'neutral' },
-          ],
+          title: '⚠ Overnight risk alert — Brea General Hospital',
+          subtitle: 'HIGH SEVERITY · Must-keep in region · Renewal in 112 days',
+          badge: { text: '3 parameters triggered', tone: 'amber' },
           sections: [
             {
-              heading: 'First 7 days — what I would do',
-              bullets: [
-                'Day 1: Read the 4 must-keep account briefings (linked below). Each has Carla\'s relationship notes preserved verbatim.',
-                'Day 2–3: Call Ana Reyes (Brea), Dr. Singh (Tacoma Regional), Karen Wu (Bellevue), and Frank Russo (Spokane). All four expect a hand-off from Carla; she has primed them.',
-                'Day 4: Sit with HSE Maria Santos to align on the 2 accounts already flagged red',
-                'Day 5: Review the Q3 renewal pipeline — 4 contracts within 90 days of expiry',
-              ],
-            },
-            {
-              heading: 'Top 3 accounts you need to know by name',
-              bullets: [
-                'Tacoma Regional Medical Center — $3.4M, renewing 9/15. Carla saved this account in 2021. Dr. Singh is a Driver — be direct, have the ask ready.',
-                'Bellevue Health — $2.8M, healthy but Carla was personally close to the CFO Karen Wu. Wu is Expressive — open with acknowledgment, not data.',
-                'Spokane County — $1.9M, recent SE turnover. Frank Russo (Lab Director) was unhappy with the transition. Carla smoothed it. Stay close.',
-              ],
-            },
-            {
-              heading: 'What Carla wanted you to know',
               text:
-                '"The Pacific Northwest is a relationship region. Don\'t over-engineer the first 90 days. Show up in person at Tacoma and Spokane in your first month — they will notice. Karen at Bellevue will test you with a small ask early. Say yes, even if it is inconvenient."',
+                '3 risk parameters triggered overnight on your #1 account. Open the alert for the full intervention playbook — or ask me to brief you on the territory first.',
             },
           ],
-          footer: 'Compiled from 14 years of Carla\'s logged notes, calls, and field visits · 1,840 interactions',
-          actions: ['Open all 4 must-keep briefings', 'Add Carla\'s contacts to my calendar', 'Set up Day-1 with Maria'],
+          footer: 'Detected overnight by TIP · 6:14 AM · No action taken yet',
+          actions: ['Open the alert', 'Brief me on the territory first'],
         },
-      ],
-      chainOfThought: [
-        'Pulled Carla Renteria\'s full interaction history across all 38 accounts',
-        'Identified 4 "must-keep in geo" accounts requiring immediate continuity',
-        'Surfaced 6 accounts currently flagged at risk; prioritized 2 for 30-day action',
-        'Extracted relationship notes and decision-style observations from logged calls',
-        'Drafted a 7-day plan sequenced to maximize relationship continuity',
       ],
     },
   ],
 
   // ── West Region Leadership group (id 204) ─────────────────────────────
-  //    Seeded statically: only the IBIP Monday digest. The team huddle
-  //    that follows (Maria → Linda → Tom → IBIP, then a VOC trigger
+  //    Seeded statically: only the TIP Monday digest. The team huddle
+  //    that follows (Maria → Linda → Tom → TIP, then a VOC trigger
   //    action card) plays out interactively via chatScripts[204].
   204: [
     {
       id: 1,
       senderId: 100,
       text:
-        'West Region · Monday digest. 1 Tier 1 account flagged High overnight (Brea General — Jordan owns), 3 accounts on the Medium-High watchlist, 2 transitions kicking off this week. Full picture below.',
+        'West Region · Monday digest. 1 must-keep flagged High overnight (Brea General — Alex Chen owns, day one on the territory), the Pacific Northwest transition just completed, and 4 renewals inside 90 days. Full picture below.',
       time: 'Mon 7:00 AM',
       cards: [
         {
           accentColor: '#0B5394',
           iconType: 'teams',
           title: 'West Region — Leadership digest',
-          subtitle: 'Week of May 11 · 152 active accounts · $48M renewing in Q3',
+          subtitle: 'Week of June 15 · 148 active accounts · $9.1M renewing in Q3',
           badge: { text: 'New this week', tone: 'purple' },
           metrics: [
-            { value: '6', label: 'Accounts flagged', delta: '+2 vs last week', deltaTone: 'amber' },
-            { value: '1', label: 'Tier 1 High severity', delta: 'Brea General', deltaTone: 'amber' },
-            { value: '4', label: 'Renewals < 90d at risk', delta: '$8.2M exposure', deltaTone: 'amber' },
+            { value: '5', label: 'Accounts flagged', delta: '+1 vs last week', deltaTone: 'amber' },
+            { value: '1', label: 'High severity', delta: 'Brea General', deltaTone: 'amber' },
+            { value: '4', label: 'Renewals < 90d', delta: '2 carry risk', deltaTone: 'amber' },
           ],
           sections: [
             {
               heading: 'This week\'s asks',
               bullets: [
-                'Brea General Hospital — Jordan + Maria reach Dr. Voss with the tailored brief by Wed',
-                'Spokane County — Tom to close the loop with Frank Russo on the SE transition before Friday',
-                'Tacoma Regional — schedule the Q3 renewal pre-read with Dr. Singh',
+                'Brea General Hospital — Alex + Maria run the Lee → Walsh → Okafor intervention sequence within 5 business days',
+                'Cascadia Regional — schedule the Q3 renewal pre-read; account is healthy',
+                'Pacific Coast Health System — confirm no Siemens follow-up after the Q3 outreach',
               ],
             },
             {
               heading: 'Transitions in motion',
               bullets: [
-                'Pacific Northwest: Carla Renteria retires Friday — Jordan inherits 38 accounts, $42M',
-                'New SE assigned at Spokane County — Frank Russo flagged dissatisfied (Medium-High)',
+                'Pacific Northwest: 9-year rep retired last week — Alex Chen now owns the sub-region',
+                'Brea General flagged High the morning Alex took over — do not let the transition compound it',
               ],
             },
           ],
@@ -116,40 +85,39 @@ export const messagesByContact = {
   ],
 
   // ── Transitions Watch group (id 205) ──────────────────────────────────
-  //    Seeded statically: only IBIP's retirement alert. Linda/Maria/IBIP
+  //    Seeded statically: only TIP's transition alert. Linda/Maria/TIP
   //    coordination plays interactively via chatScripts[205].
   205: [
     {
       id: 1,
       senderId: 100,
       text:
-        'Transition alert. Carla Renteria retires Friday May 15. Pacific Northwest sub-region needs continuity coverage on 4 must-keep accounts. I have a full inheritance plan ready.',
-      time: 'Tue 8:00 AM',
+        'Transition alert. The Pacific Northwest sub-region just changed hands — a 9-year rep retired and Alex Chen takes over. Brea General is the exposed must-keep. I preserved the predecessor\'s relationship intelligence and built a continuity plan.',
+      time: 'Mon 6:30 AM',
       cards: [
         {
           accentColor: '#C4571A',
           iconType: 'teams',
           title: 'Pacific Northwest — Transition watch',
-          subtitle: 'Carla Renteria · 14 yrs tenure · Retiring Fri May 15',
+          subtitle: 'Predecessor: 9 yrs on Brea General · Handed to Alex Chen',
           badge: { text: 'Action this week', tone: 'amber' },
           metrics: [
-            { value: '4', label: 'Must-keep accounts', delta: '$10.2M ARR', deltaTone: 'neutral' },
+            { value: '3', label: 'Top accounts', delta: 'Brea / Cascadia / Pacific Coast', deltaTone: 'neutral' },
             { value: '11 wks', label: 'Avg post-transition risk window', delta: 'historical', deltaTone: 'neutral' },
-            { value: '1,840', label: 'Carla\'s logged interactions', delta: 'preserved', deltaTone: 'neutral' },
+            { value: '1,840', label: 'Predecessor interactions', delta: 'preserved', deltaTone: 'neutral' },
           ],
           sections: [
             {
               heading: 'Coverage decisions needed',
               bullets: [
-                'Tacoma Regional ($3.4M, renewing 9/15) — needs a relationship intro before Friday',
-                'Bellevue Health ($2.8M) — CFO Karen Wu was personally close to Carla; warm handoff matters',
-                'Spokane County ($1.9M) — recent SE turnover stacks on the rep transition; high stack-risk',
-                'Brea General ($2.1M) — already flagged High, do not let the transition compound it',
+                'Brea General ($420K ACV, renewal 112 days) — already flagged High; intervention sequence ready',
+                'Cascadia Regional ($210K, renewing 11 months) — healthy, HSE engaged, warm handoff is enough',
+                'Pacific Coast Health ($180K, renewing 8 months) — monitor; confirm no competitive follow-up',
               ],
             },
           ],
-          footer: 'Carla has primed all 4 contacts to expect a hand-off — do not let that window close',
-          actions: ['Assign coverage', 'Schedule intro calls', 'Open Carla\'s briefing'],
+          footer: 'Predecessor primed Dr. Walsh to expect the hand-off — do not let that window close',
+          actions: ['Assign coverage', 'Schedule intro calls', 'Open the predecessor briefing'],
         },
       ],
     },
