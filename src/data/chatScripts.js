@@ -133,19 +133,22 @@ const tip1on1 = {
                 },
               ],
               footer: 'Detected overnight by TIP · Action required',
-              // The first action advances the demo — clicking it opens the
-              // risk detail (sends the pre-loaded Beat 2 question).
+              // The first action drives the demo forward — clicking it injects
+              // Devon's question and opens the risk detail (compose stays blank).
               actions: [{ label: 'Show the risk detail', advance: true }, 'Mute for 24h'],
             },
           ],
           typingMs: 1600,
         },
       ],
-      nextDraft:
-        'I\'m two weeks into this territory and the introductory meeting isn\'t until next week. How urgent is this?',
+      // Blank — the "Show the risk detail" button carries Beat 2 forward, so
+      // the compose box stays empty after the alert.
+      nextDraft: '',
     },
 
     // ── Beat 2: risk flag detail (risk flagging engine) ───────────────
+    //    Advanced by the alert's "Show the risk detail" button: clicking it
+    //    injects this userText and reveals the card. Compose stays blank.
     {
       userText:
         'I\'m two weeks into this territory and the introductory meeting isn\'t until next week. How urgent is this?',
@@ -191,7 +194,8 @@ const tip1on1 = {
                 },
               ],
               footer: 'Risk flagging engine · 3 of 8 parameters firing',
-              actions: ['Build the response plan', 'Initiate VOC trigger'],
+              // Advance to the intervention playbook (Beat 3).
+              actions: [{ label: 'Build the response plan', advance: true }, 'Initiate VOC trigger'],
             },
           ],
           chainOfThought: [
@@ -203,8 +207,8 @@ const tip1on1 = {
           typingMs: 2600,
         },
       ],
-      nextDraft:
-        'My RSM has been covering the account, but I want to help coordinate the response. Given the risk signals and the blue sheets I have on file, tell me exactly who to involve, in what order, and what each conversation needs to accomplish.',
+      // Blank — "Build the response plan" carries Beat 3 forward.
+      nextDraft: '',
     },
 
     // ── Beat 3: KF-tailored intervention playbook (risk + KF) ─────────
