@@ -34,7 +34,7 @@ const tip1on1 = {
         {
           senderId: 100,
           text:
-            'BREA GENERAL HOSPITAL — Pre-meeting briefing. Eleven years of account history, the three people you\'re meeting and how each of them decides, and the note your predecessor left behind.',
+            'BREA GENERAL HOSPITAL — Pre-meeting briefing. Eleven years of history, the three people you\'re meeting, and the note your predecessor left behind.',
           cards: [
             {
               accentColor: '#0B5394',
@@ -44,64 +44,59 @@ const tip1on1 = {
               badge: { text: 'Pre-meeting briefing', tone: 'purple' },
               sections: [
                 {
-                  heading: 'Account overview',
-                  bullets: [
-                    '11-year Beckman Coulter account · $420K ACV · Renewal: 4 months · Must-keep in region',
-                    'Instruments: DxH 900 (Hematology) + AU5800 + UA (Chemistry / Urinalysis)',
-                  ],
+                  heading: 'Instruments',
+                  text: 'DxH 900 (Heme) + AU5800 + UA (Chem / Urinalysis)',
                 },
                 {
                   heading: 'Account history',
                   bullets: [
-                    '2016 — Initial DxH placement. Displaced Sysmex XE on morphology performance and service model.',
-                    '2020 — Near-loss. Finance initiated a lab cost review; Roche submitted a chemistry proposal. Saved by Dr. Estergreen advocacy + an $18K reagent concession. Prior KAM: "Estergreen went to bat for us. Without her we lose this account."',
-                    '2023 — DxH upgraded to DxH 900, UA microscopy added to Velocity, AU5800 installed on the chemistry side. Strong clinical reception.',
-                    '2023 — ⚠ Reagent strip shortage (Q3). Brea impacted for 3 months. Gina Park (Heme Technical Lead) escalated repeatedly to RSM and AD. Chemistry renewal nearly at risk — Sandra Ortega flagged vendor reliability. Resolved with a supply commitment letter + an executive call. Distrust from the heme team remains.',
-                    '2025 — RSM covered the account after the KAM retirement. Relationships maintained, not grown.',
-                    '2026 — You inherit the territory. Renewal due Q3.',
+                    '2016 — DxH placement, displaced Sysmex XE on morphology.',
+                    '2020 — Near-loss (finance cost review, Roche proposal). Saved by Dr. Estergreen + an $18K concession. Prior KAM: "Without her we lose this account."',
+                    '2023 — DxH 900 upgrade + AU5800 chemistry install. Strong reception.',
+                    '2023 — ⚠ Q3 reagent shortage, 3-month impact. Gina Park escalated hard; distrust in heme remains.',
+                    '2025 — RSM covered after the KAM retired. 2026 — you inherit; renewal due Q3.',
                   ],
                 },
                 {
-                  heading: 'Who you\'re meeting — Dr. Joanne Estergreen (Lab Director)',
+                  heading: 'Dr. Joanne Estergreen — Lab Director',
                   bullets: [
-                    'KF: Technical (T) · High influence · Growth mode · +4 · Active Coach (meets all 3 criteria)',
-                    'Personal: Avid skier. Mentioning the mountains is a genuine connection point.',
-                    '▶ She\'ll advocate for you. The RSM has the relationship. Your job is to earn it.',
+                    'Technical · High · Growth · +4 · Active Coach',
+                    'Avid skier — a genuine connection point.',
+                    '▶ She\'ll advocate for you. RSM has the relationship; your job is to earn it.',
                   ],
                 },
                 {
-                  heading: 'Gina Park (Hematology Technical Lead)',
+                  heading: 'Gina Park — Hematology Technical Lead',
                   bullets: [
-                    'KF: User (U) · Medium influence · Trouble mode · +2',
-                    '⚠ Still carrying frustration from the 2023 reagent shortage. She will bring it up.',
-                    '⚠ Several heme techs moonlight at Pacific General across town — a Sysmex site. PLT-F is a talking point, and Sysmex is using it to plant doubt.',
-                    '▶ Acknowledge the shortage before she does. Have your PSE engage on PLT-F clinical data before the meeting.',
+                    'User · Medium · Trouble · +2',
+                    '⚠ Still angry about the 2023 shortage — she\'ll raise it.',
+                    '⚠ Heme techs moonlight at Pacific General (a Sysmex site); PLT-F is their talking point.',
+                    '▶ Acknowledge the shortage before she does. PSE engages on PLT-F before the meeting.',
                   ],
                 },
                 {
-                  heading: 'Sandra Ortega (Supply Chain Manager — reports to CFO)',
+                  heading: 'Sandra Ortega — Supply Chain (reports to CFO)',
                   bullets: [
-                    'KF: Economic (E) influence · High influence · Even Keel · +1',
-                    '⚠ The 2023 shortage is still on her radar. Vendor reliability is her primary lens.',
-                    '▶ Lead with supply chain commitments and contract protections, not product features. She has no relationship with us yet — earn trust with data. The RSM has met her once.',
+                    'Economic · High · Even Keel · +1',
+                    '⚠ Vendor reliability is her lens after 2023.',
+                    '▶ Lead with supply commitments, not features. No relationship yet — earn it with data.',
                   ],
                 },
                 {
                   heading: 'Predecessor note (retiring KAM — summarized by TIP)',
                   text:
-                    '"Estergreen is the anchor of this account. She trusts people, not companies. When you meet her, ask about skiing — she\'ll talk your ear off and she\'ll remember you. Do not send an email first. Call her. That\'s how she knows you\'re serious."',
+                    '"Estergreen is the anchor of this account. She trusts people, not companies. Ask her about skiing — she\'ll remember you. Do not send an email first. Call her."',
                 },
               ],
-              footer:
-                'Compiled from 11 years of logged interactions · predecessor relationship notes preserved',
+              footer: 'Compiled from 11 years of logged interactions',
               actions: ['Open the influence map', 'Add contacts to my calendar'],
             },
           ],
           chainOfThought: [
-            'Reconstructed the 11-year account timeline, including the 2020 near-loss and 2023 reagent shortage',
-            'Mapped the 3 meeting contacts to Korn Ferry profiles (type, mode, rating, Coach status)',
-            'Surfaced competitive intel: Sysmex moonlighting techs at Pacific General and the PLT-F talking point',
-            'Extracted the predecessor\'s verbatim relationship note on Dr. Estergreen — including the skiing detail',
+            'Reconstructed the 11-year timeline, including the 2020 near-loss and 2023 shortage',
+            'Mapped the 3 contacts to Korn Ferry profiles and ran the Coach criteria on Estergreen',
+            'Surfaced the Sysmex moonlighting + PLT-F competitive intel',
+            'Pulled the predecessor\'s verbatim relationship note — including the skiing detail',
           ],
           typingMs: 2400,
         },
@@ -129,23 +124,26 @@ const tip1on1 = {
               sections: [
                 {
                   text:
-                    '3 risk parameters triggered overnight. This is the same account — your #1 in the territory — and it can\'t wait for next week\'s introductory meeting.',
+                    '3 risk parameters triggered overnight — on your #1 account. This can\'t wait for next week\'s meeting.',
                 },
               ],
-              footer: 'Detected overnight by TIP · Action required',
-              // The first action advances the demo — clicking it opens the
-              // risk detail (sends the pre-loaded Beat 2 question).
+              footer: 'Detected overnight by TIP',
+              // The first action drives the demo forward — clicking it injects
+              // Devon's question and opens the risk detail (compose stays blank).
               actions: [{ label: 'Show the risk detail', advance: true }, 'Mute for 24h'],
             },
           ],
           typingMs: 1600,
         },
       ],
-      nextDraft:
-        'I\'m two weeks into this territory and the introductory meeting isn\'t until next week. How urgent is this?',
+      // Blank — the "Show the risk detail" button carries Beat 2 forward, so
+      // the compose box stays empty after the alert.
+      nextDraft: '',
     },
 
     // ── Beat 2: risk flag detail (risk flagging engine) ───────────────
+    //    Advanced by the alert's "Show the risk detail" button: clicking it
+    //    injects this userText and reveals the card. Compose stays blank.
     {
       userText:
         'I\'m two weeks into this territory and the introductory meeting isn\'t until next week. How urgent is this?',
@@ -153,61 +151,62 @@ const tip1on1 = {
         {
           senderId: 100,
           text:
-            'BREA GENERAL HOSPITAL — Risk flag detail. Three parameters triggered on an account already carrying 2023 distrust. Here is why it can\'t wait for next week.',
+            'BREA GENERAL — Risk flag detail. Three signals on an account already carrying 2023 distrust.',
           cards: [
             {
               accentColor: '#C4571A',
               iconType: 'teams',
               title: 'Brea General Hospital — Risk flag detail',
-              subtitle: 'HIGH SEVERITY · Health score 34/100 (Critical) · Renewal 112 days',
+              subtitle: 'HIGH SEVERITY · Health score 34/100 · Renewal 112 days',
               badge: { text: 'Immediate action', tone: 'amber' },
               metrics: [
                 { value: '40%', label: 'Win probability', delta: '↓ from 60%', deltaTone: 'amber' },
-                { value: '180%', label: 'CTSO vs baseline', delta: '31 days running', deltaTone: 'amber' },
+                { value: '180%', label: 'CTSO vs baseline', delta: '31 days', deltaTone: 'amber' },
                 { value: '34', label: 'Health score', delta: 'Critical', deltaTone: 'amber' },
               ],
               sections: [
                 {
                   heading: '3 risk parameters triggered (of 8 monitored)',
                   bullets: [
-                    'Win probability dropped from 60% to 40% — no Voice of Customer trigger initiated. On a must-keep with renewal in 112 days, this cannot wait.',
-                    'CTSO call volume at 180% of 90-day baseline for 31 consecutive days. Elevated support contact correlates with operational frustration — and given the 2023 shortage history, it carries extra weight. Sysmex is aware of this account. This is the window they use.',
-                    'Unplanned field service visit logged yesterday — DxH 900 offline 3 hours, hematology downtime. Gina Park was on shift. No rep or KAM contact made post-visit.',
+                    'Win probability 60% → 40% — no VOC trigger. Renewal in 112 days; can\'t wait.',
+                    'CTSO at 180% of baseline for 31 days. After 2023, that\'s a loud signal — and Sysmex knows this account.',
+                    'Unplanned DxH 900 service visit yesterday — 3 hrs down, Gina Park on shift. No one called her after.',
                   ],
                 },
                 {
                   heading: 'Competitive context',
                   bullets: [
-                    'Sysmex has been active with the hematology department.',
-                    'Multiple heme techs moonlight at Pacific General across town — a Sysmex site.',
-                    'PLT-F (platelet flagging) is a known talking point among the team.',
-                    'No formal Sysmex evaluation initiated — but the groundwork is being laid.',
+                    'Heme techs moonlight at Pacific General — a Sysmex site.',
+                    'PLT-F is a known talking point on the team.',
+                    'No formal Sysmex eval yet — but the groundwork is being laid.',
                   ],
                 },
                 {
                   heading: 'What this means',
                   text:
-                    'Three signals on an account already carrying 2023 distrust. Instrument downtime with no follow-up contact is exactly the trigger that accelerates a competitive conversation. This requires active response this week — do not wait for next week\'s introductory meeting.',
+                    'Downtime with no follow-up is exactly what accelerates a competitive switch. Act this week — don\'t wait for the meeting.',
                 },
               ],
               footer: 'Risk flagging engine · 3 of 8 parameters firing',
-              actions: ['Build the response plan', 'Initiate VOC trigger'],
+              // Advance to the intervention playbook (Beat 3).
+              actions: [{ label: 'Build the response plan', advance: true }, 'Initiate VOC trigger'],
             },
           ],
           chainOfThought: [
-            'Correlated 3 of 8 risk parameters firing simultaneously on one must-keep account',
+            'Correlated 3 of 8 risk parameters firing at once on one must-keep account',
             'Weighted the CTSO spike against the 2023 reagent-shortage history',
-            'Flagged the unplanned DxH 900 downtime with no post-visit contact as the acute trigger',
-            'Cross-referenced competitive signals: Sysmex site moonlighting + PLT-F chatter',
+            'Flagged the DxH 900 downtime with no post-visit contact as the acute trigger',
+            'Cross-referenced the Sysmex / PLT-F competitive signals',
           ],
           typingMs: 2600,
         },
       ],
-      nextDraft:
-        'My RSM has been covering the account, but I want to help coordinate the response. Given the risk signals and the blue sheets I have on file, tell me exactly who to involve, in what order, and what each conversation needs to accomplish.',
+      // Blank — "Build the response plan" carries Beat 3 forward.
+      nextDraft: '',
     },
 
     // ── Beat 3: KF-tailored intervention playbook (risk + KF) ─────────
+    //    Advanced by the risk card's "Build the response plan" button.
     {
       userText:
         'My RSM has been covering the account, but I want to help coordinate the response. Given the risk signals and the blue sheets I have on file, tell me exactly who to involve, in what order, and what each conversation needs to accomplish.',
@@ -215,13 +214,13 @@ const tip1on1 = {
         {
           senderId: 100,
           text:
-            'BREA GENERAL — KF-tailored intervention playbook. RSM + PSE + you, sequenced to the people in the building. Run it before next week\'s meeting — not instead of it.',
+            'BREA GENERAL — KF-tailored intervention playbook. RSM + PSE + you, sequenced to the people in the building.',
           cards: [
             {
               accentColor: '#7E3FAF',
               iconType: 'teams',
               title: 'Brea General — KF-tailored intervention playbook',
-              subtitle: 'Response team: RSM + PSE + KAM (you) · Target: within 4 business days',
+              subtitle: 'Response team: RSM + PSE + KAM (you) · Within 4 business days',
               badge: { text: 'Act within 4 days', tone: 'amber' },
               sections: [
                 {
@@ -230,33 +229,29 @@ const tip1on1 = {
                     'Gina Park (PSE) → Estergreen (RSM + intro you) → Ortega (RSM + you). In that order. Before next week\'s meeting — not instead of it.',
                 },
                 {
-                  text:
-                    'Do not wait for next week\'s introductory meeting. The window is closing.',
-                },
-                {
                   heading: '▶ Step 1 — Gina Park (User · Trouble · +2)',
                   text:
-                    'She was on shift when the instrument went down. No one called her after. She is in Trouble mode — feeling pain, carrying distrust from 2023. Have your PSE and service manager contact her directly about the DxH downtime — a technical credibility conversation, not a commercial one. PSE opens by naming the downtime event specifically; acknowledge it before she does. Address the 2023 shortage proactively: the supply commitment, updated inventory protocols, and reagent-consistency data. On PLT-F, have the PSE ready with a head-to-head comparison — the Pacific General techs are talking about it and Park is hearing it, so raise it first. Do NOT open with renewal or account status — she needs to feel heard first. (Resolving heme builds the bridge into the chemistry opportunity.)',
+                    'Send the PSE, not a KAM — technical credibility, not a pitch. Open by naming the DxH downtime; acknowledge it before she does. Address 2023 head-on (supply commitment, new protocols, reagent data). Raise PLT-F first — don\'t wait for her to. Do NOT lead with renewal; she needs to feel heard.',
                 },
                 {
                   heading: '▶ Step 2 — Dr. Joanne Estergreen (Technical · Growth · +4 · Coach)',
                   text:
-                    'The RSM calls Joanne — this is the RSM\'s relationship, not yours yet. She is in Growth mode and will advocate if given a reason. RSM briefs her on the service event and the response plan, and asks her to pre-frame the situation with Sandra Ortega before the formal meeting — Joanne has credibility with Ortega that our commercial team does not have yet. This is also your opening: the RSM introduces you on this call. Lead with something personal — ask about skiing. Joanne will remember that more than any product discussion.',
+                    'RSM\'s relationship, not yours yet. RSM briefs her and asks her to pre-frame Ortega before the meeting — she has credibility there that we don\'t. RSM introduces you on the call; lead with skiing. She\'ll remember that more than any pitch.',
                 },
                 {
                   heading: '▶ Step 3 — Sandra Ortega (Economic · Even Keel · +1)',
                   text:
-                    'RSM + you together. Do NOT go to Ortega before Joanne has briefed her. She is Even Keel — no strong position, no urgency; vendor reliability is her lens. Introducing a service issue before a resolution plan is in hand moves her negative. Lead with supply chain commitments: updated inventory protocol, escalation path, executive contact — something she can document for the CFO. Do not lead with product or relationship. Data and process first; relationship follows.',
+                    'RSM + you. Do NOT reach her before Estergreen has. Even Keel — a service issue with no fix in hand turns her negative. Lead with supply commitments and process she can take to the CFO. Data first; relationship follows.',
                 },
               ],
-              footer: 'KF-tailored to each contact\'s profile and emotional state · Generated by TIP',
+              footer: 'KF-tailored to each contact · Generated by TIP',
               actions: ['Assign the response team', 'Initiate VOC trigger', 'Add to renewal plan'],
             },
           ],
           chainOfThought: [
-            'Sequenced the response against each contact\'s Korn Ferry mode and current state',
-            'Routed Park to the PSE (technical credibility) rather than a commercial KAM call',
-            'Kept Ortega out of the sequence until Estergreen can pre-frame — Even Keel risk',
+            'Sequenced the response against each contact\'s Korn Ferry mode and state',
+            'Routed Park to the PSE (technical credibility), not a commercial KAM call',
+            'Held Ortega until Estergreen can pre-frame — Even Keel risk',
             'Built the RSM-led intro path so Devon can start earning the relationships',
           ],
           typingMs: 2600,

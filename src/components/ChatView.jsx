@@ -480,6 +480,71 @@ export default function ChatView({
     scheduleJiraResponse(0, userMsgId)
   }
 
+  // Play a scripted step's chained responses (TIP / teammates) one-by-one,
+  // each preceded by a typing indicator, then advance the step cursor.
+  // `loadNextDraft` controls whether the step's follow-up query is pre-filled
+  // into compose afterward — true for compose-driven sends, false for
+  // card-button advances (which leave the box blank).
+  const playStepResponses = (chatId, bucket, step, stepIndex, { loadNextDraft }) => {
+    let elapsed = 0
+    step.responses.forEach((response, idx) => {
+      const typingMs = response.typingMs ?? 1800
+      const typingStartAt = elapsed
+      const messageAppearAt = elapsed + typingMs
+      setTimeout(() => {
+        setMainTypingAgentId(response.senderId)
+      }, typingStartAt)
+      setTimeout(() => {
+        setExtraMessages((prev) => ({
+          ...prev,
+          [bucket]: [...(prev[bucket] || []), {
+            senderId: response.senderId,
+            text: parseMentions(response.text),
+            cards: response.cards,
+            chainOfThought: response.chainOfThought,
+            id: `script-${chatId}-${stepIndex}-${idx}-${Date.now()}`,
+            time: nowTimeStr(),
+          }],
+        }))
+        const isLast = idx === step.responses.length - 1
+        if (isLast) {
+          setMainTypingAgentId((prev) => (prev === response.senderId ? null : prev))
+          if (loadNextDraft && step.nextDraft) setInputValue(step.nextDraft)
+        }
+      }, messageAppearAt)
+      elapsed = messageAppearAt + (response.gapMs ?? 400)
+    })
+    setScriptStepByChat((prev) => ({ ...prev, [chatId]: stepIndex + 1 }))
+  }
+
+  // Advance the scripted flow from a card action button (e.g. "Show the risk
+  // detail" on the overnight alert). The button drives the demo directly:
+  // it injects the pending step's own user text as the message, ignores and
+  // clears the compose box, and does NOT pre-load the next draft — so the
+  // compose stays blank after a click.
+  const advanceViaCard = () => {
+    const chatId = activeChatId
+    const bucket = canvasKey
+    const script = chatScripts[chatId]
+    const stepIndex = scriptStepByChat[chatId] || 0
+    if (!script || stepIndex >= script.steps.length) return
+    const step = script.steps[stepIndex]
+    setInputValue('')
+    setComposeMention(null)
+    if (step.userText != null) {
+      setExtraMessages((prev) => ({
+        ...prev,
+        [bucket]: [...(prev[bucket] || []), {
+          id: `extra-${Date.now()}`,
+          senderId: 'me',
+          text: parseMentions(step.userText),
+          time: nowTimeStr(),
+        }],
+      }))
+    }
+    playStepResponses(chatId, bucket, step, stepIndex, { loadNextDraft: false })
+  }
+
   const handleSend = () => {
     const chatId = activeChatId
     const bucket = canvasKey
@@ -544,56 +609,11 @@ export default function ChatView({
       }, 2000)
     }
 
-    // Generic scripted-flow driver — used by the TIP 1:1 and the two
-    // group chats (Leadership, Transitions Watch). Each send advances the
-    // chat's step cursor and plays the chained responses one-by-one, with
-    // a typing indicator before each. After the final response, the next
-    // user query (if any) is loaded into compose.
-    const script = chatScripts[chatId]
-    const currentStep = scriptStepByChat[chatId] || 0
-    if (script && currentStep < script.steps.length) {
-      const step = script.steps[currentStep]
-      // Schedule responses sequentially. Between each response we surface
-      // a typing indicator for the next responder (their avatar + dots).
-      let elapsed = 0
-      step.responses.forEach((response, idx) => {
-        const typingMs = response.typingMs ?? 1800
-        // Start typing indicator at `elapsed`, append message at `elapsed + typingMs`.
-        const typingStartAt = elapsed
-        const messageAppearAt = elapsed + typingMs
-        setTimeout(() => {
-          setMainTypingAgentId(response.senderId)
-        }, typingStartAt)
-        setTimeout(() => {
-          setExtraMessages((prev) => ({
-            ...prev,
-            [bucket]: [...(prev[bucket] || []), {
-              senderId: response.senderId,
-              text: parseMentions(response.text),
-              cards: response.cards,
-              chainOfThought: response.chainOfThought,
-              id: `script-${chatId}-${currentStep}-${idx}-${Date.now()}`,
-              time: nowTimeStr(),
-            }],
-          }))
-          // Clear the typing indicator only if no further responder is
-          // queued in the next frame — the next iteration will overwrite
-          // it anyway, but clearing on the last response keeps the
-          // typing-indicator from lingering after the chain finishes.
-          const isLast = idx === step.responses.length - 1
-          if (isLast) {
-            setMainTypingAgentId((prev) =>
-              prev === response.senderId ? null : prev
-            )
-            if (step.nextDraft) setInputValue(step.nextDraft)
-          }
-        }, messageAppearAt)
-        elapsed = messageAppearAt + (response.gapMs ?? 400)
-      })
-      setScriptStepByChat((prev) => ({
-        ...prev,
-        [chatId]: currentStep + 1,
-      }))
+    // Generic scripted-flow driver — used by the TIP 1:1 and the two group
+    // chats. Each Send advances the chat's step cursor and plays the chained
+    // responses, pre-loading the next query into compose afterward.
+    if (pendingScript && pendingStepIndex < pendingScript.steps.length) {
+      playStepResponses(chatId, bucket, pendingStep, pendingStepIndex, { loadNextDraft: true })
     }
   }
 
@@ -703,7 +723,7 @@ export default function ChatView({
                     key={msg.id}
                     message={isThreaded ? postToMessage(msg) : msg}
                     activeContact={activeContact}
-                    onAdvance={handleSend}
+                    onAdvance={advanceViaCard}
                     onOpenThread={isThreaded ? () => {
                       if (threadRailOpen && channelThreadPostId === msg.id) {
                         setThreadRailOpen(false)
