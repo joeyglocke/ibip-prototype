@@ -4,309 +4,332 @@
 // a compose draft) and the chained team/agent responses — plays out when
 // the user clicks Send.
 //
-// The 1:1 TIP flow (id 100) follows the v2 Live Demo Script exactly:
-//   OPEN  — overnight alert seeded in messages.js (the door opens)
-//   Beat 1 — day-one territory briefing (institutional memory)
-//   Beat 2 — full account history + buying influence map (memory + Korn Ferry)
-//   Beat 3 — return to the alert, KF-tailored intervention playbook
+// The 1:1 TIP flow (id 100) follows the v4 Live Demo Script:
+//   Beat 1  — pre-meeting briefing (institutional memory)
+//   PIVOT   — the overnight alert "arrives" (a pivot step: userText:null,
+//             fires on an empty Send so the presenter reveals it on cue)
+//   Beat 2  — risk flag detail (risk flagging engine)
+//   Beat 3  — KF-tailored intervention playbook (risk + Korn Ferry)
 //
-// Shape:
+// Step shape:
 //   {
-//     initialDraft: string,           // compose pre-fill on first load
-//     steps: [
-//       {
-//         userText: string,           // the user message that gets sent
-//         responses: [
-//           {
-//             senderId,               // contact id (or 100 = TIP)
-//             text,
-//             cards?, chainOfThought?,
-//             typingMs?,              // how long to show typing for this sender
-//             gapMs?,                 // pause after the message appears
-//           },
-//           ...
-//         ],
-//         nextDraft?: string,          // chain into compose after responses
-//       },
+//     userText: string | null,        // null = pivot (no user bubble; empty Send)
+//     responses: [
+//       { senderId, text, cards?, chainOfThought?, typingMs?, gapMs? },
+//       ...
 //     ],
+//     nextDraft?: string,             // chain into compose after responses
 //   }
 
 // ── TIP 1:1 chat (id 100) ────────────────────────────────────────────────
 const tip1on1 = {
   initialDraft:
-    'I just inherited the Pacific Northwest sub-region. Give me my day-one territory briefing.',
+    'I have an intro meeting at Brea General Hospital next week — my RSM is making the introductions. I\'m two weeks into this territory. Give me the full account history and everything I need to know about the people I\'m going to meet.',
   steps: [
-    // ── Beat 1: day-one territory briefing (institutional memory) ─────
+    // ── Beat 1: pre-meeting briefing (institutional memory) ───────────
     {
       userText:
-        'I just inherited the Pacific Northwest sub-region. Give me my day-one territory briefing.',
+        'I have an intro meeting at Brea General Hospital next week — my RSM is making the introductions. I\'m two weeks into this territory. Give me the full account history and everything I need to know about the people I\'m going to meet.',
       responses: [
         {
           senderId: 100,
           text:
-            'TERRITORY BRIEFING — Pacific Northwest sub-region. Top accounts, the items that need you first, and the notes your predecessor left behind.',
+            'BREA GENERAL HOSPITAL — Pre-meeting briefing. Eleven years of account history, the three people you\'re meeting and how each of them decides, and the note your predecessor left behind.',
           cards: [
             {
               accentColor: '#0B5394',
               iconType: 'teams',
-              title: 'Territory briefing — Pacific Northwest',
-              subtitle: 'Day one · 3 top accounts · inherited from a retiring rep',
-              badge: { text: 'Day-one briefing', tone: 'purple' },
+              title: 'Brea General Hospital — Pre-meeting briefing',
+              subtitle: '11-year account · $420K ACV · Renewal in 4 months · Must-keep in region',
+              badge: { text: 'Pre-meeting briefing', tone: 'purple' },
               sections: [
                 {
-                  heading: 'Top accounts by revenue + risk',
+                  heading: 'Account overview',
                   bullets: [
-                    'Brea General Hospital — $420K ACV · Renewal in 4 months · ⚠ Must-keep in region',
-                    'Cascadia Regional Medical — $210K ACV · Renewal in 11 months · Healthy',
-                    'Pacific Coast Health System — $180K ACV · Renewal in 8 months · Monitor',
+                    '11-year Beckman Coulter account · $420K ACV · Renewal: 4 months · Must-keep in region',
+                    'Instruments: DxH 900 (Hematology) + AU5800 + UA (Chemistry / Urinalysis)',
                   ],
                 },
                 {
-                  heading: 'Immediate action items',
+                  heading: 'Account history',
                   bullets: [
-                    '⚠ Brea General: No L1 contact in 97 days. Renewal in 4 months.',
-                    '⚠ Brea General: Siemens contacted hematology dept twice in Q3. No formal eval — yet.',
-                    '✓ Cascadia Regional: Strong relationship. HSE engaged. No flags.',
+                    '2016 — Initial DxH placement. Displaced Sysmex XE on morphology performance and service model.',
+                    '2020 — Near-loss. Finance initiated a lab cost review; Roche submitted a chemistry proposal. Saved by Dr. Estergreen advocacy + an $18K reagent concession. Prior KAM: "Estergreen went to bat for us. Without her we lose this account."',
+                    '2023 — DxH upgraded to DxH 900, UA microscopy added to Velocity, AU5800 installed on the chemistry side. Strong clinical reception.',
+                    '2023 — ⚠ Reagent strip shortage (Q3). Brea impacted for 3 months. Gina Park (Heme Technical Lead) escalated repeatedly to RSM and AD. Chemistry renewal nearly at risk — Sandra Ortega flagged vendor reliability. Resolved with a supply commitment letter + an executive call. Distrust from the heme team remains.',
+                    '2025 — RSM covered the account after the KAM retirement. Relationships maintained, not grown.',
+                    '2026 — You inherit the territory. Renewal due Q3.',
                   ],
                 },
                 {
-                  heading: 'Predecessor notes (retiring rep — summarized by TIP)',
+                  heading: 'Who you\'re meeting — Dr. Joanne Estergreen (Lab Director)',
+                  bullets: [
+                    'KF: Technical (T) · High influence · Growth mode · +4 · Active Coach (meets all 3 criteria)',
+                    'Personal: Avid skier. Mentioning the mountains is a genuine connection point.',
+                    '▶ She\'ll advocate for you. The RSM has the relationship. Your job is to earn it.',
+                  ],
+                },
+                {
+                  heading: 'Gina Park (Hematology Technical Lead)',
+                  bullets: [
+                    'KF: User (U) · Medium influence · Trouble mode · +2',
+                    '⚠ Still carrying frustration from the 2023 reagent shortage. She will bring it up.',
+                    '⚠ Several heme techs moonlight at Pacific General across town — a Sysmex site. PLT-F is a talking point, and Sysmex is using it to plant doubt.',
+                    '▶ Acknowledge the shortage before she does. Have your PSE engage on PLT-F clinical data before the meeting.',
+                  ],
+                },
+                {
+                  heading: 'Sandra Ortega (Supply Chain Manager — reports to CFO)',
+                  bullets: [
+                    'KF: Economic (E) influence · High influence · Even Keel · +1',
+                    '⚠ The 2023 shortage is still on her radar. Vendor reliability is her primary lens.',
+                    '▶ Lead with supply chain commitments and contract protections, not product features. She has no relationship with us yet — earn trust with data. The RSM has met her once.',
+                  ],
+                },
+                {
+                  heading: 'Predecessor note (retiring KAM — summarized by TIP)',
                   text:
-                    '"Brea General has been loyal for 11 years but the relationship lives with one person: Dr. Patricia Walsh, Lab Director. She trusts Beckman Coulter but she trusts people, not companies. Call her personally within 3 days of taking this territory. Do not send an email first."',
+                    '"Estergreen is the anchor of this account. She trusts people, not companies. When you meet her, ask about skiing — she\'ll talk your ear off and she\'ll remember you. Do not send an email first. Call her. That\'s how she knows you\'re serious."',
                 },
               ],
               footer:
-                'Predecessor: 9 years on this account · retired last week · 1,840 interactions preserved',
-              actions: ['Open Brea General', 'View all accounts', 'Add contacts to calendar'],
+                'Compiled from 11 years of logged interactions · predecessor relationship notes preserved',
+              actions: ['Open the influence map', 'Add contacts to my calendar'],
             },
           ],
           chainOfThought: [
-            'Pulled the retiring rep\'s full interaction history across the sub-region',
-            'Ranked the top 3 accounts by revenue and current risk signals',
-            'Surfaced immediate action items, including the 97-day L1 contact gap on Brea',
-            'Extracted the predecessor\'s verbatim relationship note on Dr. Walsh',
-          ],
-          typingMs: 2200,
-        },
-      ],
-      nextDraft:
-        'Pull the full account history on Brea General Hospital and give me the buying influence map so I know how to approach each person before I walk in.',
-    },
-
-    // ── Beat 2: full history + buying influence map (memory + KF) ─────
-    {
-      userText:
-        'Pull the full account history on Brea General Hospital and give me the buying influence map so I know how to approach each person before I walk in.',
-      responses: [
-        {
-          senderId: 100,
-          text:
-            'BREA GENERAL HOSPITAL — Full history and buying influence map. Here is who is in the building and how each of them makes decisions.',
-          cards: [
-            {
-              accentColor: '#0B5394',
-              iconType: 'teams',
-              title: 'Brea General Hospital — Full history + buying influence map',
-              subtitle: '11-year account · $420K ACV · 3 key contacts mapped',
-              badge: { text: 'Memory + Korn Ferry', tone: 'purple' },
-              sections: [
-                {
-                  heading: '11-year account history',
-                  bullets: [
-                    '2014 — Initial DxH 800 placement. Won vs Sysmex on morphology performance.',
-                    '2019 — Near-loss. CFO initiated cost review, Roche submitted a competitive proposal. Saved by Dr. Walsh advocacy + $18K reagent concession. Prior rep: "Walsh went to bat for us. Without her we lose this account."',
-                    '2022 — AU5800 chemistry expansion. Unopposed renewal.',
-                    '2024 — New CFO appointed (James Okafor, 6 months in role). No relationship established.',
-                  ],
-                },
-                {
-                  heading: 'Dr. Patricia Walsh — Lab Director',
-                  bullets: [
-                    'Type: Technical (T) · Influence: High · Mode: Growth · Rating: +4',
-                    'Competitive pref: Buy from us · COACH STATUS: Active — meets all 3 KF criteria',
-                    '▶ Approach: She wants change and will advocate for you. Engage her first. Let her shape the conversation with the CFO.',
-                  ],
-                },
-                {
-                  heading: 'James Okafor — CFO (new)',
-                  bullets: [
-                    'Type: Economic (E) · Influence: High · Mode: Even Keel · Rating: +1',
-                    'Competitive pref: Unknown — no prior relationship data',
-                    '⚠ Same buyer profile as the CFO who initiated the 2019 near-loss.',
-                    '▶ Approach: Lead with TCO and cost-per-test data. Do not lead with relationship — he doesn\'t have one with you yet.',
-                  ],
-                },
-                {
-                  heading: 'Dr. Marcus Lee — Hematology Medical Director',
-                  bullets: [
-                    'Type: User (U) · Influence: Medium · Mode: Trouble · Rating: +2',
-                    '▶ Approach: He is feeling operational pain. Assign HSE for a clinical deep-dive before any commercial conversation.',
-                  ],
-                },
-              ],
-              footer:
-                'Korn Ferry profiles populated from logged interactions · 2019 CFO callback auto-linked to Okafor',
-              actions: ['Open the overnight alert', 'Export the influence map'],
-            },
-          ],
-          chainOfThought: [
-            'Reconstructed the 11-year account timeline from 247 logged interactions',
-            'Mapped 3 key contacts to Korn Ferry buyer profiles (type, mode, rating)',
-            'Ran the 3 Coach criteria against Dr. Walsh — all met, flagged Active Coach',
-            'Linked the 2019 near-loss CFO profile to the 2024 CFO Okafor automatically',
+            'Reconstructed the 11-year account timeline, including the 2020 near-loss and 2023 reagent shortage',
+            'Mapped the 3 meeting contacts to Korn Ferry profiles (type, mode, rating, Coach status)',
+            'Surfaced competitive intel: Sysmex moonlighting techs at Pacific General and the PLT-F talking point',
+            'Extracted the predecessor\'s verbatim relationship note on Dr. Estergreen — including the skiing detail',
           ],
           typingMs: 2400,
         },
       ],
-      nextDraft:
-        'Open the Brea General overnight alert and give me the full intervention playbook.',
+      // Compose clears — the presenter clicks Send once more (empty box) to
+      // fire the overnight alert pivot on cue.
+      nextDraft: '',
     },
 
-    // ── Beat 3: return to the alert, KF-tailored playbook (risk + KF) ─
+    // ── PIVOT: the overnight alert arrives (empty-Send reveal) ────────
     {
-      userText:
-        'Open the Brea General overnight alert and give me the full intervention playbook.',
+      userText: null,
       responses: [
         {
           senderId: 100,
           text:
-            'OVERNIGHT RISK ALERT — Brea General Hospital. Here it is. And now that you know who is in that building, the playbook is sequenced to them.',
+            'This just came in. Overnight — on the same account you\'re prepping for next week.',
           cards: [
             {
               accentColor: '#C4571A',
               iconType: 'teams',
-              title: '⚠ Overnight risk alert — Brea General Hospital',
-              subtitle: 'HIGH SEVERITY · Must-keep in region · Renewal: 112 days',
-              badge: { text: 'High severity', tone: 'amber' },
+              title: '⚠ Overnight alert — Brea General Hospital',
+              subtitle: 'HIGH SEVERITY · Must-keep in region · Renewal in 112 days',
+              badge: { text: 'Action required', tone: 'amber' },
+              sections: [
+                {
+                  text:
+                    '3 risk parameters triggered overnight. This is the same account — your #1 in the territory — and it can\'t wait for next week\'s introductory meeting.',
+                },
+              ],
+              footer: 'Detected overnight by TIP · Action required',
+              actions: ['Show the risk detail', 'Mute for 24h'],
+            },
+          ],
+          typingMs: 1600,
+        },
+      ],
+      nextDraft:
+        'IBIP just flagged Brea General as high severity overnight. I\'m two weeks into this territory and the introductory meeting isn\'t until next week. What are the risk signals and how urgent is this?',
+    },
+
+    // ── Beat 2: risk flag detail (risk flagging engine) ───────────────
+    {
+      userText:
+        'IBIP just flagged Brea General as high severity overnight. I\'m two weeks into this territory and the introductory meeting isn\'t until next week. What are the risk signals and how urgent is this?',
+      responses: [
+        {
+          senderId: 100,
+          text:
+            'BREA GENERAL HOSPITAL — Risk flag detail. Three parameters triggered on an account already carrying 2023 distrust. Here is why it can\'t wait for next week.',
+          cards: [
+            {
+              accentColor: '#C4571A',
+              iconType: 'teams',
+              title: 'Brea General Hospital — Risk flag detail',
+              subtitle: 'HIGH SEVERITY · Health score 34/100 (Critical) · Renewal 112 days',
+              badge: { text: 'Immediate action', tone: 'amber' },
               metrics: [
-                { value: '54%', label: 'Win probability', delta: 'no VOC trigger', deltaTone: 'amber' },
+                { value: '40%', label: 'Win probability', delta: '↓ from 60%', deltaTone: 'amber' },
                 { value: '180%', label: 'CTSO vs baseline', delta: '31 days running', deltaTone: 'amber' },
-                { value: '38', label: 'Health score', delta: 'Critical', deltaTone: 'amber' },
+                { value: '34', label: 'Health score', delta: 'Critical', deltaTone: 'amber' },
               ],
               sections: [
                 {
-                  heading: 'Risk signals triggered (3 of 8 active parameters)',
+                  heading: '3 risk parameters triggered (of 8 monitored)',
                   bullets: [
-                    'Win probability: 54% — no VOC trigger on file',
-                    'CTSO call volume: 180% of 90-day baseline for 31 consecutive days',
-                    'Unplanned field service visit logged yesterday — AU5800 calibration flag',
+                    'Win probability dropped from 60% to 40% — no Voice of Customer trigger initiated. On a must-keep with renewal in 112 days, this cannot wait.',
+                    'CTSO call volume at 180% of 90-day baseline for 31 consecutive days. Elevated support contact correlates with operational frustration — and given the 2023 shortage history, it carries extra weight. Sysmex is aware of this account. This is the window they use.',
+                    'Unplanned field service visit logged yesterday — DxH 900 offline 3 hours, hematology downtime. Gina Park was on shift. No rep or KAM contact made post-visit.',
                   ],
                 },
                 {
-                  heading: 'Account context',
+                  heading: 'Competitive context',
                   bullets: [
-                    'Health score: 38 (Critical). Last L1 contact: CFO Okafor, 3 days ago, rating +1.',
-                    'Competitive risk: Siemens hematology outreach Q3. No formal eval — yet.',
+                    'Sysmex has been active with the hematology department.',
+                    'Multiple heme techs moonlight at Pacific General across town — a Sysmex site.',
+                    'PLT-F (platelet flagging) is a known talking point among the team.',
+                    'No formal Sysmex evaluation initiated — but the groundwork is being laid.',
                   ],
                 },
                 {
-                  heading: 'KF-tailored intervention playbook',
-                  text: 'Assign: HSE + RSM joint response within 5 business days.',
-                },
-                {
-                  heading: '▶ Step 1 — Dr. Marcus Lee (User · Trouble · +2)',
+                  heading: 'What this means',
                   text:
-                    'Open by naming the calibration issue specifically. Do NOT open with renewal or features. He is in Trouble mode — he needs to feel heard before he will hear anything else. Validate the pain. Present the resolution plan. Only then move to the broader conversation.',
-                },
-                {
-                  heading: '▶ Step 2 — Dr. Patricia Walsh (Technical · Growth · +4 · Coach)',
-                  text:
-                    'Brief her before any CFO contact. She can pre-frame the service situation with Okafor so it doesn\'t land cold. She is your Coach — use her.',
-                },
-                {
-                  heading: '▶ Step 3 — James Okafor (Economic · Even Keel · +1)',
-                  text:
-                    'Do NOT contact yet. He is Even Keel — a service issue without a resolution in hand moves him from neutral to negative. Wait for Walsh to brief him first. Then follow with TCO data and a formal resolution summary.',
-                },
-                {
-                  heading: '✓ Sequence',
-                  text: 'Lee → Walsh → Okafor. In that order. Not simultaneously.',
+                    'Three signals on an account already carrying 2023 distrust. Instrument downtime with no follow-up contact is exactly the trigger that accelerates a competitive conversation. This requires active response this week — do not wait for next week\'s introductory meeting.',
                 },
               ],
-              footer: 'KF-tailored to the 3 mapped contacts · Generated overnight by TIP',
-              actions: ['Assign HSE + RSM', 'Initiate VOC trigger', 'Add to renewal plan'],
+              footer: 'Risk flagging engine · 3 of 8 parameters firing',
+              actions: ['Build the response plan', 'Initiate VOC trigger'],
             },
           ],
           chainOfThought: [
-            'Correlated 3 of 8 risk parameters firing simultaneously on one account',
-            'Linked the unplanned AU5800 service visit to the open renewal 112 days out',
-            'Sequenced the intervention against each contact\'s Korn Ferry mode and rating',
-            'Held Okafor out of the sequence until Walsh can pre-frame — Even Keel risk',
+            'Correlated 3 of 8 risk parameters firing simultaneously on one must-keep account',
+            'Weighted the CTSO spike against the 2023 reagent-shortage history',
+            'Flagged the unplanned DxH 900 downtime with no post-visit contact as the acute trigger',
+            'Cross-referenced competitive signals: Sysmex site moonlighting + PLT-F chatter',
           ],
           typingMs: 2600,
         },
       ],
-      // No nextDraft — the demo concludes on the sequence. Presenter returns
-      // to the deck.
+      nextDraft:
+        'My RSM has the relationships here but I need to help coordinate the response. Given the risk signals and the KF profiles I have on file, tell me exactly who to involve, in what order, and what each conversation needs to accomplish.',
+    },
+
+    // ── Beat 3: KF-tailored intervention playbook (risk + KF) ─────────
+    {
+      userText:
+        'My RSM has the relationships here but I need to help coordinate the response. Given the risk signals and the KF profiles I have on file, tell me exactly who to involve, in what order, and what each conversation needs to accomplish.',
+      responses: [
+        {
+          senderId: 100,
+          text:
+            'BREA GENERAL — KF-tailored intervention playbook. RSM + PSE + you, sequenced to the people in the building. Run it before next week\'s meeting — not instead of it.',
+          cards: [
+            {
+              accentColor: '#7E3FAF',
+              iconType: 'teams',
+              title: 'Brea General — KF-tailored intervention playbook',
+              subtitle: 'Response team: RSM + PSE + KAM (you) · Target: within 4 business days',
+              badge: { text: 'Act within 4 days', tone: 'amber' },
+              sections: [
+                {
+                  text:
+                    'Do not wait for next week\'s introductory meeting. The window is closing.',
+                },
+                {
+                  heading: '▶ Step 1 — Gina Park (User · Trouble · +2)',
+                  text:
+                    'She was on shift when the instrument went down. No one called her after. She is in Trouble mode — feeling pain, carrying distrust from 2023. Have your PSE and service manager contact her directly about the DxH downtime — a technical credibility conversation, not a commercial one. PSE opens by naming the downtime event specifically; acknowledge it before she does. Address the 2023 shortage proactively: the supply commitment, updated inventory protocols, and reagent-consistency data. On PLT-F, have the PSE ready with a head-to-head comparison — the Pacific General techs are talking about it and Park is hearing it, so raise it first. Do NOT open with renewal or account status — she needs to feel heard first. (Resolving heme builds the bridge into the chemistry opportunity.)',
+                },
+                {
+                  heading: '▶ Step 2 — Dr. Joanne Estergreen (Technical · Growth · +4 · Coach)',
+                  text:
+                    'The RSM calls Joanne — this is the RSM\'s relationship, not yours yet. She is in Growth mode and will advocate if given a reason. RSM briefs her on the service event and the response plan, and asks her to pre-frame the situation with Sandra Ortega before the formal meeting — Joanne has credibility with Ortega that our commercial team does not have yet. This is also your opening: the RSM introduces you on this call. Lead with something personal — ask about skiing. Joanne will remember that more than any product discussion.',
+                },
+                {
+                  heading: '▶ Step 3 — Sandra Ortega (Economic · Even Keel · +1)',
+                  text:
+                    'RSM + you together. Do NOT go to Ortega before Joanne has briefed her. She is Even Keel — no strong position, no urgency; vendor reliability is her lens. Introducing a service issue before a resolution plan is in hand moves her negative. Lead with supply chain commitments: updated inventory protocol, escalation path, executive contact — something she can document for the CFO. Do not lead with product or relationship. Data and process first; relationship follows.',
+                },
+                {
+                  heading: '✓ Sequence',
+                  text:
+                    'Gina Park (PSE) → Estergreen (RSM + intro you) → Ortega (RSM + you). In that order. Before next week\'s meeting — not instead of it.',
+                },
+              ],
+              footer: 'KF-tailored to each contact\'s profile and emotional state · Generated by TIP',
+              actions: ['Assign the response team', 'Initiate VOC trigger', 'Add to renewal plan'],
+            },
+          ],
+          chainOfThought: [
+            'Sequenced the response against each contact\'s Korn Ferry mode and current state',
+            'Routed Park to the PSE (technical credibility) rather than a commercial KAM call',
+            'Kept Ortega out of the sequence until Estergreen can pre-frame — Even Keel risk',
+            'Built the RSM-led intro path so Devon can start earning the relationships',
+          ],
+          typingMs: 2600,
+        },
+      ],
+      // No nextDraft — the demo concludes on the sequence.
     },
   ],
 }
 
 // ── West Region Leadership group (id 204) ────────────────────────────────
-// TIP posts the Monday digest (seeded statically). The user opens the huddle
-// to coordinate the Brea intervention; the team and TIP chain responses.
+// TIP posts the Monday digest (seeded statically). Devon opens the huddle to
+// coordinate the Brea response; the team and TIP chain responses.
 const leadershipGroup = {
   initialDraft:
-    'team — brea flagged High the morning i took over. @TIP gave me the sequence: lee first, then walsh, then okafor. maria, can you lead the clinical deep-dive with dr. lee?',
+    'team — brea flagged High overnight, two weeks into my territory and the intro meeting isn\'t until next week. @TIP gave me the sequence: park first (PSE), then estergreen (RSM), then ortega. tom, can you take the estergreen + ortega calls since you have the relationships?',
   steps: [
     {
       userText:
-        'team — brea flagged High the morning i took over. @TIP gave me the sequence: lee first, then walsh, then okafor. maria, can you lead the clinical deep-dive with dr. lee?',
+        'team — brea flagged High overnight, two weeks into my territory and the intro meeting isn\'t until next week. @TIP gave me the sequence: park first (PSE), then estergreen (RSM), then ortega. tom, can you take the estergreen + ortega calls since you have the relationships?',
       responses: [
-        {
-          senderId: 200, // Maria Santos (HSE)
-          text:
-            'yes. lee is in trouble mode over the AU5800 calibration flag — i\'ll open by naming it, not pitching. on-site this week. once he feels heard i\'ll loop you for the broader conversation.',
-          typingMs: 1500,
-        },
-        {
-          senderId: 202, // Linda Park (Area Director)
-          text:
-            'good. do NOT let anyone contact okafor before walsh briefs him — @TIP flagged he\'s the same profile as the CFO who nearly lost us this account in 2019. i want a written read by thursday.',
-          typingMs: 1600,
-        },
         {
           senderId: 201, // Tom Hayes (RSM)
           text:
-            'i\'ll cover the RSM side of the joint response. free thursday/friday if alex wants a second on the walsh brief.',
-          typingMs: 1200,
+            'yes. i\'ll call joanne first — she\'s in growth mode and she\'ll advocate. i\'ll have her pre-frame ortega before we go anywhere near a contract conversation. and i\'ll introduce you on the estergreen call. ask her about skiing.',
+          typingMs: 1500,
+        },
+        {
+          senderId: 200, // Maria Santos (PSE)
+          text:
+            'i\'ll take park directly — technical, not commercial. opening with the DxH downtime, not the renewal. i\'ll bring the PLT-F head-to-head and the updated reagent protocols so the 2023 shortage is addressed before she raises it.',
+          typingMs: 1600,
+        },
+        {
+          senderId: 202, // Linda Castellano (Area Director)
+          text:
+            'good. hard rule: nobody contacts ortega before estergreen has briefed her. a service issue in front of an even-keel buyer with no resolution in hand moves her negative. i want a written read by thursday.',
+          typingMs: 1500,
         },
         {
           senderId: 100, // TIP
           text:
-            'Noted. I will hold Okafor off the outreach list until Walsh\'s pre-brief is logged, and alert this thread the moment any Brea signal moves. The 5-business-day response clock starts today.',
+            'Noted. I\'ll hold Ortega off the outreach list until Estergreen\'s pre-brief is logged, and alert this thread the moment any Brea signal moves. The 4-business-day response clock starts today.',
           typingMs: 1700,
         },
       ],
       nextDraft:
-        '@TIP push the VOC trigger on brea now — i want structured feedback captured before the lee conversation.',
+        '@TIP push the VOC trigger on brea now — i want structured feedback captured before maria\'s call with park.',
     },
     {
       userText:
-        '@TIP push the VOC trigger on brea now — i want structured feedback captured before the lee conversation.',
+        '@TIP push the VOC trigger on brea now — i want structured feedback captured before maria\'s call with park.',
       responses: [
         {
           senderId: 100,
           text:
-            'VOC trigger initiated. Routed structured capture to Maria with prompts tuned to each contact\'s profile. Results feed back into the risk model and improve future flag accuracy.',
+            'VOC trigger initiated. Routed structured capture to Maria with prompts tuned to each contact. Results feed back into the risk model and improve future flag accuracy.',
           cards: [
             {
               accentColor: '#5B5FC7',
               iconType: 'teams',
               title: 'VOC trigger — Brea General · armed',
-              subtitle: 'Routed to Maria Santos · 3 structured prompts · Live now',
+              subtitle: 'Routed to Maria Santos (PSE) · 3 structured prompts · Live now',
               badge: { text: 'Active', tone: 'green' },
               sections: [
                 {
                   heading: 'Prompts in scope',
                   bullets: [
-                    'Dr. Lee — severity and timeline of the AU5800 calibration issue',
-                    'Dr. Walsh — willingness to pre-frame the service situation with Okafor',
-                    'General — any Siemens contact since the Q3 hematology outreach',
+                    'Gina Park — severity and impact of the DxH 900 downtime; residual concerns from the 2023 shortage',
+                    'Reagent supply — confidence in the updated inventory protocol and escalation path',
+                    'Competitive — any Sysmex / PLT-F conversation surfacing in the heme team',
                   ],
                 },
               ],
-              footer: 'Auto-closes after the Lee conversation lands · Results in next digest',
+              footer: 'Auto-closes after the Park conversation lands · Results in next digest',
             },
           ],
           typingMs: 2000,
@@ -322,32 +345,32 @@ const leadershipGroup = {
 }
 
 // ── Transitions Watch group (id 205) ─────────────────────────────────────
-// TIP posts the transition alert (seeded statically). User confirms the
+// TIP posts the transition alert (seeded statically). Devon confirms the
 // hand-off, leadership arms the watch and distributes coverage.
 const transitionsGroup = {
   initialDraft:
-    'confirmed — i\'ve got the pacific northwest sub-region. @TIP use this thread for any signal you raise on the inherited accounts during the 90-day window.',
+    'confirmed — i\'ve got the pacific northwest sub-region now (two weeks in). @TIP use this thread for any signal you raise on the inherited accounts during the 90-day window.',
   steps: [
     {
       userText:
-        'confirmed — i\'ve got the pacific northwest sub-region. @TIP use this thread for any signal you raise on the inherited accounts during the 90-day window.',
+        'confirmed — i\'ve got the pacific northwest sub-region now (two weeks in). @TIP use this thread for any signal you raise on the inherited accounts during the 90-day window.',
       responses: [
         {
-          senderId: 202, // Linda Park
+          senderId: 202, // Linda Castellano
           text:
-            'agree. @TIP arm a continuity watch on the 3 top accounts. high alerting on brea given it\'s already flagged.',
+            'agree. @TIP arm a continuity watch on the top accounts. high alerting on brea — it\'s already flagged and devon hasn\'t built relationships there yet.',
           typingMs: 1500,
         },
         {
           senderId: 100,
           text:
-            'Armed. 90-day post-transition risk window now active on Brea General, Cascadia Regional, and Pacific Coast Health. I will surface any signal change in this thread within minutes of detection.',
+            'Armed. 90-day post-transition risk window now active on Brea General, Cascadia Regional, and Pacific Coast Health. I\'ll surface any signal change in this thread within minutes of detection.',
           cards: [
             {
               accentColor: '#0B5394',
               iconType: 'teams',
               title: '90-day continuity watch — armed',
-              subtitle: '3 accounts · Active Jun 15 → Sep 13 · Real-time alerts',
+              subtitle: '3 accounts · Real-time alerts · Brea on high alerting',
               badge: { text: 'Monitoring', tone: 'green' },
               sections: [
                 {
@@ -356,19 +379,19 @@ const transitionsGroup = {
                     'CTSO call volume vs trailing 90d baseline (per account)',
                     'Unplanned field service visits and unresolved tickets',
                     'Win probability deltas > 10 points',
-                    'Any contact note logged that hints at competitor activity',
+                    'Any contact note logged that hints at competitor activity (Sysmex)',
                   ],
                 },
               ],
-              footer: 'First scheduled check-in: Mon Jun 22, 7:00 AM PT digest in this thread',
+              footer: 'First scheduled check-in: next Monday 7:00 AM PT digest in this thread',
             },
           ],
           typingMs: 2000,
         },
         {
-          senderId: 200, // Maria Santos
+          senderId: 201, // Tom Hayes (RSM)
           text:
-            'i\'ll bridge the predecessor handoff on dr. walsh this week — she expects it. lee i\'ll take directly given the calibration issue. okafor waits per the sequence.',
+            'i\'ll keep bridging the brea relationships until devon has their own footing — estergreen and ortega especially. flagging any handoff moment here so we don\'t drop a thread mid-transition.',
           typingMs: 1500,
         },
       ],

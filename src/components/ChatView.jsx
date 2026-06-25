@@ -481,10 +481,23 @@ export default function ChatView({
   }
 
   const handleSend = () => {
-    if (!composeMention && !inputValue.trim()) return
-
     const chatId = activeChatId
     const bucket = canvasKey
+
+    // A scripted "pivot" step (userText: null) fires its responses on an
+    // empty Send with NO user bubble — used so a platform-initiated message
+    // (e.g. an overnight alert) can "arrive" on the presenter's cue between
+    // two typed beats. Detect it before the empty-input early return.
+    const pendingScript = chatScripts[chatId]
+    const pendingStepIndex = scriptStepByChat[chatId] || 0
+    const pendingStep =
+      pendingScript && pendingStepIndex < pendingScript.steps.length
+        ? pendingScript.steps[pendingStepIndex]
+        : null
+    const isPivotStep = !!pendingStep && pendingStep.userText == null
+
+    if (!composeMention && !inputValue.trim() && !isPivotStep) return
+
     const sentText = composeMention
       ? `/${composeMention}${inputValue ? ' ' + inputValue.trimStart() : ''}`
       : inputValue
@@ -497,17 +510,21 @@ export default function ChatView({
       return
     }
 
-    const myMessage = {
-      id: `extra-${Date.now()}`,
-      senderId: 'me',
-      text: parseMentions(sentText),
-      time: nowTimeStr(),
+    // Pivot steps render no user message — skip straight to the scripted
+    // responses below.
+    if (!isPivotStep) {
+      const myMessage = {
+        id: `extra-${Date.now()}`,
+        senderId: 'me',
+        text: parseMentions(sentText),
+        time: nowTimeStr(),
+      }
+      setExtraMessages((prev) => ({
+        ...prev,
+        [bucket]: [...(prev[bucket] || []), myMessage],
+      }))
+      finalizePendingSession(sentText)
     }
-    setExtraMessages((prev) => ({
-      ...prev,
-      [bucket]: [...(prev[bucket] || []), myMessage],
-    }))
-    finalizePendingSession(sentText)
 
     // Sarah Chen (id 1) scripted auto-response — exercises the typing
     // indicator flow end-to-end from a regular 1:1 chat.

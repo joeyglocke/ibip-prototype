@@ -6,49 +6,49 @@ export const promptSuggestions = {
   // TIP — Topline Intelligence Platform.
   // Six cards across the three components: institutional memory, risk
   // flagging, and Korn Ferry-tailored briefings. (Not normally shown — the
-  // TIP chat is seeded with the overnight alert — kept for coherence.)
+  // TIP chat is seeded with a greeting — kept for coherence.)
   100: [
+    {
+      title: 'Prep for a meeting',
+      description: 'Full account history + who you\'re about to meet.',
+      text: 'I have an intro meeting at Brea General Hospital next week — my RSM is making the introductions. Give me the full account history and everything I need to know about the people I\'m going to meet.',
+      response:
+        '11-year account, $420K ACV, must-keep, renewal in 4 months. Three people in the room: Dr. Joanne Estergreen (Lab Director, Technical · Growth · +4 · active Coach — and an avid skier), Gina Park (Heme Technical Lead, User · Trouble · +2 — still carrying the 2023 reagent shortage), and Sandra Ortega (Supply Chain, Economic · Even Keel · +1). The predecessor note is the one to read first: "Ask her about skiing. Do not send an email first — call her." Open the full briefing?',
+    },
     {
       title: 'Show today\'s flagged accounts',
       description: 'At-risk accounts surfaced overnight, ranked by severity.',
       text: 'Show me every account flagged at risk in my region right now, ranked by severity.',
       response:
-        '5 accounts flagged in your region as of this morning — 1 High, 2 Medium-High, 2 Medium. Top of the list is Brea General Hospital (must-keep in region) — win probability 54%, no L1 relationship on file, CTSO volume at 180% of baseline. I have the full risk card and a Korn Ferry-tailored intervention playbook ready when you want them.',
+        'Brea General is the one to act on — flagged High overnight, 3 of 8 risk parameters firing: win probability 60→40%, CTSO at 180% of baseline for 31 days, and an unplanned DxH 900 service visit with no post-visit contact. Health score 34/100. Want the full risk detail?',
     },
     {
-      title: 'Pull an account history',
-      description: 'A queryable summary of every interaction we have on file.',
-      text: 'Give me the full account history for Brea General Hospital — including the 2019 near-loss.',
+      title: 'Explain the risk signals',
+      description: 'What fired and how urgent it is.',
+      text: 'IBIP just flagged Brea General as high severity overnight. What are the risk signals and how urgent is this?',
       response:
-        '11 years of relationship on file, 247 logged interactions, and 2 documented near-loss events. The 2019 save is the one most worth reading — the CFO initiated a cost review, Roche submitted a competitive proposal, and Dr. Walsh\'s advocacy plus an $18K reagent concession kept the account. The 2024 CFO, Okafor, shares that same buyer profile. Want the full history and buying influence map?',
+        'Three signals on an account already carrying 2023 distrust. Win probability dropped from 60% to 40% with no VOC trigger. CTSO at 180% of baseline for 31 days. A DxH 900 went offline 3 hours yesterday with Gina Park on shift — and no one called her after. Sysmex is active with the heme team (moonlighting techs at Pacific General, PLT-F chatter). This needs active response this week. Want the detail?',
     },
     {
-      title: 'Tailor a briefing to a buyer',
-      description: 'Intervention playbook tuned to the contact\'s Korn Ferry profile.',
-      text: 'Tailor an intervention brief for Dr. Patricia Walsh at Brea General — she is my Coach on this account.',
+      title: 'Build the response plan',
+      description: 'Who to involve, in what order, what each call accomplishes.',
+      text: 'My RSM has the relationships here but I need to coordinate the response. Who do I involve, in what order, and what does each conversation accomplish?',
       response:
-        'Dr. Walsh is on file as Technical · Growth · +4, an active Coach (meets all 3 KF criteria). She wants change and will advocate for you. Approach: engage her first, brief her before any CFO contact, and let her pre-frame the service situation with Okafor so it doesn\'t land cold. Want me to draft the talking points for the Walsh brief?',
-    },
-    {
-      title: 'Prepare a territory hand-off',
-      description: 'Day-one briefing for a rep inheriting accounts.',
-      text: 'I just inherited the Pacific Northwest sub-region. Give me my day-one territory briefing.',
-      response:
-        'Top 3 accounts: Brea General ($420K ACV, renewal 4 months, must-keep), Cascadia Regional ($210K, healthy), Pacific Coast Health ($180K, monitor). The predecessor\'s note on Brea is the one to read first: "The relationship lives with Dr. Patricia Walsh. Call her personally within 3 days. Do not send an email first." Open the full briefing?',
+        'RSM + PSE + you, within 4 business days. Step 1 — Park gets the PSE on the DxH downtime (technical, not commercial; raise PLT-F first). Step 2 — Estergreen gets the RSM call (your intro; ask about skiing; have her pre-frame Ortega). Step 3 — Ortega gets data and process, not product. Sequence: Park → Estergreen → Ortega. Want the full playbook?',
     },
     {
       title: 'Check renewal exposure',
       description: 'Renewing contracts cross-referenced with risk signals.',
       text: 'Which of my renewing contracts in the next 90 days are also flagged at risk?',
       response:
-        'Brea General is the one to watch — renewing in 112 days and flagged High overnight (3 of 8 risk parameters firing). Cascadia and Pacific Coast are both renewing further out and currently clean. Want the renewal-readiness card for Brea?',
+        'Brea General is the one to watch — renewing in 112 days and flagged High overnight. Cascadia and Pacific Coast are both renewing further out and currently clean. Want the renewal-readiness card for Brea?',
     },
     {
       title: 'Start a VOC trigger',
       description: 'Capture structured customer feedback before it is too late.',
       text: 'Initiate a Voice of Customer trigger on Brea General before the intervention.',
       response:
-        'Plan ready: I will route a structured VOC capture to HSE Maria Santos with prompts tuned to each contact (Lee\'s calibration issue, Walsh\'s willingness to pre-frame Okafor, any Siemens contact since Q3). Results land in the risk model and improve flag accuracy. Approve to send, or edit the prompts before they go out.',
+        'Plan ready: I will route a structured VOC capture to PSE Maria Santos with prompts tuned to each contact (Park\'s DxH downtime and 2023 residue, reagent-supply confidence, any Sysmex/PLT-F chatter in the heme team). Results land in the risk model and improve flag accuracy. Approve to send, or edit the prompts first.',
     },
   ],
   2: [

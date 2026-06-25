@@ -1,52 +1,36 @@
-// Narrative anchor: Alex Chen's first morning as the new rep on the Pacific
-// Northwest sub-region. Before Alex types a word, TIP (Topline Intelligence
-// Platform) has already flagged the top must-keep account — Brea General
-// Hospital — overnight. The demo follows the v2 demo script: an opening alert,
-// then three beats (territory briefing → full history + buying influence map
-// → return to the alert with a KF-tailored intervention playbook).
+// Narrative anchor: Devon Glocke is a KAM two weeks into the Pacific Northwest
+// sub-region. The previous KAM retired; the RSM covered the account for three
+// months and is making introductions at Brea General Hospital next week. Devon
+// uses TIP (Topline Intelligence Platform) to prep — and while prepping, an
+// overnight risk flag fires on the same account. The demo follows the v4 demo
+// script: Beat 1 pre-meeting briefing → the alert pivots in → Beat 2 risk
+// detail → Beat 3 KF-tailored intervention playbook (Park → Estergreen →
+// Ortega).
 export const messagesByContact = {
   // ── TIP 1:1 (id 100) ──────────────────────────────────────────────────
-  //    Seeded statically: ONLY the opening overnight alert (a compact
-  //    teaser). The three beats play out send-by-send via the scripted
-  //    flow in `data/chatScripts.js`. The full alert + intervention
-  //    playbook is revealed in Beat 3 ("return to the alert").
+  //    Seeded statically: ONLY a short greeting. Beat 1 (briefing), the
+  //    pivot (overnight alert), Beat 2 (risk detail), and Beat 3 (playbook)
+  //    all play out send-by-send via the scripted flow in `data/chatScripts.js`.
   100: [
     {
       id: 1,
       senderId: 100,
       text:
-        'Good morning, Alex — welcome to the Pacific Northwest. Before you\'ve typed a word, I\'ve been working overnight. One must-keep account in your new territory crossed three risk thresholds. The alert is below. You\'re brand new here, so you may want some context before you act on it.',
-      time: 'Mon 6:14 AM',
-      cards: [
-        {
-          accentColor: '#C4571A',
-          iconType: 'teams',
-          title: '⚠ Overnight risk alert — Brea General Hospital',
-          subtitle: 'HIGH SEVERITY · Must-keep in region · Renewal in 112 days',
-          badge: { text: '3 parameters triggered', tone: 'amber' },
-          sections: [
-            {
-              text:
-                '3 risk parameters triggered overnight on your #1 account. Open the alert for the full intervention playbook — or ask me to brief you on the territory first.',
-            },
-          ],
-          footer: 'Detected overnight by TIP · 6:14 AM · No action taken yet',
-          actions: ['Open the alert', 'Brief me on the territory first'],
-        },
-      ],
+        'Morning, Devon — you\'re two weeks into the Pacific Northwest territory now. I\'ve indexed the previous KAM\'s account notes and your live signals. Ask me anything: account history, the people you\'re about to meet, or what\'s moving on your accounts.',
+      time: 'Mon 8:30 AM',
     },
   ],
 
   // ── West Region Leadership group (id 204) ─────────────────────────────
   //    Seeded statically: only the TIP Monday digest. The team huddle
-  //    that follows (Maria → Linda → Tom → TIP, then a VOC trigger
-  //    action card) plays out interactively via chatScripts[204].
+  //    that follows (Tom → Maria → Linda → TIP, then a VOC trigger action
+  //    card) plays out interactively via chatScripts[204].
   204: [
     {
       id: 1,
       senderId: 100,
       text:
-        'West Region · Monday digest. 1 must-keep flagged High overnight (Brea General — Alex Chen owns, day one on the territory), the Pacific Northwest transition just completed, and 4 renewals inside 90 days. Full picture below.',
+        'West Region · Monday digest. 1 must-keep flagged High overnight (Brea General — Devon owns, two weeks into the territory), the Pacific Northwest transition still settling, and 4 renewals inside 90 days. Full picture below.',
       time: 'Mon 7:00 AM',
       cards: [
         {
@@ -58,22 +42,22 @@ export const messagesByContact = {
           metrics: [
             { value: '5', label: 'Accounts flagged', delta: '+1 vs last week', deltaTone: 'amber' },
             { value: '1', label: 'High severity', delta: 'Brea General', deltaTone: 'amber' },
-            { value: '4', label: 'Renewals < 90d', delta: '2 carry risk', deltaTone: 'amber' },
+            { value: '4', label: 'Renewals < 90d', delta: '1 carries risk', deltaTone: 'amber' },
           ],
           sections: [
             {
               heading: 'This week\'s asks',
               bullets: [
-                'Brea General Hospital — Alex + Maria run the Lee → Walsh → Okafor intervention sequence within 5 business days',
+                'Brea General Hospital — RSM + PSE + Devon run the Park → Estergreen → Ortega sequence within 4 business days',
                 'Cascadia Regional — schedule the Q3 renewal pre-read; account is healthy',
-                'Pacific Coast Health System — confirm no Siemens follow-up after the Q3 outreach',
+                'Pacific Coast Health System — confirm no Sysmex follow-up after the Q3 chatter',
               ],
             },
             {
               heading: 'Transitions in motion',
               bullets: [
-                'Pacific Northwest: 9-year rep retired last week — Alex Chen now owns the sub-region',
-                'Brea General flagged High the morning Alex took over — do not let the transition compound it',
+                'Pacific Northwest: KAM retired, RSM covered 3 months — Devon Glocke now owns the sub-region (week 2)',
+                'Brea General flagged High overnight while Devon is still getting their bearings — do not let it compound',
               ],
             },
           ],
@@ -85,21 +69,21 @@ export const messagesByContact = {
   ],
 
   // ── Transitions Watch group (id 205) ──────────────────────────────────
-  //    Seeded statically: only TIP's transition alert. Linda/Maria/TIP
+  //    Seeded statically: only TIP's transition alert. Castellano/Hayes/TIP
   //    coordination plays interactively via chatScripts[205].
   205: [
     {
       id: 1,
       senderId: 100,
       text:
-        'Transition alert. The Pacific Northwest sub-region just changed hands — a 9-year rep retired and Alex Chen takes over. Brea General is the exposed must-keep. I preserved the predecessor\'s relationship intelligence and built a continuity plan.',
+        'Transition status. The Pacific Northwest sub-region changed hands — the KAM retired, the RSM covered for 3 months, and Devon Glocke now owns it (two weeks in). Brea General is the exposed must-keep. I preserved the predecessor\'s relationship intelligence and built a continuity plan.',
       time: 'Mon 6:30 AM',
       cards: [
         {
           accentColor: '#C4571A',
           iconType: 'teams',
           title: 'Pacific Northwest — Transition watch',
-          subtitle: 'Predecessor: 9 yrs on Brea General · Handed to Alex Chen',
+          subtitle: 'Predecessor KAM: 9 yrs on Brea · RSM bridged 3 months · Now Devon Glocke',
           badge: { text: 'Action this week', tone: 'amber' },
           metrics: [
             { value: '3', label: 'Top accounts', delta: 'Brea / Cascadia / Pacific Coast', deltaTone: 'neutral' },
@@ -110,14 +94,14 @@ export const messagesByContact = {
             {
               heading: 'Coverage decisions needed',
               bullets: [
-                'Brea General ($420K ACV, renewal 112 days) — already flagged High; intervention sequence ready',
-                'Cascadia Regional ($210K, renewing 11 months) — healthy, HSE engaged, warm handoff is enough',
+                'Brea General ($420K ACV, renewal 112 days) — already flagged High; RSM bridges, intervention sequence ready',
+                'Cascadia Regional ($210K, renewing 11 months) — healthy; warm handoff is enough',
                 'Pacific Coast Health ($180K, renewing 8 months) — monitor; confirm no competitive follow-up',
               ],
             },
           ],
-          footer: 'Predecessor primed Dr. Walsh to expect the hand-off — do not let that window close',
-          actions: ['Assign coverage', 'Schedule intro calls', 'Open the predecessor briefing'],
+          footer: 'Predecessor primed Dr. Estergreen to expect the hand-off — RSM keeps it warm until Devon has footing',
+          actions: ['Assign coverage', 'Keep RSM bridging', 'Open the predecessor briefing'],
         },
       ],
     },

@@ -5,9 +5,9 @@ const base = import.meta.env.BASE_URL
 // Placeholder persona for the prototype. See PERSONA.md for the full
 // character sheet. Keep this fictional — the repo is published publicly.
 export const currentUser = {
-  name: 'Alex Chen',
-  initials: 'AC',
-  email: 'alex.chen@beckman.example',
+  name: 'Devon Glocke',
+  initials: 'DG',
+  email: 'devon.glocke@beckman.example',
   color: '#0B5394',
   status: 'available',
 }
@@ -62,9 +62,9 @@ export const contacts = [
   { id: 32, name: 'Cowork', initials: null, color: '#FFFFFF', status: null, isAgent: true, logo: 'cowork', avatar: `${base}avatars/cowork.png`, logoInset: true, description: 'Async collaboration and document workflows' },
   { id: 33, name: 'AC Test', initials: 'AC', color: '#5B5FC7', status: null, isGroup: true, memberCount: 5 },
   // ── Beckman Coulter sales org — adjacent context for the TIP demo ──
-  { id: 200, name: 'Maria Santos', initials: 'MS', color: '#0B5394', status: 'available', description: 'HSE · West region' },
+  { id: 200, name: 'Maria Santos', initials: 'MS', color: '#0B5394', status: 'available', description: 'PSE · West region' },
   { id: 201, name: 'Tom Hayes', initials: 'TH', color: '#1A6B3E', status: 'busy', description: 'Regional Sales Manager · Pacific' },
-  { id: 202, name: 'Linda Park', initials: 'LP', color: '#7E3FAF', status: 'available', description: 'Area Director · West' },
+  { id: 202, name: 'Linda Castellano', initials: 'LC', color: '#7E3FAF', status: 'available', description: 'Area Director · West' },
   { id: 203, name: 'Greg Tanaka', initials: 'GT', color: '#B7472A', status: 'away', description: 'KAM · Top accounts' },
   { id: 204, name: 'West Region Leadership', initials: 'WR', color: '#0B5394', status: null, isGroup: true, memberCount: 9 },
   { id: 205, name: 'Transitions Watch', initials: 'TW', color: '#C4571A', status: null, isGroup: true, memberCount: 5 },

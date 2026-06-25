@@ -116,29 +116,31 @@ export default function App() {
       {showFre && (
         <FreModal
           title="TIP — Topline Intelligence Platform"
-          subtitle="The alert opens the door. The story explains why it matters."
+          subtitle="New rep. Getting their bearings. Then the flag fires."
           onDismiss={dismissFre}
           dismissLabel="See it in action"
         >
           <h3 className="fre-section-title">The setup</h3>
           <p>
-            One protagonist. One account. One platform. Four moments. Alex
-            Chen is a new rep — day one in the Pacific Northwest sub-region.
-            Brea General Hospital is an 11-year, must-keep account with a
-            renewal four months out. Before Alex has typed a single word, a
-            Teams notification fires: TIP has already been working overnight.
+            Devon Glocke is a KAM, two weeks into the Pacific Northwest
+            sub-region. The previous KAM retired; the RSM covered Brea
+            General Hospital for three months and is making introductions
+            next week. Devon isn't walking in cold — but they haven't built
+            any relationships of their own yet. They open Teams to prep for
+            that meeting. While they're prepping, the platform flags a HIGH
+            SEVERITY risk on the same account.
           </p>
 
           <h3 className="fre-section-title">Why it matters</h3>
           <p>
-            Every time a rep moves, years of institutional knowledge move
-            with them — which lab director needs a personal call, why an
-            account almost left in 2019 and what saved it, who the real
-            decision-makers are and how each of them decides. At-risk
-            accounts are sending signals — falling win probability, rising
-            CTSO volume, an unplanned service visit — that nobody is reading
-            in time. And the Korn Ferry investment lives in a binder, not in
-            the live selling moment.
+            A seasoned KAM would know what to do — who to call, in what
+            order, that the heme lead is already frustrated and walking in
+            without addressing it makes everything worse. They'd know it from
+            experience. Devon has two weeks. The eleven years of relationship
+            intelligence lived in one person's head, and when they retired it
+            was gone. At-risk accounts send signals — falling win
+            probability, rising CTSO volume, an unplanned service visit with
+            no follow-up — that nobody is reading in time.
           </p>
 
           <h3 className="fre-section-title">The platform</h3>
@@ -161,37 +163,34 @@ export default function App() {
             </li>
           </ol>
 
-          <h3 className="fre-section-title">The demo — four moments</h3>
+          <h3 className="fre-section-title">The demo — three queries</h3>
           <ol className="fre-list">
             <li>
-              <strong>Open.</strong> An overnight risk alert on Brea General
-              is already waiting. Alex sees it — but needs context first.
+              <strong>The briefing.</strong> Eleven years of history, the
+              three people Devon will meet and how each decides, and the
+              predecessor's note: "Ask her about skiing. Do not send an email
+              first."
             </li>
             <li>
-              <strong>Day-one briefing.</strong> The territory briefing
-              surfaces the predecessor's note: "Call her personally. Do not
-              send an email first."
+              <strong>The pivot.</strong> That evening, an overnight alert
+              fires on the same account — HIGH SEVERITY. A seasoned KAM would
+              know what to do. Devon has two weeks.
             </li>
             <li>
-              <strong>Account history + influence map.</strong> The 2019
-              near-loss CFO and the 2024 CFO share a buyer profile. The
-              platform connected those two dots. Alex didn't have to.
-            </li>
-            <li>
-              <strong>Back to the alert.</strong> A Korn Ferry-tailored
-              playbook, sequenced to the people in the building: Lee → Walsh
-              → Okafor. In that order. Not simultaneously.
+              <strong>The playbook.</strong> A coordinated RSM + PSE + KAM
+              response, sequenced to the people in the building: Park →
+              Estergreen → Ortega. In that order. Before next week's meeting.
             </li>
           </ol>
 
           <h3 className="fre-section-title">What this delivers</h3>
           <p>
-            That is one new rep, one account, one morning. The platform
-            preserved the knowledge the previous rep left behind, built the
-            context Alex needed to walk in already knowing the room, and
-            flagged the risk — with a playbook tailored to the specific
-            people in that account — before Alex made a single call. Built
-            on tools you already own. Running in Teams. Starting on day one.
+            Two weeks in a new territory, one intro meeting on the calendar —
+            and before that meeting even happens, the platform preserved
+            eleven years of account knowledge, surfaced a risk the new KAM
+            wouldn't have caught, and built a coordinated response plan
+            tailored to every person in that account. Built on tools you
+            already own. Running in Teams.
           </p>
         </FreModal>
       )}

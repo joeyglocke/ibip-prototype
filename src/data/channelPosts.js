@@ -6,7 +6,7 @@
 // Shape:
 //   { id, senderId, time, subject?, text, reactions?, replies: [ {id, senderId, text, time, reactions?} ] }
 //
-// Replies mirror MessageRow's shape (senderId of 'me' = current user = Alex Chen).
+// Replies mirror MessageRow's shape (senderId of 'me' = current user = Devon Glocke).
 
 export const channelPostsByContact = {
   // West Region Sales • General. Day-to-day team channel — lighter posts
@@ -21,15 +21,15 @@ export const channelPostsByContact = {
       text:
         "Few headlines for the week:\n\n" +
         "• Q3 renewal kickoffs begin Wednesday — see the dedicated channel\n" +
-        "• Maria covering Brea General clinical escalations this week\n" +
-        "• Pacific Northwest transition is complete — Alex Chen now owns the sub-region. Coverage details in the Transitions Watch group\n\n" +
+        "• Maria (PSE) covering Brea General hematology escalations this week\n" +
+        "• Pacific Northwest transition still settling — Devon Glocke owns the sub-region (week 2), Tom bridging the Brea relationships. Details in the Transitions Watch group\n\n" +
         "Quiet week otherwise. Leadership review next Monday Jun 15.",
       reactions: [{ emoji: '👋', count: 3 }],
       replies: [
         {
           id: 'p25-1-r1',
           senderId: 200,
-          text: 'noted. i\'ll be on for Brea — ping me direct if anything urgent.',
+          text: 'noted. i\'ll be on for the brea heme side — ping me direct if anything urgent on the DxH line.',
           time: 'Mon Jun 8 8:18 AM',
         },
       ],
@@ -42,13 +42,13 @@ export const channelPostsByContact = {
       text:
         "Wrapping the capstone Monday in the Jun 15 leadership review. " +
         "If anyone has a pilot moment that hit (good or rough), drop it in the TIP pilot-feedback channel by Friday — i'd like to ground the readout in real examples, not the metrics. " +
-        "Maria's Brea-flag story already in the queue.",
+        "The Brea overnight-flag story is already in the queue.",
       reactions: [{ emoji: '🎤', count: 4 }],
       replies: [
         {
           id: 'p25-2-r1',
           senderId: 201,
-          text: 'will post my account-handoff story in the feedback channel today. it\'s a good one — TIP caught a stack-risk i missed.',
+          text: 'will post the brea handoff story in the feedback channel today. it\'s a good one — TIP caught the downtime-with-no-follow-up before any of us did.',
           time: 'Wed Jun 10 3:02 PM',
           reactions: [{ emoji: '🙏', count: 2 }],
         },
@@ -68,13 +68,13 @@ export const channelPostsByContact = {
       text:
         "Weekly health snapshot for the West Region must-keep portfolio. " +
         "31 must-keep accounts in geo · $33.4M ACV · 0 flagged High, 2 flagged Medium-High, 1 Medium. " +
-        "Watching Brea General's CTSO volume trend closely — it's climbed for 3 weeks running but hasn't crossed threshold. No flag yet.",
+        "Watching Brea General's CTSO volume trend closely — it's climbed for 3 weeks running on the DxH 900 line but hasn't crossed threshold. No flag yet.",
       reactions: [{ emoji: '📈', count: 4 }],
       replies: [
         {
           id: 'p26-1-r1',
           senderId: 200,
-          text: 'the brea CTSO trend is the one i\'d keep eyes on. that AU5800 line has been noisy since the last calibration cycle.',
+          text: 'the brea CTSO trend is the one i\'d keep eyes on. that DxH 900 has been noisy since the last calibration cycle, and gina park\'s team has a long memory after 2023.',
           time: 'Mon Jun 8 7:31 AM',
           reactions: [{ emoji: '👍', count: 2 }],
         },
@@ -100,8 +100,8 @@ export const channelPostsByContact = {
       time: 'Mon Jun 15 7:00 AM',
       subject: 'Must-keep health — week of Jun 15',
       text:
-        "New flag this week — Brea General Hospital crossed into High overnight (win prob 54%, no L1 relationship on file, CTSO at 180% of baseline for 31 days, unplanned AU5800 service visit). " +
-        "Alex now owns the account after the Pacific Northwest transition. Renewal in 112 days. Intervention sequence is built — Lee → Walsh → Okafor. " +
+        "New flag this week — Brea General Hospital crossed into High overnight (win prob 60→40%, CTSO at 180% of baseline for 31 days, unplanned DxH 900 service visit with no post-visit contact). " +
+        "Devon owns the account; the RSM still holds the relationships. Renewal in 112 days. Intervention sequence is built — Park (PSE) → Estergreen (RSM) → Ortega. " +
         "Cascadia and Pacific Coast stable. As requested last week: renewal proximity column added.",
       reactions: [{ emoji: '⚠️', count: 5 }, { emoji: '👀', count: 6 }],
       replies: [
@@ -109,7 +109,7 @@ export const channelPostsByContact = {
           id: 'p26-2-r1',
           senderId: 202,
           text:
-            'tagging this thread for the leadership review today. alex + maria — i want a written read on whether walsh has agreed to pre-frame okafor by thursday. do not contact okafor before then.',
+            'tagging this thread for the leadership review today. devon + tom — i want a written read by thursday. hard rule: nobody goes to ortega before estergreen has pre-framed her.',
           time: 'Mon Jun 15 7:18 AM',
           reactions: [{ emoji: '👍', count: 3 }],
         },
@@ -117,7 +117,7 @@ export const channelPostsByContact = {
           id: 'p26-2-r2',
           senderId: 200,
           text:
-            'on it. i\'ll open with lee on the calibration issue this week — he\'s in trouble mode, needs to feel heard before anything else. walsh brief follows.',
+            'i\'ll open with park on the DxH downtime this week — technical, not commercial. bringing the PLT-F head-to-head and the updated reagent protocols so the 2023 shortage is addressed before she raises it.',
           time: 'Mon Jun 15 7:25 AM',
         },
         {
@@ -158,13 +158,13 @@ export const channelPostsByContact = {
         {
           id: 'p27-tip-1-r1',
           senderId: 'me',
-          text: 'brea kickoff is gated on the intervention sequence — lee, then walsh, then okafor. i don\'t want a renewal ask in front of okafor until walsh has pre-framed. tom, agree?',
+          text: 'brea kickoff is gated on the intervention sequence — park, then estergreen, then ortega. no renewal ask in front of ortega until estergreen has pre-framed her. tom, agree?',
           time: 'Mon Jun 15 7:48 AM',
         },
         {
           id: 'p27-tip-1-r2',
           senderId: 201,
-          text: 'agree. resolve the service issue first, let walsh do the framing, then we bring the renewal conversation to okafor with TCO data in hand. not before.',
+          text: 'agree. resolve the service issue with park first, let estergreen do the framing, then we bring supply-chain commitments to ortega with data in hand. not before.',
           time: 'Mon Jun 15 7:55 AM',
           reactions: [{ emoji: '👍', count: 2 }],
         },
@@ -189,7 +189,7 @@ export const channelPostsByContact = {
         {
           id: 'p28-tip-1-r1',
           senderId: 202,
-          text: 'good progress. let\'s spotlight the brea save (assuming it lands) in the jun 15 readout — that\'s the story leadership wants to hear, not the adoption metrics.',
+          text: 'good progress. let\'s spotlight the brea save (assuming it lands) in the jun 15 readout — a new KAM two weeks in, handed a coordinated response plan. that\'s the story leadership wants to hear, not the adoption metrics.',
           time: 'Fri Jun 12 9:18 AM',
           reactions: [{ emoji: '💯', count: 3 }],
         },
@@ -201,13 +201,13 @@ export const channelPostsByContact = {
   29: [
     {
       id: 'p29-tip-1',
-      senderId: 200,
+      senderId: 201,
       time: 'Thu Jun 11 4:20 PM',
       subject: 'Real-world test: brea general flag was on the money',
       text:
         "Posting because i was skeptical at the start of the pilot. " +
-        "TIP flagged brea general at high severity the morning alex took over the territory. Three signals firing simultaneously — i'd have caught the CTSO trend on my own eventually, but not the missing L1 relationship, and definitely not the link back to the 2019 CFO profile. " +
-        "The intervention playbook it generated sequenced the three contacts for me — Lee, then Walsh, then Okafor. Usable as-is. Will report back after the Lee conversation lands.",
+        "TIP flagged brea general at high severity overnight — three signals firing at once. The one that got me: an unplanned DxH 900 service visit with Gina Park on shift, and nobody on our side called her after it closed. I would not have connected that to the renewal in time. " +
+        "The intervention playbook sequenced the response across RSM, PSE, and the new KAM — Park, then Estergreen, then Ortega. Devon's two weeks in and walked into a coordinated plan. Will report back after the Park conversation lands.",
       reactions: [{ emoji: '🎯', count: 6 }, { emoji: '❤️', count: 2 }],
       replies: [
         {
@@ -218,7 +218,7 @@ export const channelPostsByContact = {
         },
         {
           id: 'p29-tip-1-r2',
-          senderId: 200,
+          senderId: 201,
           text: 'go for it. happy to do it live if it helps.',
           time: 'Thu Jun 11 4:38 PM',
           reactions: [{ emoji: '🙏', count: 2 }],
@@ -227,7 +227,7 @@ export const channelPostsByContact = {
     },
     {
       id: 'p29-tip-2',
-      senderId: 201,
+      senderId: 200,
       time: 'Fri Jun 12 11:02 AM',
       subject: 'Feature request — link to korn ferry profile from any contact card',
       text:
