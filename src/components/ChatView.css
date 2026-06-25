@@ -687,6 +687,31 @@
   text-decoration: underline;
 }
 
+/* Advance action — the clickable CTA that drives the scripted demo forward
+   (e.g. "Show the risk detail" on the overnight alert). Rendered as a filled
+   pill so it reads as the primary, tappable action, not a text link. */
+.card-action-btn-advance {
+  background: #6264A7;
+  color: #FFFFFF;
+  padding: 5px 12px;
+  border-radius: 6px;
+}
+
+.card-action-btn-advance:hover {
+  background: #5457A6;
+  text-decoration: none;
+}
+
+.card-action-btn-advance:disabled {
+  background: #E6E6F0;
+  color: #9AA0B5;
+  cursor: default;
+}
+
+.card-action-btn-advance:disabled:hover {
+  background: #E6E6F0;
+}
+
 /* ── Activity-navigation highlight ──
    When the user clicks an Activity event, ChatView scrolls the triggering
    message into view and briefly flashes a tinted background behind the row
