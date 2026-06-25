@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { agentLogos } from '../shared/agentLogos'
 import { contacts, currentUser } from '../data/contacts'
-import { Avatar, LinkCard, PrivateDisclaimer, Check, ChainOfThought } from './common'
+import { Avatar, LinkCard, PrivateDisclaimer, Check, ChainOfThought, ChevronDown } from './common'
 import MessageActions from './MessageActions'
 
 // Office-app icon tiles for adaptive cards that represent generated artifacts.
@@ -120,6 +120,108 @@ function CardBars({ bars }) {
   )
 }
 
+function CardSections({ sections }) {
+  return (
+    <div className="card-sections">
+      {sections.map((section, j) => (
+        <div key={j} className="card-section">
+          {section.heading && <div className="card-section-heading">{section.heading}</div>}
+          {section.text && <div className="card-section-text">{section.text}</div>}
+          {section.facts && <CardFacts facts={section.facts} />}
+          {section.bullets && (
+            <ul className="card-bullets">
+              {section.bullets.map((b, k) => <li key={k}>{b}</li>)}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// A single adaptive card. Owns its own `expanded` (inline accordion) and
+// `advanceUsed` (one-shot advance guard) state, so it lives in its own
+// component rather than inline in MessageRow's card map.
+//
+// Action shapes:
+//   'string'                       — decorative button
+//   { label, advance: true }       — drives the scripted demo forward (onAdvance)
+//   { label, expand: true,         — toggles `card.expand` open inline, posting
+//     collapseLabel? }               no message; relabels to collapseLabel when open
+function AdaptiveCard({ card, onAdvance }) {
+  const [expanded, setExpanded] = useState(false)
+  const [advanceUsed, setAdvanceUsed] = useState(false)
+
+  const renderActions = (actions) => (
+    <div className="card-actions">
+      {actions.map((action, j) => {
+        const isObj = typeof action === 'object'
+        const advances = isObj && action.advance
+        const expands = isObj && action.expand
+        const label = isObj ? action.label : action
+        const shownLabel = expands && expanded ? (action.collapseLabel || label) : label
+        return (
+          <button
+            key={j}
+            className={`card-action-btn${advances ? ' card-action-btn-advance' : ''}${expands ? ' card-action-btn-expand' : ''}`}
+            disabled={advances && advanceUsed}
+            onClick={
+              expands
+                ? () => setExpanded((v) => !v)
+                : advances && onAdvance
+                  ? () => { if (advanceUsed) return; setAdvanceUsed(true); onAdvance() }
+                  : undefined
+            }
+          >
+            {shownLabel}
+            {expands && (
+              <span className={`card-expand-chevron${expanded ? ' card-expand-chevron-open' : ''}`}>
+                <ChevronDown size={12} />
+              </span>
+            )}
+          </button>
+        )
+      })}
+    </div>
+  )
+
+  return (
+    <div className="adaptive-card" style={{ borderLeftColor: card.accentColor }}>
+      {/* Header: optional icon + title/subtitle row + optional badge. */}
+      <div className="card-header">
+        {card.iconType && <CardIcon type={card.iconType} />}
+        <div className="card-header-text">
+          <div className="card-title-row">
+            <span className="card-title">{card.title}</span>
+            {card.badge && <CardBadge {...card.badge} />}
+          </div>
+          {card.subtitle && <div className="card-subtitle">{card.subtitle}</div>}
+        </div>
+      </div>
+
+      {card.steps && <CardSteps steps={card.steps} />}
+      {card.metrics && <CardMetrics metrics={card.metrics} />}
+      {card.bars && <CardBars bars={card.bars} />}
+      {card.sections && <CardSections sections={card.sections} />}
+      {card.facts && <CardFacts facts={card.facts} />}
+      {card.footer && <div className="card-footer">{card.footer}</div>}
+      {card.actions && renderActions(card.actions)}
+
+      {/* Inline expansion — drops open when an `expand` action is toggled.
+          Carries its own metrics / sections / actions (e.g. the risk detail
+          revealed from the overnight alert). */}
+      {card.expand && expanded && (
+        <div className="card-expand">
+          {card.expand.metrics && <CardMetrics metrics={card.expand.metrics} />}
+          {card.expand.sections && <CardSections sections={card.expand.sections} />}
+          {card.expand.footer && <div className="card-footer">{card.expand.footer}</div>}
+          {card.expand.actions && renderActions(card.expand.actions)}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // Combine seeded-in-data reactions with the current user's reactions into an
 // ordered list of pills. `byMe: true` → purple outline in the UI.
 function buildReactionList(baseReactions, myEmojis) {
@@ -171,9 +273,6 @@ function ThreadReplyBadge({ reply, onClick }) {
 
 export default function MessageRow({ message, activeContact, onOpenThread, onAdvance }) {
   const isMe = message.senderId === 'me'
-  // One-shot guard so a card's "advance" action button can't re-fire the
-  // scripted flow if the presenter clicks it twice.
-  const [advanceUsed, setAdvanceUsed] = useState(false)
   const isMultiParty = activeContact.isGroup || activeContact.isChannel
   const sender = isMe
     ? currentUser
@@ -228,82 +327,7 @@ export default function MessageRow({ message, activeContact, onOpenThread, onAdv
               {message.cards.map((card, i) => card.type === 'file' ? (
                 <FileCard key={i} card={card} />
               ) : (
-                <div key={i} className="adaptive-card" style={{ borderLeftColor: card.accentColor }}>
-                  {/* Header: optional icon + title/subtitle row + optional badge. */}
-                  <div className="card-header">
-                    {card.iconType && <CardIcon type={card.iconType} />}
-                    <div className="card-header-text">
-                      <div className="card-title-row">
-                        <span className="card-title">{card.title}</span>
-                        {card.badge && <CardBadge {...card.badge} />}
-                      </div>
-                      {card.subtitle && <div className="card-subtitle">{card.subtitle}</div>}
-                    </div>
-                  </div>
-
-                  {/* Plan steps with status pips. */}
-                  {card.steps && <CardSteps steps={card.steps} />}
-
-                  {/* KPI tiles — value + label + optional delta. */}
-                  {card.metrics && <CardMetrics metrics={card.metrics} />}
-
-                  {/* Horizontal bar chart — auto-scaled to the largest value. */}
-                  {card.bars && <CardBars bars={card.bars} />}
-
-                  {/* Grouped sections with optional headings + facts/bullets/text. */}
-                  {card.sections && (
-                    <div className="card-sections">
-                      {card.sections.map((section, j) => (
-                        <div key={j} className="card-section">
-                          {section.heading && <div className="card-section-heading">{section.heading}</div>}
-                          {section.text && <div className="card-section-text">{section.text}</div>}
-                          {section.facts && <CardFacts facts={section.facts} />}
-                          {section.bullets && (
-                            <ul className="card-bullets">
-                              {section.bullets.map((b, k) => <li key={k}>{b}</li>)}
-                            </ul>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Flat facts at card root (legacy + still useful). */}
-                  {card.facts && <CardFacts facts={card.facts} />}
-
-                  {/* Subtle metadata footer (e.g. "Generated by Cowork · 4:31 PM"). */}
-                  {card.footer && <div className="card-footer">{card.footer}</div>}
-
-                  {/* Action row. Actions are strings (decorative) or
-                      `{ label, advance }` — an advance action calls
-                      onAdvance() once to drive the scripted demo forward. */}
-                  {card.actions && (
-                    <div className="card-actions">
-                      {card.actions.map((action, j) => {
-                        const label = typeof action === 'string' ? action : action.label
-                        const advances = typeof action === 'object' && action.advance
-                        return (
-                          <button
-                            key={j}
-                            className={`card-action-btn${advances ? ' card-action-btn-advance' : ''}`}
-                            disabled={advances && advanceUsed}
-                            onClick={
-                              advances && onAdvance
-                                ? () => {
-                                    if (advanceUsed) return
-                                    setAdvanceUsed(true)
-                                    onAdvance()
-                                  }
-                                : undefined
-                            }
-                          >
-                            {label}
-                          </button>
-                        )
-                      })}
-                    </div>
-                  )}
-                </div>
+                <AdaptiveCard key={i} card={card} onAdvance={onAdvance} />
               ))}
             </div>
           )}

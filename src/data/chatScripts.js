@@ -112,6 +112,10 @@ const tip1on1 = {
     },
 
     // ── PIVOT: the overnight alert arrives (empty-Send reveal) ────────
+    //    The alert card carries the risk detail in an `expand` block: clicking
+    //    "Show the risk detail" drops it open INLINE (no new message). The
+    //    "Build the response plan" button inside the expansion advances to the
+    //    playbook (Beat 3).
     {
       userText: null,
       responses: [
@@ -133,81 +137,53 @@ const tip1on1 = {
                 },
               ],
               footer: 'Detected overnight by TIP · Action required',
-              // The first action drives the demo forward — clicking it injects
-              // Devon's question and opens the risk detail (compose stays blank).
-              actions: [{ label: 'Show the risk detail', advance: true }, 'Mute for 24h'],
+              // "Show the risk detail" toggles the `expand` block open inline.
+              actions: [
+                { label: 'Show the risk detail', expand: true, collapseLabel: 'Hide the risk detail' },
+                'Mute for 24h',
+              ],
+              // Revealed inline when the toggle is open — the full risk detail.
+              expand: {
+                metrics: [
+                  { value: '40%', label: 'Win probability', delta: '↓ from 60%', deltaTone: 'amber' },
+                  { value: '180%', label: 'CTSO vs baseline', delta: '31 days running', deltaTone: 'amber' },
+                  { value: '34', label: 'Health score', delta: 'Critical', deltaTone: 'amber' },
+                ],
+                sections: [
+                  {
+                    heading: '3 risk parameters triggered (of 8 monitored)',
+                    bullets: [
+                      'Win probability dropped from 60% to 40% — no Voice of Customer trigger initiated. On a must-keep with renewal in 112 days, this cannot wait.',
+                      'CTSO call volume at 180% of 90-day baseline for 31 consecutive days. Elevated support contact correlates with operational frustration — and given the 2023 shortage history, it carries extra weight. Sysmex is aware of this account. This is the window they use.',
+                      'Unplanned field service visit logged yesterday — DxH 900 offline 3 hours, hematology downtime. Gina Park was on shift. No rep or KAM contact made post-visit.',
+                    ],
+                  },
+                  {
+                    heading: 'Competitive context',
+                    bullets: [
+                      'Sysmex has been active with the hematology department.',
+                      'Multiple heme techs moonlight at Pacific General across town — a Sysmex site.',
+                      'PLT-F (platelet flagging) is a known talking point among the team.',
+                      'No formal Sysmex evaluation initiated — but the groundwork is being laid.',
+                    ],
+                  },
+                  {
+                    heading: 'What this means',
+                    text:
+                      'Three signals on an account already carrying 2023 distrust. Instrument downtime with no follow-up contact is exactly the trigger that accelerates a competitive conversation. This requires active response this week — do not wait for next week\'s introductory meeting.',
+                  },
+                ],
+                footer: 'Risk flagging engine · 3 of 8 parameters firing',
+                // Advance to the intervention playbook (Beat 3).
+                actions: [{ label: 'Build the response plan', advance: true }, 'Initiate VOC trigger'],
+              },
             },
           ],
           typingMs: 1600,
         },
       ],
-      // Blank — the "Show the risk detail" button carries Beat 2 forward, so
-      // the compose box stays empty after the alert.
-      nextDraft: '',
-    },
-
-    // ── Beat 2: risk flag detail (risk flagging engine) ───────────────
-    //    Advanced by the alert's "Show the risk detail" button: clicking it
-    //    injects this userText and reveals the card. Compose stays blank.
-    {
-      userText:
-        'I\'m two weeks into this territory and the introductory meeting isn\'t until next week. How urgent is this?',
-      responses: [
-        {
-          senderId: 100,
-          text:
-            'BREA GENERAL HOSPITAL — Risk flag detail. Three parameters triggered on an account already carrying 2023 distrust. Here is why it can\'t wait for next week.',
-          cards: [
-            {
-              accentColor: '#C4571A',
-              iconType: 'teams',
-              title: 'Brea General Hospital — Risk flag detail',
-              subtitle: 'HIGH SEVERITY · Health score 34/100 (Critical) · Renewal 112 days',
-              badge: { text: 'Immediate action', tone: 'amber' },
-              metrics: [
-                { value: '40%', label: 'Win probability', delta: '↓ from 60%', deltaTone: 'amber' },
-                { value: '180%', label: 'CTSO vs baseline', delta: '31 days running', deltaTone: 'amber' },
-                { value: '34', label: 'Health score', delta: 'Critical', deltaTone: 'amber' },
-              ],
-              sections: [
-                {
-                  heading: '3 risk parameters triggered (of 8 monitored)',
-                  bullets: [
-                    'Win probability dropped from 60% to 40% — no Voice of Customer trigger initiated. On a must-keep with renewal in 112 days, this cannot wait.',
-                    'CTSO call volume at 180% of 90-day baseline for 31 consecutive days. Elevated support contact correlates with operational frustration — and given the 2023 shortage history, it carries extra weight. Sysmex is aware of this account. This is the window they use.',
-                    'Unplanned field service visit logged yesterday — DxH 900 offline 3 hours, hematology downtime. Gina Park was on shift. No rep or KAM contact made post-visit.',
-                  ],
-                },
-                {
-                  heading: 'Competitive context',
-                  bullets: [
-                    'Sysmex has been active with the hematology department.',
-                    'Multiple heme techs moonlight at Pacific General across town — a Sysmex site.',
-                    'PLT-F (platelet flagging) is a known talking point among the team.',
-                    'No formal Sysmex evaluation initiated — but the groundwork is being laid.',
-                  ],
-                },
-                {
-                  heading: 'What this means',
-                  text:
-                    'Three signals on an account already carrying 2023 distrust. Instrument downtime with no follow-up contact is exactly the trigger that accelerates a competitive conversation. This requires active response this week — do not wait for next week\'s introductory meeting.',
-                },
-              ],
-              footer: 'Risk flagging engine · 3 of 8 parameters firing',
-              // Advance to the intervention playbook (Beat 3).
-              actions: [{ label: 'Build the response plan', advance: true }, 'Initiate VOC trigger'],
-            },
-          ],
-          chainOfThought: [
-            'Correlated 3 of 8 risk parameters firing simultaneously on one must-keep account',
-            'Weighted the CTSO spike against the 2023 reagent-shortage history',
-            'Flagged the unplanned DxH 900 downtime with no post-visit contact as the acute trigger',
-            'Cross-referenced competitive signals: Sysmex site moonlighting + PLT-F chatter',
-          ],
-          typingMs: 2600,
-        },
-      ],
-      // Blank — "Build the response plan" carries Beat 3 forward.
+      // Blank — the expansion + "Build the response plan" carry the demo
+      // forward, so the compose box stays empty after the alert.
       nextDraft: '',
     },
 

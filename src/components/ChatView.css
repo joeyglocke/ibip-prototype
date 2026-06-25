@@ -712,6 +712,39 @@
   background: #E6E6F0;
 }
 
+/* Expand action — a toggle that drops the card's `expand` block open inline
+   (e.g. "Show the risk detail"). Reads as a clickable control with a chevron;
+   no message is posted. */
+.card-action-btn-expand {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-expand-chevron {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 140ms ease;
+}
+
+.card-expand-chevron-open {
+  transform: rotate(180deg);
+}
+
+/* The inline detail that drops open under an expand toggle. Separated from
+   the base card body by a thin rule so the reveal reads as nested content. */
+.card-expand {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #E8E8E8;
+  animation: card-expand-open 160ms ease-out;
+}
+
+@keyframes card-expand-open {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ── Activity-navigation highlight ──
    When the user clicks an Activity event, ChatView scrolls the triggering
    message into view and briefly flashes a tinted background behind the row
