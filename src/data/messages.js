@@ -94,7 +94,7 @@ export const messagesByContact = {
             {
               heading: 'Coverage decisions needed',
               bullets: [
-                'Brea General ($420K ACV, renewal 112 days) — already flagged High; RSM bridges, intervention sequence ready',
+                'Brea General ($650K ACV, contract end Q4) — already flagged High; RSM bridges, intervention sequence ready',
                 'Cascadia Regional ($210K, renewing 11 months) — healthy; warm handoff is enough',
                 'Pacific Coast Health ($180K, renewing 8 months) — monitor; confirm no competitive follow-up',
               ],

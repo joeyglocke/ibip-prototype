@@ -40,13 +40,13 @@ const tip1on1 = {
               accentColor: '#0B5394',
               iconType: 'teams',
               title: 'Brea General Hospital — Pre-meeting briefing',
-              subtitle: '11-year account · $420K ACV · Renewal in 4 months · Must-keep in region',
+              subtitle: '11-year account · $650K ACV · Contract end: Q4 · Must-keep in region',
               badge: { text: 'Pre-meeting briefing', tone: 'purple' },
               sections: [
                 {
                   heading: 'Account overview',
                   bullets: [
-                    '11-year Beckman Coulter account · $420K ACV · Renewal: 4 months · Must-keep in region',
+                    '11-year Beckman Coulter account · $650K ACV · Contract end: Q4 · Must-keep in region',
                     'Instruments: DxH 900 (Hematology) + AU5800 + UA (Chemistry / Urinalysis)',
                   ],
                 },
@@ -72,7 +72,6 @@ const tip1on1 = {
                   heading: 'Gina Park (Hematology Technical Lead)',
                   bullets: [
                     '⚠ Still carrying frustration from the 2023 reagent shortage. She will bring it up.',
-                    '⚠ Several heme techs moonlight at Pacific General across town — a Sysmex site. PLT-F is a talking point, and Sysmex is using it to plant doubt.',
                     '▶ Acknowledge the shortage before she does. Have your PSE engage on PLT-F clinical data before the meeting.',
                   ],
                 },
@@ -132,7 +131,7 @@ const tip1on1 = {
               accentColor: '#C4571A',
               iconType: 'teams',
               title: '⚠ Overnight alert — Brea General Hospital',
-              subtitle: 'HIGH SEVERITY · Must-keep in region · Renewal in 112 days',
+              subtitle: 'HIGH SEVERITY · Must-keep in region · Contract end: Q4',
               badge: { text: 'Action required', tone: 'amber' },
               sections: [
                 {
@@ -157,7 +156,7 @@ const tip1on1 = {
                   {
                     heading: '3 risk parameters triggered (of 8 monitored)',
                     bullets: [
-                      'Win probability dropped from 60% to 40% — no Voice of Customer trigger initiated. On a must-keep with renewal in 112 days, this cannot wait.',
+                      'Win probability dropped from 60% to 40% — no Voice of Customer trigger initiated. On a must-keep with the contract ending Q4, this cannot wait.',
                       'CTSO call volume at 180% of 90-day baseline for 31 consecutive days. Elevated support contact correlates with operational frustration — and given the 2023 shortage history, it carries extra weight. Sysmex is aware of this account. This is the window they use.',
                       'Unplanned field service visit logged yesterday — DxH 900 offline 3 hours, hematology downtime. Gina Park was on shift. No rep or KAM contact made post-visit.',
                     ],

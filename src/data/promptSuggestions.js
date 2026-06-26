@@ -13,7 +13,7 @@ export const promptSuggestions = {
       description: 'Full account history + who you\'re about to meet.',
       text: 'I have an intro meeting at Brea General Hospital next week — my RSM is making the introductions. Give me the full account history and everything I need to know about the people I\'m going to meet.',
       response:
-        '11-year account, $420K ACV, must-keep, renewal in 4 months. Three people in the room: Dr. Joanne Estergreen (Lab Director, Technical · Growth · +4 · active Coach — and an avid skier), Gina Park (Heme Technical Lead, User · Trouble · +2 — still carrying the 2023 reagent shortage), and Sandra Ortega (Supply Chain, Economic · Even Keel · +1). The predecessor note is the one to read first: "Ask her about skiing. Do not send an email first — call her." Open the full briefing?',
+        '11-year account, $650K ACV, must-keep, contract end Q4. Three people in the room: Dr. Joanne Estergreen (Lab Director, Technical · Growth · +4 · active Coach — and an avid skier), Gina Park (Heme Technical Lead, User · Trouble · +2 — still carrying the 2023 reagent shortage), and Sandra Ortega (Supply Chain, Economic · Even Keel · +1). The predecessor note is the one to read first: "Ask her about skiing. Do not send an email first — call her." Open the full briefing?',
     },
     {
       title: 'Show today\'s flagged accounts',
@@ -41,7 +41,7 @@ export const promptSuggestions = {
       description: 'Renewing contracts cross-referenced with risk signals.',
       text: 'Which of my renewing contracts in the next 90 days are also flagged at risk?',
       response:
-        'Brea General is the one to watch — renewing in 112 days and flagged High overnight. Cascadia and Pacific Coast are both renewing further out and currently clean. Want the renewal-readiness card for Brea?',
+        'Brea General is the one to watch — contract ending Q4 and flagged High overnight. Cascadia and Pacific Coast are both renewing further out and currently clean. Want the renewal-readiness card for Brea?',
     },
     {
       title: 'Start a VOC trigger',

@@ -101,7 +101,7 @@ export const channelPostsByContact = {
       subject: 'Must-keep health — week of Jun 15',
       text:
         "New flag this week — Brea General Hospital crossed into High overnight (win prob 60→40%, CTSO at 180% of baseline for 31 days, unplanned DxH 900 service visit with no post-visit contact). " +
-        "Devon owns the account; the RSM still holds the relationships. Renewal in 112 days. Intervention sequence is built — Park (PSE) → Estergreen (RSM) → Ortega. " +
+        "Devon owns the account; the RSM still holds the relationships. Contract end Q4. Intervention sequence is built — Park (PSE) → Estergreen (RSM) → Ortega. " +
         "Cascadia and Pacific Coast stable. As requested last week: renewal proximity column added.",
       reactions: [{ emoji: '⚠️', count: 5 }, { emoji: '👀', count: 6 }],
       replies: [
@@ -150,7 +150,7 @@ export const channelPostsByContact = {
       text:
         "Four contracts renewing in the next 90 days across the West Region. " +
         "Three are clean and on track. One carries risk that will affect close timing if unaddressed:\n\n" +
-        "• Brea General Hospital — renewing in 112 days, currently High severity flag\n" +
+        "• Brea General Hospital — contract ending Q4, currently High severity flag\n" +
         "• Cascadia Regional — renewing 11 months out, healthy\n\n" +
         "Per-account readiness cards in the linked drawer. Account owners: please confirm your renewal kickoff timing by Wednesday.",
       reactions: [{ emoji: '📅', count: 4 }],

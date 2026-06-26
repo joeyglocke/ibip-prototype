@@ -561,14 +561,14 @@ export default function ChatView({
   }
 
   // Advance the scripted flow from a card action button (e.g. "Build the
-  // response plan"). Injects the pending step's own user text as the message,
-  // clears the compose box, and leaves it blank (no next-draft pre-load).
+  // response plan"). Clears the compose box and plays the pending step's
+  // response directly — no user message is sent; TIP just responds.
   const advanceViaCard = () => {
     const chatId = activeChatId
     const bucket = canvasKey
     setInputValue('')
     setComposeMention(null)
-    runScriptStep(chatId, bucket, scriptStepByChat[chatId] || 0, { injectUserText: true })
+    runScriptStep(chatId, bucket, scriptStepByChat[chatId] || 0, { injectUserText: false })
   }
 
   const handleSend = () => {

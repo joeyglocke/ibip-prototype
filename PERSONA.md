@@ -18,7 +18,7 @@ This persona is fictional and used for an internal pitch prototype. The demo aud
 
 ## The demo account: Brea General Hospital
 
-- 11-year Beckman Coulter account · $420K ACV · must-keep in region · renewal in 4 months (112 days).
+- 11-year Beckman Coulter account · $650K ACV · must-keep in region · contract end date Q4.
 - Instruments: DxH 900 (Hematology) + AU5800 + UA (Chemistry / Urinalysis).
 - **The overnight alert:** 3 of 8 risk parameters firing — win probability dropped 60→40%, CTSO call volume 180% of baseline for 31 days, an unplanned DxH 900 service visit (3 hrs hematology downtime, Gina Park on shift, no post-visit contact). Health score 34/100.
 - **History:** 2016 initial DxH placement (displaced Sysmex XE). 2020 near-loss (finance cost review, Roche chemistry proposal; saved by Estergreen advocacy + $18K reagent concession). 2023 DxH 900 upgrade + UA microscopy + AU5800 install. 2023 Q3 reagent strip shortage (3-month impact; heme distrust remains). 2025 RSM covered after KAM retirement. 2026 Devon inherits.
