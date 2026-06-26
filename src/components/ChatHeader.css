@@ -19,6 +19,24 @@
   flex-shrink: 0;
 }
 
+/* Avatar-as-trigger button: a bare reset so the avatar looks unchanged, just
+   clickable. Used as a discreet manual trigger for the demo's overnight alert. */
+.chat-header-avatar-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.chat-header-avatar-trigger:focus-visible {
+  outline: 2px solid #6264A7;
+  outline-offset: 2px;
+}
+
 /* ── Tabs (inline with header) ── */
 .chat-header-tabs {
   display: flex;

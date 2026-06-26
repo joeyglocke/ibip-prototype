@@ -103,18 +103,19 @@ const tip1on1 = {
         },
       ],
       nextDraft: '',
-      // The overnight alert fires on its own 10s after this briefing lands —
-      // the presenter keeps talking and the Teams notification pops mid-sentence.
-      autoAdvanceMs: 10000,
     },
 
-    // ── PIVOT: the overnight alert arrives (auto-fires 10s after Beat 1) ──
-    //    A Teams toast (step.notify) pops bottom-right when it lands. The alert
-    //    card carries the risk detail in an `expand` block: clicking "Show the
-    //    risk detail" drops it open INLINE (no new message). "Build the response
-    //    plan" inside the expansion advances to the playbook (Beat 3).
+    // ── PIVOT: the overnight alert (manually triggered by the presenter) ──
+    //    `manualTrigger` means it does NOT fire on its own — the presenter
+    //    triggers it on cue via a keyboard shortcut (backtick `` ` `` or the
+    //    → right-arrow) or by clicking the TIP avatar in the chat header. A
+    //    Teams toast (step.notify) pops bottom-right and stays until the
+    //    presenter closes it with the × . The alert card carries the risk
+    //    detail in an `expand` block; "Build the response plan" inside the
+    //    expansion shows the playbook (Beat 3).
     {
       userText: null,
+      manualTrigger: true,
       notify: {
         senderId: 100,
         title: 'TIP',

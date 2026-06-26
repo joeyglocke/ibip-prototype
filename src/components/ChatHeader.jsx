@@ -9,6 +9,7 @@ export default function ChatHeader({
   isChannel,
   isGroup,
   participantCount,
+  onAvatarClick,
   hasSessions,
   showSessions,
   onToggleSessions,
@@ -18,7 +19,20 @@ export default function ChatHeader({
   return (
     <div className="chat-view-header">
       <div className="chat-header-row">
-        <Avatar contact={activeContact} size={28} />
+        {/* The avatar doubles as a discreet trigger for the overnight alert
+            during the demo — only clickable while `onAvatarClick` is set. */}
+        {onAvatarClick ? (
+          <button
+            type="button"
+            className="chat-header-avatar-trigger"
+            onClick={onAvatarClick}
+            aria-label={`Open ${activeContact.name}`}
+          >
+            <Avatar contact={activeContact} size={28} />
+          </button>
+        ) : (
+          <Avatar contact={activeContact} size={28} />
+        )}
         <span className="chat-header-name">{activeContact.name}</span>
         <div className="chat-header-tabs">
           {isChannel ? (

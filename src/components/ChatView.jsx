@@ -151,9 +151,9 @@ export default function ChatView({
   // delays, and (optionally) chains the next user draft into compose.
   const [scriptStepByChat, setScriptStepByChat] = useState({})
   // Teams-style desktop notification (bottom-right toast). Set by showToast
-  // when a scripted step "arrives" unprompted (e.g. the overnight alert).
+  // when a scripted step is triggered (e.g. the overnight alert). Persistent —
+  // dismissed only via the × button.
   const [toast, setToast] = useState(null)
-  const toastTimerRef = useRef(null)
   const [channelThreadPostId, setChannelThreadPostId] = useState(null)
   const [threadRailOpen, setThreadRailOpen] = useState(false)
   const [highlightMessageId, setHighlightMessageId] = useState(null)
@@ -484,13 +484,11 @@ export default function ChatView({
     scheduleJiraResponse(0, userMsgId)
   }
 
-  // Pop a Teams-style desktop notification (bottom-right toast) and auto-
-  // dismiss it after a few seconds. Used when a scripted step "arrives"
-  // unprompted (e.g. the overnight alert).
+  // Pop a Teams-style desktop notification (bottom-right toast). It stays up
+  // until the presenter closes it with the × — no auto-dismiss, so it can sit
+  // on screen for as long as the demo needs.
   const showToast = (notify) => {
     setToast(notify)
-    if (toastTimerRef.current) clearTimeout(toastTimerRef.current)
-    toastTimerRef.current = setTimeout(() => setToast(null), 7000)
   }
 
   // Run a scripted step: optionally inject the user's bubble, fire its Teams
@@ -570,6 +568,39 @@ export default function ChatView({
     setComposeMention(null)
     runScriptStep(chatId, bucket, scriptStepByChat[chatId] || 0, { injectUserText: false })
   }
+
+  // Is a `manualTrigger` step (the overnight alert) pending in the active
+  // chat right now? Used to arm the keyboard shortcut + the header-avatar
+  // click only during that window.
+  const pendingManualStep = (() => {
+    const script = chatScripts[activeChatId]
+    const stepIndex = scriptStepByChat[activeChatId] || 0
+    const step = script && stepIndex < script.steps.length ? script.steps[stepIndex] : null
+    return step && step.manualTrigger ? stepIndex : null
+  })()
+
+  // Fire the pending manual-trigger step (the overnight alert + its toast) on
+  // the presenter's cue. No-op if nothing is armed.
+  const triggerManualAlert = () => {
+    if (pendingManualStep == null) return
+    runScriptStep(activeChatId, canvasKey, pendingManualStep, { loadNextDraft: false })
+  }
+
+  // Subtle keyboard triggers for the overnight alert: backtick (`` ` ``) or the
+  // → right-arrow (clicker-friendly). Only intercept the key while the alert
+  // is actually armed, so the keys behave normally the rest of the time.
+  useEffect(() => {
+    if (pendingManualStep == null) return
+    const onKey = (e) => {
+      if (e.key === '`' || e.key === 'ArrowRight') {
+        e.preventDefault()
+        triggerManualAlert()
+      }
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pendingManualStep, activeChatId])
 
   const handleSend = () => {
     const chatId = activeChatId
@@ -673,6 +704,7 @@ export default function ChatView({
           isChannel={isChannel}
           isGroup={isGroup}
           participantCount={participantCount}
+          onAvatarClick={pendingManualStep != null ? triggerManualAlert : undefined}
           hasSessions={hasSessions}
           showSessions={showSessions}
           onToggleSessions={() => setShowSessions((prev) => !prev)}
