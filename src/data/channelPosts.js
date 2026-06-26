@@ -101,7 +101,7 @@ export const channelPostsByContact = {
       subject: 'Must-keep health — week of Jun 15',
       text:
         "New flag this week — Brea General Hospital crossed into High overnight (win prob 60→40%, CTSO at 180% of baseline for 31 days, unplanned DxH 900 service visit with no post-visit contact). " +
-        "Devon owns the account; the RSM still holds the relationships. Contract end Q4. Intervention sequence is built — Park (PSE) → Estergreen (RSM) → Ortega. " +
+        "Devon owns the account; the RSM still holds the relationships. Contract end Q4. Intervention sequence is built — Park (PSE) → Estergreen (RSM) → Bailey. " +
         "Cascadia and Pacific Coast stable. As requested last week: renewal proximity column added.",
       reactions: [{ emoji: '⚠️', count: 5 }, { emoji: '👀', count: 6 }],
       replies: [
@@ -109,7 +109,7 @@ export const channelPostsByContact = {
           id: 'p26-2-r1',
           senderId: 202,
           text:
-            'tagging this thread for the leadership review today. devon + tom — i want a written read by thursday. hard rule: nobody goes to ortega before estergreen has pre-framed her.',
+            'tagging this thread for the leadership review today. devon + tom — i want a written read by thursday. hard rule: nobody goes to bailey before estergreen has pre-framed him.',
           time: 'Mon Jun 15 7:18 AM',
           reactions: [{ emoji: '👍', count: 3 }],
         },
@@ -158,13 +158,13 @@ export const channelPostsByContact = {
         {
           id: 'p27-tip-1-r1',
           senderId: 'me',
-          text: 'brea kickoff is gated on the intervention sequence — park, then estergreen, then ortega. no renewal ask in front of ortega until estergreen has pre-framed her. tom, agree?',
+          text: 'brea kickoff is gated on the intervention sequence — park, then estergreen, then bailey. no renewal ask in front of bailey until estergreen has pre-framed him. tom, agree?',
           time: 'Mon Jun 15 7:48 AM',
         },
         {
           id: 'p27-tip-1-r2',
           senderId: 201,
-          text: 'agree. resolve the service issue with park first, let estergreen do the framing, then we bring supply-chain commitments to ortega with data in hand. not before.',
+          text: 'agree. resolve the service issue with park first, let estergreen do the framing, then we bring supply-chain commitments to bailey with data in hand. not before.',
           time: 'Mon Jun 15 7:55 AM',
           reactions: [{ emoji: '👍', count: 2 }],
         },
@@ -207,7 +207,7 @@ export const channelPostsByContact = {
       text:
         "Posting because i was skeptical at the start of the pilot. " +
         "TIP flagged brea general at high severity overnight — three signals firing at once. The one that got me: an unplanned DxH 900 service visit with Gina Park on shift, and nobody on our side called her after it closed. I would not have connected that to the renewal in time. " +
-        "The intervention playbook sequenced the response across RSM, PSE, and the new KAM — Park, then Estergreen, then Ortega. Devon's two weeks in and walked into a coordinated plan. Will report back after the Park conversation lands.",
+        "The intervention playbook sequenced the response across RSM, PSE, and the new KAM — Park, then Estergreen, then Bailey. Devon's two weeks in and walked into a coordinated plan. Will report back after the Park conversation lands.",
       reactions: [{ emoji: '🎯', count: 6 }, { emoji: '❤️', count: 2 }],
       replies: [
         {

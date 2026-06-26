@@ -179,7 +179,7 @@ export default function App() {
             <li>
               <strong>The playbook.</strong> A coordinated RSM + PSE + KAM
               response, sequenced to the people in the building: Park →
-              Estergreen → Ortega. In that order. Before next week's meeting.
+              Estergreen → Bailey. In that order. Before next week's meeting.
             </li>
           </ol>
 

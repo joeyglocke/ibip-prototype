@@ -5,7 +5,7 @@
 // overnight risk flag fires on the same account. The demo follows the v4 demo
 // script: Beat 1 pre-meeting briefing → the alert pivots in → Beat 2 risk
 // detail → Beat 3 KF-tailored intervention playbook (Park → Estergreen →
-// Ortega).
+// Bailey).
 export const messagesByContact = {
   // ── TIP 1:1 (id 100) ──────────────────────────────────────────────────
   //    Seeded statically: ONLY a short greeting. Beat 1 (briefing), the
@@ -48,7 +48,7 @@ export const messagesByContact = {
             {
               heading: 'This week\'s asks',
               bullets: [
-                'Brea General Hospital — RSM + PSE + Devon run the Park → Estergreen → Ortega sequence within 4 business days',
+                'Brea General Hospital — RSM + PSE + Devon run the Park → Estergreen → Bailey sequence within 4 business days',
                 'Cascadia Regional — schedule the Q3 renewal pre-read; account is healthy',
                 'Pacific Coast Health System — confirm no Sysmex follow-up after the Q3 chatter',
               ],

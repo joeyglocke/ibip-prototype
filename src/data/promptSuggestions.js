@@ -13,7 +13,7 @@ export const promptSuggestions = {
       description: 'Full account history + who you\'re about to meet.',
       text: 'I have an intro meeting at Brea General Hospital next week — my RSM is making the introductions. Give me the full account history and everything I need to know about the people I\'m going to meet.',
       response:
-        '11-year account, $650K ACV, must-keep, contract end Q4. Three people in the room: Dr. Joanne Estergreen (Lab Director, Technical · Growth · +4 · active Coach — and an avid skier), Gina Park (Heme Technical Lead, User · Trouble · +2 — still carrying the 2023 reagent shortage), and Sandra Ortega (Supply Chain, Economic · Even Keel · +1). The predecessor note is the one to read first: "Ask her about skiing. Do not send an email first — call her." Open the full briefing?',
+        '11-year account, $650K ACV, must-keep, contract end Q4. Three people in the room: Dr. Joanne Estergreen (Lab Director, Technical · Growth · +4 · active Coach — and an avid skier), Gina Park (Heme Technical Lead, User · Trouble · +2 — still carrying the 2023 reagent shortage), and Arthur Bailey (Supply Chain, Economic · Even Keel · +1). The predecessor note is the one to read first: "Ask her about skiing. Do not send an email first — call her." Open the full briefing?',
     },
     {
       title: 'Show today\'s flagged accounts',
@@ -34,7 +34,7 @@ export const promptSuggestions = {
       description: 'Who to involve, in what order, what each call accomplishes.',
       text: 'My RSM has the relationships here but I need to coordinate the response. Who do I involve, in what order, and what does each conversation accomplish?',
       response:
-        'RSM + PSE + you, within 4 business days. Step 1 — Park gets the PSE on the DxH downtime (technical, not commercial; raise PLT-F first). Step 2 — Estergreen gets the RSM call (your intro; ask about skiing; have her pre-frame Ortega). Step 3 — Ortega gets data and process, not product. Sequence: Park → Estergreen → Ortega. Want the full playbook?',
+        'RSM + PSE + you, within 4 business days. Step 1 — Park gets the PSE on the DxH downtime (technical, not commercial; raise PLT-F first). Step 2 — Estergreen gets the RSM call (your intro; ask about skiing; have her pre-frame Bailey). Step 3 — Bailey gets data and process, not product. Sequence: Park → Estergreen → Bailey. Want the full playbook?',
     },
     {
       title: 'Check renewal exposure',

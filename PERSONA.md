@@ -26,10 +26,10 @@ This persona is fictional and used for an internal pitch prototype. The demo aud
 
 ## The buying influence map (Korn Ferry profiles)
 
-- **Dr. Joanne Estergreen** — Lab Director. Technical (T) · High influence · Growth mode · +4. Active **Coach** (all 3 KF criteria). Avid skier — a genuine connection point. RSM has the relationship. Engage first; she pre-frames Ortega.
+- **Dr. Joanne Estergreen** — Lab Director. Technical (T) · High influence · Growth mode · +4. Active **Coach** (all 3 KF criteria). Avid skier — a genuine connection point. RSM has the relationship. Engage first; she pre-frames Bailey.
 - **Gina Park** — Hematology Technical Lead. User (U) · Medium influence · Trouble mode · +2. Carrying distrust from the 2023 reagent shortage; will raise supply reliability. Route to the **PSE** (technical credibility), not a commercial KAM call. Acknowledge the downtime/shortage before she does; raise PLT-F first.
-- **Sandra Ortega** — Supply Chain Manager (reports to CFO). Economic (E) influence · High influence · Even Keel · +1. Vendor reliability is her lens. No relationship with us yet. Lead with data and process, not product or relationship. Do NOT contact before Estergreen briefs her.
-- **Intervention sequence:** Park (PSE) → Estergreen (RSM + intro Devon) → Ortega (RSM + Devon). In that order. Before next week's meeting — not instead of it.
+- **Arthur Bailey** — Supply Chain Manager (reports to CFO). Economic (E) influence · High influence · Even Keel · +1. Vendor reliability is his lens. No relationship with us yet. Lead with data and process, not product or relationship. Do NOT contact before Estergreen briefs him.
+- **Intervention sequence:** Park (PSE) → Estergreen (RSM + intro Devon) → Bailey (RSM + Devon). In that order. Before next week's meeting — not instead of it.
 
 ## Other top accounts (supporting)
 
@@ -40,9 +40,9 @@ This persona is fictional and used for an internal pitch prototype. The demo aud
 
 Reuse these names rather than invent new ones:
 
-- **Tom Hayes** (id 201) — RSM, Pacific. Holds the Brea relationships (Estergreen, Ortega); makes the introductions; bridges until Devon has footing.
+- **Tom Hayes** (id 201) — RSM, Pacific. Holds the Brea relationships (Estergreen, Bailey); makes the introductions; bridges until Devon has footing.
 - **Maria Santos** (id 200) — PSE (Product Support Engineer), West region. Takes the technical credibility call with Gina Park (DxH downtime, PLT-F, reagent protocols).
-- **Linda Castellano** (id 202) — Area Director, West. Sets escalation; guards the sequence (no Ortega contact before Estergreen pre-frames). *(Renamed from "Linda Park" to avoid colliding with customer Gina Park.)*
+- **Linda Castellano** (id 202) — Area Director, West. Sets escalation; guards the sequence (no Bailey contact before Estergreen pre-frames). *(Renamed from "Linda Park" to avoid colliding with customer Gina Park.)*
 - **Greg Tanaka** (id 203) — KAM, top accounts (peer).
 
 ## Communication style

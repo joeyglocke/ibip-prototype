@@ -56,7 +56,7 @@ const tip1on1 = {
                     '2016 — Initial DxH placement. Displaced Sysmex XE on morphology performance and service model.',
                     '2020 — Near-loss. Finance initiated a lab cost review; Roche submitted a chemistry proposal. Saved by Dr. Estergreen advocacy + an $18K reagent concession. Prior KAM: "Estergreen went to bat for us. Without her we lose this account."',
                     '2023 — DxH upgraded to DxH 900, UA microscopy added to Velocity, AU5800 installed on the chemistry side. Strong clinical reception.',
-                    '2023 — ⚠ Reagent strip shortage (Q3). Brea impacted for 3 months. Gina Park (Heme Technical Lead) escalated repeatedly to RSM and AD. Chemistry renewal nearly at risk — Sandra Ortega flagged vendor reliability. Resolved with a supply commitment letter + an executive call. Distrust from the heme team remains.',
+                    '2023 — ⚠ Reagent strip shortage (Q3). Brea impacted for 3 months. Gina Park (Heme Technical Lead) escalated repeatedly to RSM and AD. Chemistry renewal nearly at risk — Arthur Bailey flagged vendor reliability. Resolved with a supply commitment letter + an executive call. Distrust from the heme team remains.',
                     '2025 — RSM covered the account after the KAM retirement. Relationships maintained, not grown.',
                     '2026 — You inherit the territory. Renewal due Q3.',
                   ],
@@ -76,10 +76,10 @@ const tip1on1 = {
                   ],
                 },
                 {
-                  heading: 'Sandra Ortega (Supply Chain Manager — reports to CFO)',
+                  heading: 'Arthur Bailey (Supply Chain Manager — reports to CFO)',
                   bullets: [
-                    '⚠ The 2023 shortage is still on her radar. Vendor reliability is her primary lens.',
-                    '▶ Lead with supply chain commitments and contract protections, not product features. She has no relationship with us yet — earn trust with data. The RSM has met her once.',
+                    '⚠ The 2023 shortage is still on his radar. Vendor reliability is his primary lens.',
+                    '▶ Lead with supply chain commitments and contract protections, not product features. He has no relationship with us yet — earn trust with data. The RSM has met him once.',
                   ],
                 },
                 {
@@ -211,7 +211,7 @@ const tip1on1 = {
                 {
                   heading: '✓ Sequence',
                   text:
-                    'Gina Park (PSE) → Estergreen (RSM + intro you) → Ortega (RSM + you). In that order. Before next week\'s meeting — not instead of it.',
+                    'Gina Park (PSE) → Estergreen (RSM + intro you) → Bailey (RSM + you). In that order. Before next week\'s meeting — not instead of it.',
                 },
                 {
                   text:
@@ -225,12 +225,12 @@ const tip1on1 = {
                 {
                   heading: '▶ Step 2 — Dr. Joanne Estergreen (Technical · Growth · +4 · Coach)',
                   text:
-                    'The RSM calls Joanne — this is the RSM\'s relationship, not yours yet. She is in Growth mode and will advocate if given a reason. RSM briefs her on the service event and the response plan, and asks her to pre-frame the situation with Sandra Ortega before the formal meeting — Joanne has credibility with Ortega that our commercial team does not have yet. This is also your opening: the RSM introduces you on this call. Lead with something personal — ask about skiing. Joanne will remember that more than any product discussion.',
+                    'The RSM calls Joanne — this is the RSM\'s relationship, not yours yet. She is in Growth mode and will advocate if given a reason. RSM briefs her on the service event and the response plan, and asks her to pre-frame the situation with Arthur Bailey before the formal meeting — Joanne has credibility with Bailey that our commercial team does not have yet. This is also your opening: the RSM introduces you on this call. Lead with something personal — ask about skiing. Joanne will remember that more than any product discussion.',
                 },
                 {
-                  heading: '▶ Step 3 — Sandra Ortega (Economic · Even Keel · +1)',
+                  heading: '▶ Step 3 — Arthur Bailey (Economic · Even Keel · +1)',
                   text:
-                    'RSM + you together. Do NOT go to Ortega before Joanne has briefed her. She is Even Keel — no strong position, no urgency; vendor reliability is her lens. Introducing a service issue before a resolution plan is in hand moves her negative. Lead with supply chain commitments: updated inventory protocol, escalation path, executive contact — something she can document for the CFO. Do not lead with product or relationship. Data and process first; relationship follows.',
+                    'RSM + you together. Do NOT go to Bailey before Joanne has briefed him. He is Even Keel — no strong position, no urgency; vendor reliability is his lens. Introducing a service issue before a resolution plan is in hand moves him negative. Lead with supply chain commitments: updated inventory protocol, escalation path, executive contact — something he can document for the CFO. Do not lead with product or relationship. Data and process first; relationship follows.',
                 },
               ],
               footer: 'KF-tailored to each contact\'s profile and emotional state · Generated by TIP',
@@ -240,7 +240,7 @@ const tip1on1 = {
           chainOfThought: [
             'Sequenced the response against each contact\'s Korn Ferry mode and current state',
             'Routed Park to the PSE (technical credibility) rather than a commercial KAM call',
-            'Kept Ortega out of the sequence until Estergreen can pre-frame — Even Keel risk',
+            'Kept Bailey out of the sequence until Estergreen can pre-frame — Even Keel risk',
             'Built the RSM-led intro path so Devon can start earning the relationships',
           ],
           typingMs: 2600,
@@ -256,16 +256,16 @@ const tip1on1 = {
 // coordinate the Brea response; the team and TIP chain responses.
 const leadershipGroup = {
   initialDraft:
-    'team — brea flagged High overnight, two weeks into my territory and the intro meeting isn\'t until next week. @TIP gave me the sequence: park first (PSE), then estergreen (RSM), then ortega. tom, can you take the estergreen + ortega calls since you have the relationships?',
+    'team — brea flagged High overnight, two weeks into my territory and the intro meeting isn\'t until next week. @TIP gave me the sequence: park first (PSE), then estergreen (RSM), then bailey. tom, can you take the estergreen + bailey calls since you have the relationships?',
   steps: [
     {
       userText:
-        'team — brea flagged High overnight, two weeks into my territory and the intro meeting isn\'t until next week. @TIP gave me the sequence: park first (PSE), then estergreen (RSM), then ortega. tom, can you take the estergreen + ortega calls since you have the relationships?',
+        'team — brea flagged High overnight, two weeks into my territory and the intro meeting isn\'t until next week. @TIP gave me the sequence: park first (PSE), then estergreen (RSM), then bailey. tom, can you take the estergreen + bailey calls since you have the relationships?',
       responses: [
         {
           senderId: 201, // Tom Hayes (RSM)
           text:
-            'yes. i\'ll call joanne first — she\'s in growth mode and she\'ll advocate. i\'ll have her pre-frame ortega before we go anywhere near a contract conversation. and i\'ll introduce you on the estergreen call. ask her about skiing.',
+            'yes. i\'ll call joanne first — she\'s in growth mode and she\'ll advocate. i\'ll have her pre-frame bailey before we go anywhere near a contract conversation. and i\'ll introduce you on the estergreen call. ask her about skiing.',
           typingMs: 1500,
         },
         {
@@ -277,13 +277,13 @@ const leadershipGroup = {
         {
           senderId: 202, // Linda Castellano (Area Director)
           text:
-            'good. hard rule: nobody contacts ortega before estergreen has briefed her. a service issue in front of an even-keel buyer with no resolution in hand moves her negative. i want a written read by thursday.',
+            'good. hard rule: nobody contacts bailey before estergreen has briefed him. a service issue in front of an even-keel buyer with no resolution in hand moves him negative. i want a written read by thursday.',
           typingMs: 1500,
         },
         {
           senderId: 100, // TIP
           text:
-            'Noted. I\'ll hold Ortega off the outreach list until Estergreen\'s pre-brief is logged, and alert this thread the moment any Brea signal moves. The 4-business-day response clock starts today.',
+            'Noted. I\'ll hold Bailey off the outreach list until Estergreen\'s pre-brief is logged, and alert this thread the moment any Brea signal moves. The 4-business-day response clock starts today.',
           typingMs: 1700,
         },
       ],
@@ -377,7 +377,7 @@ const transitionsGroup = {
         {
           senderId: 201, // Tom Hayes (RSM)
           text:
-            'i\'ll keep bridging the brea relationships until devon has their own footing — estergreen and ortega especially. flagging any handoff moment here so we don\'t drop a thread mid-transition.',
+            'i\'ll keep bridging the brea relationships until devon has their own footing — estergreen and bailey especially. flagging any handoff moment here so we don\'t drop a thread mid-transition.',
           typingMs: 1500,
         },
       ],
