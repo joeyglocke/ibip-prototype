@@ -14,7 +14,7 @@ import {
   breakthuAgent,
   chatScripts,
 } from '../data'
-import { TypingIndicator } from './common'
+import { TypingIndicator, TeamsToast } from './common'
 import MessageRow from './MessageRow'
 import SessionsRail from './SessionsRail'
 import AgentsRail from './AgentsRail'
@@ -150,6 +150,10 @@ export default function ChatView({
   // chat's cursor, plays the chained responses with typing-indicator
   // delays, and (optionally) chains the next user draft into compose.
   const [scriptStepByChat, setScriptStepByChat] = useState({})
+  // Teams-style desktop notification (bottom-right toast). Set by showToast
+  // when a scripted step "arrives" unprompted (e.g. the overnight alert).
+  const [toast, setToast] = useState(null)
+  const toastTimerRef = useRef(null)
   const [channelThreadPostId, setChannelThreadPostId] = useState(null)
   const [threadRailOpen, setThreadRailOpen] = useState(false)
   const [highlightMessageId, setHighlightMessageId] = useState(null)
@@ -480,12 +484,44 @@ export default function ChatView({
     scheduleJiraResponse(0, userMsgId)
   }
 
-  // Play a scripted step's chained responses (TIP / teammates) one-by-one,
-  // each preceded by a typing indicator, then advance the step cursor.
-  // `loadNextDraft` controls whether the step's follow-up query is pre-filled
-  // into compose afterward — true for compose-driven sends, false for
-  // card-button advances (which leave the box blank).
-  const playStepResponses = (chatId, bucket, step, stepIndex, { loadNextDraft }) => {
+  // Pop a Teams-style desktop notification (bottom-right toast) and auto-
+  // dismiss it after a few seconds. Used when a scripted step "arrives"
+  // unprompted (e.g. the overnight alert).
+  const showToast = (notify) => {
+    setToast(notify)
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current)
+    toastTimerRef.current = setTimeout(() => setToast(null), 7000)
+  }
+
+  // Run a scripted step: optionally inject the user's bubble, fire its Teams
+  // toast, play the chained TIP/teammate responses (each behind a typing
+  // indicator), advance the step cursor, and — if the step declares
+  // `autoAdvanceMs` — auto-run the NEXT step that long after its last message
+  // lands (used so the overnight alert fires on its own, no Send required).
+  const firedStepsRef = useRef(new Set())
+  const runScriptStep = (chatId, bucket, stepIndex, { loadNextDraft = false, injectUserText = false } = {}) => {
+    const script = chatScripts[chatId]
+    if (!script || stepIndex < 0 || stepIndex >= script.steps.length) return
+    const fireKey = `${chatId}:${stepIndex}`
+    if (firedStepsRef.current.has(fireKey)) return // never run a step twice
+    firedStepsRef.current.add(fireKey)
+
+    const step = script.steps[stepIndex]
+
+    if (injectUserText && step.userText != null) {
+      setExtraMessages((prev) => ({
+        ...prev,
+        [bucket]: [...(prev[bucket] || []), {
+          id: `extra-${Date.now()}`,
+          senderId: 'me',
+          text: parseMentions(step.userText),
+          time: nowTimeStr(),
+        }],
+      }))
+    }
+
+    if (step.notify) showToast(step.notify)
+
     let elapsed = 0
     step.responses.forEach((response, idx) => {
       const typingMs = response.typingMs ?? 1800
@@ -503,13 +539,20 @@ export default function ChatView({
             cards: response.cards,
             chainOfThought: response.chainOfThought,
             id: `script-${chatId}-${stepIndex}-${idx}-${Date.now()}`,
-            time: nowTimeStr(),
+            time: response.time || nowTimeStr(),
           }],
         }))
         const isLast = idx === step.responses.length - 1
         if (isLast) {
           setMainTypingAgentId((prev) => (prev === response.senderId ? null : prev))
           if (loadNextDraft && step.nextDraft) setInputValue(step.nextDraft)
+          // Auto-fire the next step a beat later (e.g. the overnight alert
+          // arriving 10s after the briefing lands).
+          if (step.autoAdvanceMs != null) {
+            setTimeout(() => {
+              runScriptStep(chatId, bucket, stepIndex + 1, { loadNextDraft: false })
+            }, step.autoAdvanceMs)
+          }
         }
       }, messageAppearAt)
       elapsed = messageAppearAt + (response.gapMs ?? 400)
@@ -517,51 +560,22 @@ export default function ChatView({
     setScriptStepByChat((prev) => ({ ...prev, [chatId]: stepIndex + 1 }))
   }
 
-  // Advance the scripted flow from a card action button (e.g. "Show the risk
-  // detail" on the overnight alert). The button drives the demo directly:
-  // it injects the pending step's own user text as the message, ignores and
-  // clears the compose box, and does NOT pre-load the next draft — so the
-  // compose stays blank after a click.
+  // Advance the scripted flow from a card action button (e.g. "Build the
+  // response plan"). Injects the pending step's own user text as the message,
+  // clears the compose box, and leaves it blank (no next-draft pre-load).
   const advanceViaCard = () => {
     const chatId = activeChatId
     const bucket = canvasKey
-    const script = chatScripts[chatId]
-    const stepIndex = scriptStepByChat[chatId] || 0
-    if (!script || stepIndex >= script.steps.length) return
-    const step = script.steps[stepIndex]
     setInputValue('')
     setComposeMention(null)
-    if (step.userText != null) {
-      setExtraMessages((prev) => ({
-        ...prev,
-        [bucket]: [...(prev[bucket] || []), {
-          id: `extra-${Date.now()}`,
-          senderId: 'me',
-          text: parseMentions(step.userText),
-          time: nowTimeStr(),
-        }],
-      }))
-    }
-    playStepResponses(chatId, bucket, step, stepIndex, { loadNextDraft: false })
+    runScriptStep(chatId, bucket, scriptStepByChat[chatId] || 0, { injectUserText: true })
   }
 
   const handleSend = () => {
     const chatId = activeChatId
     const bucket = canvasKey
 
-    // A scripted "pivot" step (userText: null) fires its responses on an
-    // empty Send with NO user bubble — used so a platform-initiated message
-    // (e.g. an overnight alert) can "arrive" on the presenter's cue between
-    // two typed beats. Detect it before the empty-input early return.
-    const pendingScript = chatScripts[chatId]
-    const pendingStepIndex = scriptStepByChat[chatId] || 0
-    const pendingStep =
-      pendingScript && pendingStepIndex < pendingScript.steps.length
-        ? pendingScript.steps[pendingStepIndex]
-        : null
-    const isPivotStep = !!pendingStep && pendingStep.userText == null
-
-    if (!composeMention && !inputValue.trim() && !isPivotStep) return
+    if (!composeMention && !inputValue.trim()) return
 
     const sentText = composeMention
       ? `/${composeMention}${inputValue ? ' ' + inputValue.trimStart() : ''}`
@@ -575,21 +589,18 @@ export default function ChatView({
       return
     }
 
-    // Pivot steps render no user message — skip straight to the scripted
-    // responses below.
-    if (!isPivotStep) {
-      const myMessage = {
-        id: `extra-${Date.now()}`,
-        senderId: 'me',
-        text: parseMentions(sentText),
-        time: nowTimeStr(),
-      }
-      setExtraMessages((prev) => ({
-        ...prev,
-        [bucket]: [...(prev[bucket] || []), myMessage],
-      }))
-      finalizePendingSession(sentText)
+    // The typed message becomes the user's bubble.
+    const myMessage = {
+      id: `extra-${Date.now()}`,
+      senderId: 'me',
+      text: parseMentions(sentText),
+      time: nowTimeStr(),
     }
+    setExtraMessages((prev) => ({
+      ...prev,
+      [bucket]: [...(prev[bucket] || []), myMessage],
+    }))
+    finalizePendingSession(sentText)
 
     // Sarah Chen (id 1) scripted auto-response — exercises the typing
     // indicator flow end-to-end from a regular 1:1 chat.
@@ -610,10 +621,11 @@ export default function ChatView({
     }
 
     // Generic scripted-flow driver — used by the TIP 1:1 and the two group
-    // chats. Each Send advances the chat's step cursor and plays the chained
-    // responses, pre-loading the next query into compose afterward.
-    if (pendingScript && pendingStepIndex < pendingScript.steps.length) {
-      playStepResponses(chatId, bucket, pendingStep, pendingStepIndex, { loadNextDraft: true })
+    // chats. The user message was already rendered above, so runScriptStep
+    // only plays the chained responses (injectUserText: false).
+    const pendingStepIndex = scriptStepByChat[chatId] || 0
+    if (chatScripts[chatId] && pendingStepIndex < chatScripts[chatId].steps.length) {
+      runScriptStep(chatId, bucket, pendingStepIndex, { loadNextDraft: true })
     }
   }
 
@@ -790,6 +802,14 @@ export default function ChatView({
             setThreadRailOpen(false)
             setChannelThreadPostId(null)
           }}
+        />
+      )}
+      {toast && (
+        <TeamsToast
+          contact={contacts.find((c) => c.id === toast.senderId) || activeContact}
+          title={toast.title}
+          body={toast.body}
+          onClose={() => setToast(null)}
         />
       )}
     </div>

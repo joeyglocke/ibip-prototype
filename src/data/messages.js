@@ -17,7 +17,7 @@ export const messagesByContact = {
       senderId: 100,
       text:
         'Morning, Devon — you\'re two weeks into the Pacific Northwest territory now. I\'ve indexed the previous KAM\'s account notes and your live signals. Ask me anything: account history, the people you\'re about to meet, or what\'s moving on your accounts.',
-      time: 'Mon 8:30 AM',
+      time: 'Today 6:58 AM',
     },
   ],
 

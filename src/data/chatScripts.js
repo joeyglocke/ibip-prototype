@@ -64,7 +64,6 @@ const tip1on1 = {
                 {
                   heading: 'Who you\'re meeting — Dr. Joanne Estergreen (Lab Director)',
                   bullets: [
-                    'KF: Technical (T) · High influence · Growth mode · +4 · Active Coach (meets all 3 criteria)',
                     'Personal: Avid skier. Mentioning the mountains is a genuine connection point.',
                     '▶ She\'ll advocate for you. The RSM has the relationship. Your job is to earn it.',
                   ],
@@ -72,7 +71,6 @@ const tip1on1 = {
                 {
                   heading: 'Gina Park (Hematology Technical Lead)',
                   bullets: [
-                    'KF: User (U) · Medium influence · Trouble mode · +2',
                     '⚠ Still carrying frustration from the 2023 reagent shortage. She will bring it up.',
                     '⚠ Several heme techs moonlight at Pacific General across town — a Sysmex site. PLT-F is a talking point, and Sysmex is using it to plant doubt.',
                     '▶ Acknowledge the shortage before she does. Have your PSE engage on PLT-F clinical data before the meeting.',
@@ -81,7 +79,6 @@ const tip1on1 = {
                 {
                   heading: 'Sandra Ortega (Supply Chain Manager — reports to CFO)',
                   bullets: [
-                    'KF: Economic (E) influence · High influence · Even Keel · +1',
                     '⚠ The 2023 shortage is still on her radar. Vendor reliability is her primary lens.',
                     '▶ Lead with supply chain commitments and contract protections, not product features. She has no relationship with us yet — earn trust with data. The RSM has met her once.',
                   ],
@@ -106,21 +103,28 @@ const tip1on1 = {
           typingMs: 2400,
         },
       ],
-      // Compose clears — the presenter clicks Send once more (empty box) to
-      // fire the overnight alert pivot on cue.
       nextDraft: '',
+      // The overnight alert fires on its own 10s after this briefing lands —
+      // the presenter keeps talking and the Teams notification pops mid-sentence.
+      autoAdvanceMs: 10000,
     },
 
-    // ── PIVOT: the overnight alert arrives (empty-Send reveal) ────────
-    //    The alert card carries the risk detail in an `expand` block: clicking
-    //    "Show the risk detail" drops it open INLINE (no new message). The
-    //    "Build the response plan" button inside the expansion advances to the
-    //    playbook (Beat 3).
+    // ── PIVOT: the overnight alert arrives (auto-fires 10s after Beat 1) ──
+    //    A Teams toast (step.notify) pops bottom-right when it lands. The alert
+    //    card carries the risk detail in an `expand` block: clicking "Show the
+    //    risk detail" drops it open INLINE (no new message). "Build the response
+    //    plan" inside the expansion advances to the playbook (Beat 3).
     {
       userText: null,
+      notify: {
+        senderId: 100,
+        title: 'TIP',
+        body: '⚠ Overnight alert — Brea General Hospital. HIGH SEVERITY · 3 risk parameters triggered.',
+      },
       responses: [
         {
           senderId: 100,
+          time: '7:00 AM',
           text:
             'This just came in. Overnight — on the same account you\'re prepping for next week.',
           cards: [
