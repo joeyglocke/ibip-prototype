@@ -24,24 +24,24 @@
 // ── TIP 1:1 chat (id 100) ────────────────────────────────────────────────
 const tip1on1 = {
   initialDraft:
-    'I have an intro meeting at Brea General Hospital next week — my RSM is making the introductions. I\'m two weeks into this territory. Give me the full account history and everything I need to know about the people I\'m going to meet.',
+    'I have an intro meeting at Brea General Hospital next week — my RSM is making the introductions. I\'m two weeks into this territory. Give me the full account history.',
   steps: [
-    // ── Beat 1: pre-meeting briefing (institutional memory) ───────────
+    // ── Beat 1a: account history (institutional memory) ───────────────
     {
       userText:
-        'I have an intro meeting at Brea General Hospital next week — my RSM is making the introductions. I\'m two weeks into this territory. Give me the full account history and everything I need to know about the people I\'m going to meet.',
+        'I have an intro meeting at Brea General Hospital next week — my RSM is making the introductions. I\'m two weeks into this territory. Give me the full account history.',
       responses: [
         {
           senderId: 100,
           text:
-            'BREA GENERAL HOSPITAL — Pre-meeting briefing. Eleven years of account history, the three people you\'re meeting and how each of them decides, and the note your predecessor left behind.',
+            'BREA GENERAL HOSPITAL — Account history. Eleven years on file, from the 2016 placement through the renewal coming due this year.',
           cards: [
             {
               accentColor: '#0B5394',
               iconType: 'teams',
-              title: 'Brea General Hospital — Pre-meeting briefing',
+              title: 'Brea General Hospital — Account history',
               subtitle: '11-year account · $650K ACV · Contract end: Q4 · Must-keep in region',
-              badge: { text: 'Pre-meeting briefing', tone: 'purple' },
+              badge: { text: 'Account history', tone: 'purple' },
               sections: [
                 {
                   heading: 'Account overview',
@@ -61,6 +61,37 @@ const tip1on1 = {
                     '2026 — You inherit the territory. Renewal due Q3.',
                   ],
                 },
+              ],
+              footer: 'Compiled from 11 years of logged interactions',
+            },
+          ],
+          chainOfThought: [
+            'Reconstructed the 11-year account timeline from 247 logged interactions',
+            'Flagged the 2020 near-loss and the 2023 reagent shortage as the pivotal events',
+            'Traced the instrument footprint across hematology, chemistry, and urinalysis',
+          ],
+          typingMs: 2400,
+        },
+      ],
+      nextDraft: 'who are the people i\'m meeting',
+    },
+
+    // ── Beat 1b: the people (buying influence + predecessor note) ──────
+    {
+      userText: 'who are the people i\'m meeting',
+      responses: [
+        {
+          senderId: 100,
+          text:
+            'The three people you\'ll meet, how each of them decides, and the note your predecessor left behind.',
+          cards: [
+            {
+              accentColor: '#0B5394',
+              iconType: 'teams',
+              title: 'Brea General Hospital — Who you\'re meeting',
+              subtitle: '3 key contacts · how each one decides',
+              badge: { text: 'Buying influence', tone: 'purple' },
+              sections: [
                 {
                   heading: 'Who you\'re meeting — Dr. Joanne Estergreen (Lab Director)',
                   bullets: [
@@ -94,7 +125,6 @@ const tip1on1 = {
             },
           ],
           chainOfThought: [
-            'Reconstructed the 11-year account timeline, including the 2020 near-loss and 2023 reagent shortage',
             'Mapped the 3 meeting contacts to Korn Ferry profiles (type, mode, rating, Coach status)',
             'Surfaced competitive intel: Sysmex moonlighting techs at Pacific General and the PLT-F talking point',
             'Extracted the predecessor\'s verbatim relationship note on Dr. Estergreen — including the skiing detail',
